@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelly's Command Center</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0A2540;
+            --bg-secondary: #0D2E4D;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --accent-teal: #00B4D8;
+            --accent-glow: #7DF9FF;
+            --text-primary: #F8F9FA;
+            --text-muted: #8B9CAD;
+            --border: rgba(255, 255, 255, 0.08);
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Layout */
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-glow));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: rgba(0, 180, 216, 0.15);
+            color: var(--accent-glow);
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+
+        .nav-item.active svg {
+            opacity: 1;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--accent-teal);
+            color: var(--bg-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+
+        .header-date {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-action {
+            color: var(--accent-teal);
+            font-size: 0.85rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .card-action:hover {
+            color: var(--accent-glow);
+        }
+
+        /* Today's Priorities */
+        .priority-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .priority-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .priority-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .priority-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-teal);
+            min-width: 24px;
+        }
+
+        .priority-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--text-muted);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .priority-checkbox:hover {
+            border-color: var(--accent-teal);
+        }
+
+        .priority-checkbox.checked {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .priority-checkbox.checked svg {
+            opacity: 1;
+        }
+
+        .priority-checkbox svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0;
+            color: white;
+        }
+
+        .priority-content {
+            flex: 1;
+        }
+
+        .priority-title {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .priority-title.completed {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .priority-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .priority-tag {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .priority-tag.helioflux {
+            background: rgba(0, 180, 216, 0.15);
+            color: var(--accent-teal);
+        }
+
+        .priority-tag.job {
+            background: rgba(40, 167, 69, 0.15);
+            color: var(--success);
+        }
+
+        /* Pipeline */
+        .pipeline-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .pipeline-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pipeline-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            min-width: 120px;
+        }
+
+        .pipeline-bar-container {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .pipeline-bar {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .pipeline-bar.committed {
+            background: var(--success);
+        }
+
+        .pipeline-bar.conversation {
+            background: var(--accent-teal);
+        }
+
+        .pipeline-bar.warm {
+            background: var(--warning);
+        }
+
+        .pipeline-bar.outreach {
+            background: var(--text-muted);
+        }
+
+        .pipeline-count {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: right;
+        }
+
+        /* Follow-ups */
+        .followup-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .followup-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 6px;
+        }
+
+        .followup-name {
+            font-size: 0.9rem;
+        }
+
+        .followup-days {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .followup-days.overdue {
+            color: var(--danger);
+        }
+
+        /* Recent Docs */
+        .doc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .doc-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .doc-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .doc-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 180, 216, 0.15);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .doc-icon svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-teal);
+        }
+
+        .doc-title {
+            font-size: 0.9rem;
+        }
+
+        .doc-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quick-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 180, 216, 0.1);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            color: var(--accent-teal);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-btn:hover {
+            background: rgba(0, 180, 216, 0.2);
+            border-color: rgba(0, 180, 216, 0.3);
+        }
+
+        .quick-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Investors Section */
+        .investor-highlight {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .investor-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 6px;
+        }
+
+        .investor-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .investor-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .investor-type {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .fit-score {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .fit-score.high {
+            background: rgba(40, 167, 69, 0.15);
+            color: var(--success);
+        }
+
+        .fit-score.medium {
+            background: rgba(255, 193, 7, 0.15);
+            color: var(--warning);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="18" height="18">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/>
+                    </svg>
+                </div>
+                Command Center
+            </div>
+            
+            <div class="nav">
+                <a class="nav-item active" href="index.html">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                    </svg>
+                    Dashboard
+                </a>
+                
+                <a class="nav-item" href="crm.html">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    CRM
+                    <span class="nav-badge">35</span>
+                </a>
+                
+                <a class="nav-item" href="todos.html">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"/>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                    To-Dos
+                    <span class="nav-badge">3</span>
+                </a>
+                
+                <a class="nav-item" href="investors.html">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    Investor Finder
+                </a>
+                
+                <a class="nav-item" href="vault.html">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Vault
+                    <span class="nav-badge">8</span>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main">
+            <div class="header">
+                <h1>Good evening, Kelly</h1>
+                <div class="header-date" id="currentDate"></div>
+            </div>
+            
+            <div class="dashboard-grid">
+                <!-- Today's Priorities -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Today's Priorities</span>
+                        <a class="card-action" href="todos.html">View all</a>
+                    </div>
+                    <div class="priority-list" id="priorityList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Pipeline -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Pipeline</span>
+                        <a class="card-action" href="crm.html">View CRM</a>
+                    </div>
+                    <div class="pipeline-stats">
+                        <div class="pipeline-row">
+                            <span class="pipeline-label">Committed</span>
+                            <div class="pipeline-bar-container">
+                                <div class="pipeline-bar committed" style="width: 14%"></div>
+                            </div>
+                            <span class="pipeline-count">5</span>
+                        </div>
+                        <div class="pipeline-row">
+                            <span class="pipeline-label">In Conversation</span>
+                            <div class="pipeline-bar-container">
+                                <div class="pipeline-bar conversation" style="width: 3%"></div>
+                            </div>
+                            <span class="pipeline-count">1</span>
+                        </div>
+                        <div class="pipeline-row">
+                            <span class="pipeline-label">Warm Lead</span>
+                            <div class="pipeline-bar-container">
+                                <div class="pipeline-bar warm" style="width: 31%"></div>
+                            </div>
+                            <span class="pipeline-count">11</span>
+                        </div>
+                        <div class="pipeline-row">
+                            <span class="pipeline-label">Cold Outreach</span>
+                            <div class="pipeline-bar-container">
+                                <div class="pipeline-bar outreach" style="width: 34%"></div>
+                            </div>
+                            <span class="pipeline-count">12</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Top Investor Matches -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Top Investor Matches</span>
+                        <a class="card-action" href="investors.html">Find more</a>
+                    </div>
+                    <div class="investor-highlight" id="investorList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Recent Docs -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Recent Documents</span>
+                        <a class="card-action" href="vault.html">View vault</a>
+                    </div>
+                    <div class="doc-list">
+                        <div class="doc-item">
+                            <div class="doc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="doc-title">Competitor Landscape</div>
+                                <div class="doc-meta">Research • Today</div>
+                            </div>
+                        </div>
+                        <div class="doc-item">
+                            <div class="doc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="doc-title">Biotech Investors</div>
+                                <div class="doc-meta">Research • Today</div>
+                            </div>
+                        </div>
+                        <div class="doc-item">
+                            <div class="doc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="doc-title">Patient Journey Spec</div>
+                                <div class="doc-meta">Spec • Today</div>
+                            </div>
+                        </div>
+                        <div class="doc-item">
+                            <div class="doc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="doc-title">Grant Opportunities</div>
+                                <div class="doc-meta">Research • Today</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Quick Actions</span>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="quick-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="8.5" cy="7" r="4"/>
+                                <line x1="20" y1="8" x2="20" y2="14"/>
+                                <line x1="23" y1="11" x2="17" y2="11"/>
+                            </svg>
+                            Add Contact
+                        </button>
+                        <button class="quick-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Add Task
+                        </button>
+                        <button class="quick-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="12" y1="18" x2="12" y2="12"/>
+                                <line x1="9" y1="15" x2="15" y2="15"/>
+                            </svg>
+                            Upload Document
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Need Follow-up -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Need Follow-up</span>
+                        <a class="card-action" href="crm.html">View all</a>
+                    </div>
+                    <div class="followup-list">
+                        <div class="followup-item">
+                            <span class="followup-name">Jim Armstrong</span>
+                            <span class="followup-days overdue">3 days ago</span>
+                        </div>
+                        <div class="followup-item">
+                            <span class="followup-name">Andy Lehman</span>
+                            <span class="followup-days">5 days ago</span>
+                        </div>
+                        <div class="followup-item">
+                            <span class="followup-name">Emily Atkinson</span>
+                            <span class="followup-days">7 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Set current date
+        const dateEl = document.getElementById('currentDate');
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateEl.textContent = now.toLocaleDateString('en-US', options);
+        
+        // Load tasks
+        const tasks = [
+            { id: 1, title: "Sign Mike's patent engagement ($2,500)", category: "HelioFlux", done: false },
+            { id: 2, title: "Apply to Aglaia Oncology", category: "HelioFlux", done: false },
+            { id: 3, title: "Sign up for Outlier.ai", category: "Job Search", done: false }
+        ];
+        
+        const priorityList = document.getElementById('priorityList');
+        tasks.forEach((task, index) => {
+            const tagClass = task.category === 'HelioFlux' ? 'helioflux' : 'job';
+            priorityList.innerHTML += `
+                <div class="priority-item" data-id="${task.id}">
+                    <span class="priority-number">${index + 1}.</span>
+                    <div class="priority-checkbox ${task.done ? 'checked' : ''}" onclick="toggleTask(${task.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <div class="priority-content">
+                        <div class="priority-title ${task.done ? 'completed' : ''}">${task.title}</div>
+                        <div class="priority-meta">
+                            <span class="priority-tag ${tagClass}">${task.category}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        // Load top investors
+        const investors = [
+            { name: "Jim Armstrong", type: "Angel (Existing)", score: 99 },
+            { name: "Aglaia Oncology", type: "VC - Oncology Only", score: 98 },
+            { name: "Mark Foundation", type: "Foundation - Early Detection", score: 95 },
+            { name: "Prevent Cancer Foundation", type: "Foundation", score: 93 },
+            { name: "IndieBio", type: "Accelerator", score: 92 }
+        ];
+        
+        const investorList = document.getElementById('investorList');
+        investors.forEach(inv => {
+            const scoreClass = inv.score >= 90 ? 'high' : 'medium';
+            investorList.innerHTML += `
+                <div class="investor-item">
+                    <div class="investor-info">
+                        <span class="investor-name">${inv.name}</span>
+                        <span class="investor-type">${inv.type}</span>
+                    </div>
+                    <span class="fit-score ${scoreClass}">${inv.score}%</span>
+                </div>
+            `;
+        });
+        
+        // Toggle task completion
+        function toggleTask(id) {
+            const item = document.querySelector(`[data-id="${id}"]`);
+            const checkbox = item.querySelector('.priority-checkbox');
+            const title = item.querySelector('.priority-title');
+            
+            checkbox.classList.toggle('checked');
+            title.classList.toggle('completed');
+        }
+    </script>
+</body>
+</html>
