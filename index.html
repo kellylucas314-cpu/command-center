@@ -771,71 +771,216 @@
     </div>
     
     <script>
+        // ============ INITIALIZATION ============
+        
         // Set current date
         const dateEl = document.getElementById('currentDate');
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         dateEl.textContent = now.toLocaleDateString('en-US', options);
         
-        // Load tasks
-        const tasks = [
-            { id: 1, title: "Sign Mike's patent engagement ($2,500)", category: "HelioFlux", done: false },
-            { id: 2, title: "Apply to Aglaia Oncology", category: "HelioFlux", done: false },
-            { id: 3, title: "Sign up for Outlier.ai", category: "Job Search", done: false }
-        ];
+        // Set greeting based on time
+        const hour = now.getHours();
+        const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+        document.querySelector('.header h1').textContent = `${greeting}, Kelly`;
         
-        const priorityList = document.getElementById('priorityList');
-        tasks.forEach((task, index) => {
-            const tagClass = task.category === 'HelioFlux' ? 'helioflux' : 'job';
-            priorityList.innerHTML += `
-                <div class="priority-item" data-id="${task.id}">
-                    <span class="priority-number">${index + 1}.</span>
-                    <div class="priority-checkbox ${task.done ? 'checked' : ''}" onclick="toggleTask(${task.id})">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                    </div>
-                    <div class="priority-content">
-                        <div class="priority-title ${task.done ? 'completed' : ''}">${task.title}</div>
-                        <div class="priority-meta">
-                            <span class="priority-tag ${tagClass}">${task.category}</span>
+        // Check if running locally (with Flask) or on GitHub Pages
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        
+        // ============ LOAD DATA ============
+        
+        async function loadTasks() {
+            const priorityList = document.getElementById('priorityList');
+            let tasks;
+            
+            if (isLocal) {
+                // Fetch from API
+                try {
+                    const res = await fetch('/api/tasks');
+                    tasks = await res.json();
+                    tasks = tasks.filter(t => t.status !== 'done').slice(0, 3);
+                } catch (e) {
+                    console.error('Could not load tasks from API:', e);
+                    tasks = getDefaultTasks();
+                }
+            } else {
+                // Use default data for GitHub Pages
+                tasks = getDefaultTasks();
+            }
+            
+            priorityList.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const tagClass = task.category === 'HelioFlux' ? 'helioflux' : 'job';
+                const isDone = task.status === 'done';
+                priorityList.innerHTML += `
+                    <div class="priority-item" data-id="${task.id}">
+                        <span class="priority-number">${index + 1}.</span>
+                        <div class="priority-checkbox ${isDone ? 'checked' : ''}" onclick="toggleTask(${task.id})">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="priority-content">
+                            <div class="priority-title ${isDone ? 'completed' : ''}">${task.title}</div>
+                            <div class="priority-meta">
+                                <span class="priority-tag ${tagClass}">${task.category}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-        });
+                `;
+            });
+        }
         
-        // Load top investors
-        const investors = [
-            { name: "Jim Armstrong", type: "Angel (Existing)", score: 99 },
-            { name: "Aglaia Oncology", type: "VC - Oncology Only", score: 98 },
-            { name: "Mark Foundation", type: "Foundation - Early Detection", score: 95 },
-            { name: "Prevent Cancer Foundation", type: "Foundation", score: 93 },
-            { name: "IndieBio", type: "Accelerator", score: 92 }
-        ];
-        
-        const investorList = document.getElementById('investorList');
-        investors.forEach(inv => {
-            const scoreClass = inv.score >= 90 ? 'high' : 'medium';
-            investorList.innerHTML += `
-                <div class="investor-item">
-                    <div class="investor-info">
-                        <span class="investor-name">${inv.name}</span>
-                        <span class="investor-type">${inv.type}</span>
+        async function loadInvestors() {
+            const investorList = document.getElementById('investorList');
+            let investors;
+            
+            if (isLocal) {
+                try {
+                    const res = await fetch('/api/investors');
+                    investors = await res.json();
+                    investors = investors.slice(0, 5);
+                } catch (e) {
+                    console.error('Could not load investors from API:', e);
+                    investors = getDefaultInvestors();
+                }
+            } else {
+                investors = getDefaultInvestors();
+            }
+            
+            investorList.innerHTML = '';
+            investors.forEach(inv => {
+                const scoreClass = inv.fit_score >= 90 ? 'high' : 'medium';
+                investorList.innerHTML += `
+                    <div class="investor-item">
+                        <div class="investor-info">
+                            <span class="investor-name">${inv.name}</span>
+                            <span class="investor-type">${inv.type || inv.firm}</span>
+                        </div>
+                        <span class="fit-score ${scoreClass}">${inv.fit_score}%</span>
                     </div>
-                    <span class="fit-score ${scoreClass}">${inv.score}%</span>
-                </div>
-            `;
-        });
+                `;
+            });
+        }
         
-        // Toggle task completion
-        function toggleTask(id) {
+        async function loadPipeline() {
+            if (!isLocal) return;
+            
+            try {
+                const res = await fetch('/api/pipeline');
+                const pipeline = await res.json();
+                
+                const total = pipeline.total || 35;
+                const rows = document.querySelectorAll('.pipeline-row');
+                
+                const data = [
+                    { status: 'Committed', count: pipeline['Committed'] || 5 },
+                    { status: 'In Conversation', count: pipeline['In Conversation'] || 1 },
+                    { status: 'Warm Lead', count: pipeline['Warm Lead'] || 11 },
+                    { status: 'Cold Outreach', count: pipeline['Cold Outreach'] || 12 }
+                ];
+                
+                rows.forEach((row, i) => {
+                    if (data[i]) {
+                        const bar = row.querySelector('.pipeline-bar');
+                        const count = row.querySelector('.pipeline-count');
+                        bar.style.width = `${(data[i].count / total) * 100}%`;
+                        count.textContent = data[i].count;
+                    }
+                });
+            } catch (e) {
+                console.error('Could not load pipeline:', e);
+            }
+        }
+        
+        // ============ DEFAULT DATA (for GitHub Pages) ============
+        
+        function getDefaultTasks() {
+            return [
+                { id: 1, title: "Sign Mike's patent engagement ($2,500)", category: "HelioFlux", status: "pending" },
+                { id: 2, title: "Apply to Aglaia Oncology", category: "HelioFlux", status: "pending" },
+                { id: 3, title: "Sign up for Outlier.ai", category: "Job Search", status: "pending" }
+            ];
+        }
+        
+        function getDefaultInvestors() {
+            return [
+                { name: "Jim Armstrong", type: "Angel (Existing)", fit_score: 99 },
+                { name: "Aglaia Oncology", type: "VC - Oncology Only", fit_score: 98 },
+                { name: "Mark Foundation", type: "Foundation", fit_score: 95 },
+                { name: "Prevent Cancer Foundation", type: "Foundation", fit_score: 93 },
+                { name: "IndieBio", type: "Accelerator", fit_score: 92 }
+            ];
+        }
+        
+        // ============ ACTIONS ============
+        
+        async function toggleTask(id) {
             const item = document.querySelector(`[data-id="${id}"]`);
             const checkbox = item.querySelector('.priority-checkbox');
             const title = item.querySelector('.priority-title');
             
+            const isNowChecked = !checkbox.classList.contains('checked');
             checkbox.classList.toggle('checked');
             title.classList.toggle('completed');
+            
+            if (isLocal) {
+                try {
+                    await fetch(`/api/tasks/${id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ status: isNowChecked ? 'done' : 'pending' })
+                    });
+                } catch (e) {
+                    console.error('Could not update task:', e);
+                }
+            }
+        }
+        
+        // ============ QUICK ACTIONS ============
+        
+        document.querySelectorAll('.quick-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const text = this.textContent.trim();
+                if (text.includes('Add Contact')) {
+                    alert('Opening CRM... (crm.html - to be built)');
+                } else if (text.includes('Add Task')) {
+                    const title = prompt('New task:');
+                    if (title) addTask(title);
+                } else if (text.includes('Upload')) {
+                    alert('Opening Vault... (vault.html - to be built)');
+                }
+            });
+        });
+        
+        async function addTask(title) {
+            if (isLocal) {
+                try {
+                    await fetch('/api/tasks', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ title, category: 'HelioFlux', priority: 3 })
+                    });
+                    loadTasks();
+                } catch (e) {
+                    console.error('Could not add task:', e);
+                }
+            } else {
+                alert('Task added: ' + title + '\n(Save to server requires local mode)');
+            }
+        }
+        
+        // ============ INITIALIZE ============
+        
+        loadTasks();
+        loadInvestors();
+        loadPipeline();
+        
+        // Show mode indicator
+        if (isLocal) {
+            console.log('🟢 Running in LOCAL mode - connected to SQLite CRM');
+        } else {
+            console.log('🌐 Running in STATIC mode - using default data');
         }
     </script>
 </body>
