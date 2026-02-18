@@ -1,0 +1,205 @@
+{
+  "ideas": [
+    {
+      "id": 1,
+      "name": "Email → CRM Auto-Sync",
+      "status": "done",
+      "description": "Scan inbox every 30 minutes, filter noise, auto-add important contacts to CRM with priority tagging",
+      "location": "crm/email_sync.py",
+      "cron": "Every 30 min"
+    },
+    {
+      "id": 2,
+      "name": "Knowledge Base",
+      "status": "done",
+      "description": "Drop any URL (YouTube, articles, X posts, PDFs), auto-ingest and summarize, searchable database",
+      "location": "knowledge-base/kb.py",
+      "cron": null
+    },
+    {
+      "id": 3,
+      "name": "Security Council",
+      "status": "done",
+      "description": "Nightly audit: health checks, session logs, file permissions, exposed secrets. Silent unless issues found.",
+      "location": "Cron job",
+      "cron": "2:00am PST daily"
+    },
+    {
+      "id": 4,
+      "name": "Business Advisory Council",
+      "status": "done",
+      "description": "Weekly panel of virtual advisors (CFO, Sales, Strategy, Ops) analyze CRM, outreach, priorities, risks",
+      "location": "Cron job",
+      "cron": "Monday 7:00am PST"
+    },
+    {
+      "id": 5,
+      "name": "Vector/Semantic Search",
+      "status": "done",
+      "description": "TF-IDF search for CRM - ask natural language queries like 'who invested in cancer'",
+      "location": "crm/vector_search.py",
+      "cron": null
+    },
+    {
+      "id": 6,
+      "name": "Two-way Notion Sync",
+      "status": "done",
+      "description": "Bidirectional sync between local CRM and Notion database. Edit either place, stays synced.",
+      "location": "crm/notion_sync.py",
+      "cron": "Hourly"
+    },
+    {
+      "id": 7,
+      "name": "Email Outreach Tracker",
+      "status": "in_progress",
+      "description": "Track sent emails, bounces, and responses. Auto-detect replies to outreach campaigns.",
+      "location": "crm/email_tracker.py",
+      "cron": null
+    },
+    {
+      "id": 8,
+      "name": "Gemini CLI Integration",
+      "status": "blocked",
+      "description": "Use Gemini for image generation and other Google AI capabilities",
+      "location": "~/.npm-global/bin/gemini",
+      "blocker": "Kelly needs to run 'gemini' once to authenticate"
+    },
+    {
+      "id": 9,
+      "name": "Browser Automation",
+      "status": "blocked",
+      "description": "Use browser relay for web automation, form filling, scraping",
+      "location": "Browser skill",
+      "blocker": "Needs Chrome/Brave installed on system"
+    },
+    {
+      "id": 10,
+      "name": "Tweet Posting",
+      "status": "blocked",
+      "description": "Post tweets via CLI for BonaparteVC and other accounts",
+      "location": "bird skill",
+      "blocker": "X blocked CLI with Error 226 - need browser relay"
+    },
+    {
+      "id": 11,
+      "name": "Meeting Action Item Extraction",
+      "status": "idea",
+      "description": "Auto-extract action items from meeting transcripts (Fathom, Otter, etc.)",
+      "location": null,
+      "needs": "Fathom or Otter API access"
+    },
+    {
+      "id": 12,
+      "name": "Encrypted Google Drive Backups",
+      "status": "idea",
+      "description": "Nightly encrypted backups of workspace to Google Drive",
+      "location": null,
+      "needs": "Google Drive API setup"
+    },
+    {
+      "id": 13,
+      "name": "Inbox De-clutter / Newsletter Digest",
+      "status": "idea",
+      "description": "Summarize newsletters and low-priority emails into daily digest",
+      "location": null,
+      "needs": null
+    },
+    {
+      "id": 14,
+      "name": "Weekly Memory Synthesis",
+      "status": "idea",
+      "description": "Auto-review daily memory files and update MEMORY.md with distilled learnings",
+      "location": null,
+      "needs": null
+    },
+    {
+      "id": 15,
+      "name": "Model Routing Logic",
+      "status": "idea",
+      "description": "Smart routing between models based on task type (Sonnet for quick tasks, Opus for complex)",
+      "location": null,
+      "needs": null
+    },
+    {
+      "id": 16,
+      "name": "Humanizer Skill",
+      "status": "idea",
+      "description": "Make AI-generated text sound more human/natural",
+      "location": null,
+      "needs": null
+    },
+    {
+      "id": 17,
+      "name": "Usage/Cost Tracking Dashboard",
+      "status": "idea",
+      "description": "Track API usage, token counts, and costs over time",
+      "location": null,
+      "needs": null
+    },
+    {
+      "id": 18,
+      "name": "Git Auto-Backup",
+      "status": "idea",
+      "description": "Hourly git commits and pushes for workspace backup",
+      "location": null,
+      "needs": null
+    },
+    {
+      "id": 19,
+      "name": "Voice Command Interface",
+      "status": "idea",
+      "description": "Control Kip via voice commands through Telegram voice messages",
+      "location": null,
+      "needs": "Whisper API or local transcription"
+    },
+    {
+      "id": 20,
+      "name": "Calendar Integration",
+      "status": "idea",
+      "description": "Sync with Google Calendar for meeting prep and reminders",
+      "location": "gog skill exists",
+      "needs": "Kelly to set up calendar access"
+    },
+    {
+      "id": 21,
+      "name": "Multi-Agent Swarm",
+      "status": "idea",
+      "description": "Spawn specialized sub-agents for parallel research tasks",
+      "location": "Scout + Quill already set up",
+      "needs": "More agent configs for specific tasks"
+    },
+    {
+      "id": 22,
+      "name": "Auto Follow-up Sequences",
+      "status": "idea",
+      "description": "Automated drip sequences for non-responsive outreach contacts",
+      "location": null,
+      "needs": "Define timing rules and templates"
+    },
+    {
+      "id": 23,
+      "name": "LinkedIn Automation",
+      "status": "idea",
+      "description": "Auto-send connection requests and messages on LinkedIn",
+      "location": null,
+      "needs": "Browser automation working first"
+    },
+    {
+      "id": 24,
+      "name": "Investor Match Scoring",
+      "status": "idea",
+      "description": "AI scoring of investor fit based on thesis, portfolio, check size",
+      "location": null,
+      "needs": null
+    },
+    {
+      "id": 25,
+      "name": "Daily Standup Summary",
+      "status": "idea",
+      "description": "Auto-generate daily standup summary from memory files and git commits",
+      "location": null,
+      "needs": null
+    }
+  ],
+  "exported_at": "2026-02-18T14:10:00"
+}

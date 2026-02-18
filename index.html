@@ -401,6 +401,10 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     <span>Outreach</span>
                 </button>
+                <button class="nav-item" data-page="openclaw">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>OpenClaw</span>
+                </button>
             </div>
         </nav>
         
@@ -563,6 +567,43 @@
                     </table>
                 </div>
             </div>
+            
+            <!-- OPENCLAW IDEAS -->
+            <div class="page" id="page-openclaw">
+                <div class="grid-4" style="margin-bottom: 1rem;" id="openclaw-stats">
+                    <div class="stat-card">
+                        <div class="stat-value success" id="stat-done">-</div>
+                        <div class="stat-label">Done</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value warning" id="stat-progress">-</div>
+                        <div class="stat-label">In Progress</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value danger" id="stat-blocked">-</div>
+                        <div class="stat-label">Blocked</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-ideas">-</div>
+                        <div class="stat-label">Ideas</div>
+                    </div>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" class="search-input" id="openclaw-search" placeholder="Search capabilities...">
+                    <select class="filter-select" id="openclaw-filter">
+                        <option value="">All Status</option>
+                        <option value="done">✅ Done</option>
+                        <option value="in_progress">🔄 In Progress</option>
+                        <option value="blocked">🚫 Blocked</option>
+                        <option value="idea">💡 Ideas</option>
+                    </select>
+                </div>
+                
+                <div id="openclaw-list">
+                    <div class="loading">Loading OpenClaw ideas...</div>
+                </div>
+            </div>
         </main>
     </div>
     
@@ -582,6 +623,7 @@
         let kbData = { entries: [] };
         let tasksData = { tasks: [] };
         let outreachData = { emails: [], stats: {} };
+        let openclawData = { ideas: [] };
         
         // Pagination
         let crmPage = 1;
@@ -621,7 +663,8 @@
                         memory: 'Memory',
                         knowledge: 'Knowledge Base',
                         tasks: 'Tasks',
-                        outreach: 'Email Outreach'
+                        outreach: 'Email Outreach',
+                        openclaw: 'OpenClaw Ideas'
                     };
                     document.getElementById('pageTitle').textContent = titles[page] || page;
                 });
@@ -635,6 +678,8 @@
             document.getElementById('kb-search').addEventListener('input', renderKnowledgeBase);
             document.getElementById('outreach-search').addEventListener('input', renderOutreach);
             document.getElementById('outreach-status-filter').addEventListener('change', renderOutreach);
+            document.getElementById('openclaw-search').addEventListener('input', renderOpenClaw);
+            document.getElementById('openclaw-filter').addEventListener('change', renderOpenClaw);
         }
         
         function getGreeting() {
@@ -646,12 +691,13 @@
             const baseUrl = window.location.href.includes('github.io') ? './data/' : './data/';
             
             try {
-                const [crm, memory, kb, tasks, outreach] = await Promise.all([
+                const [crm, memory, kb, tasks, outreach, openclaw] = await Promise.all([
                     fetch(baseUrl + 'crm.json').then(r => r.json()).catch(() => ({ contacts: [], stats: {} })),
                     fetch(baseUrl + 'memory.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'knowledge.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'tasks.json').then(r => r.json()).catch(() => ({ tasks: [] })),
-                    fetch(baseUrl + 'outreach.json').then(r => r.json()).catch(() => ({ emails: [], stats: {} }))
+                    fetch(baseUrl + 'outreach.json').then(r => r.json()).catch(() => ({ emails: [], stats: {} })),
+                    fetch(baseUrl + 'openclaw-ideas.json').then(r => r.json()).catch(() => ({ ideas: [] }))
                 ]);
                 
                 crmData = crm;
@@ -659,6 +705,7 @@
                 kbData = kb;
                 tasksData = tasks;
                 outreachData = outreach;
+                openclawData = openclaw;
                 
                 document.getElementById('crm-count').textContent = crmData.stats?.total || crmData.contacts?.length || 0;
                 
@@ -667,6 +714,7 @@
                 renderKnowledgeBase();
                 renderTasks();
                 renderOutreach();
+                renderOpenClaw();
             } catch (e) {
                 console.error('Failed to load data:', e);
             }
@@ -907,6 +955,65 @@
                     <td>${e.sent_at ? new Date(e.sent_at).toLocaleDateString() : '-'}</td>
                 </tr>
             `).join('') : '<tr><td colspan="4" class="empty">No outreach emails tracked yet. Run email_tracker.py to sync!</td></tr>';
+        }
+        
+        function renderOpenClaw() {
+            const search = document.getElementById('openclaw-search').value.toLowerCase();
+            const statusFilter = document.getElementById('openclaw-filter').value;
+            
+            const ideas = openclawData.ideas || [];
+            
+            // Stats
+            const done = ideas.filter(i => i.status === 'done').length;
+            const inProgress = ideas.filter(i => i.status === 'in_progress').length;
+            const blocked = ideas.filter(i => i.status === 'blocked').length;
+            const ideaCount = ideas.filter(i => i.status === 'idea').length;
+            
+            document.getElementById('stat-done').textContent = done;
+            document.getElementById('stat-progress').textContent = inProgress;
+            document.getElementById('stat-blocked').textContent = blocked;
+            document.getElementById('stat-ideas').textContent = ideaCount;
+            
+            // Filter
+            let filtered = ideas.filter(i => {
+                const matchSearch = !search ||
+                    (i.name || '').toLowerCase().includes(search) ||
+                    (i.description || '').toLowerCase().includes(search);
+                const matchStatus = !statusFilter || i.status === statusFilter;
+                return matchSearch && matchStatus;
+            });
+            
+            const statusIcons = {
+                done: '✅',
+                in_progress: '🔄',
+                blocked: '🚫',
+                idea: '💡'
+            };
+            
+            const statusClasses = {
+                done: 'committed',
+                in_progress: 'warm',
+                blocked: 'cold',
+                idea: 'conversation'
+            };
+            
+            document.getElementById('openclaw-list').innerHTML = filtered.length ? filtered.map(i => `
+                <div class="card" style="margin-bottom: 0.75rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; margin-bottom: 0.3rem;">
+                                ${statusIcons[i.status] || '💡'} ${i.name}
+                                <span class="status-badge ${statusClasses[i.status] || ''}" style="margin-left: 0.5rem;">${i.status.replace('_', ' ')}</span>
+                            </div>
+                            <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.3rem;">${i.description}</div>
+                            ${i.location ? `<div style="font-size: 0.75rem; color: var(--accent-teal);">📁 ${i.location}</div>` : ''}
+                            ${i.cron ? `<div style="font-size: 0.75rem; color: var(--text-muted);">⏰ ${i.cron}</div>` : ''}
+                            ${i.blocker ? `<div style="font-size: 0.75rem; color: var(--danger);">🚫 Blocker: ${i.blocker}</div>` : ''}
+                            ${i.needs ? `<div style="font-size: 0.75rem; color: var(--warning);">📋 Needs: ${i.needs}</div>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('') : '<div class="empty">No ideas match your search</div>';
         }
     </script>
 </body>
