@@ -1,6 +1,27 @@
 {
   "kelly": [
     {
+      "id": 10,
+      "text": "\ud83d\udd34 Feb 28: BCIC Biomedical Pitch deadline (10 DAYS!)",
+      "priority": "high",
+      "category": "competitions",
+      "done": false
+    },
+    {
+      "id": 9,
+      "text": "\ud83d\udd34 Feb 22: Tufts New Ventures deadline (4 DAYS!)",
+      "priority": "high",
+      "category": "competitions",
+      "done": false
+    },
+    {
+      "id": 8,
+      "text": "\ud83d\udd34 TOMORROW: Arye Lipman meeting @ 1pm PST (Google Meet)",
+      "priority": "high",
+      "category": "meetings",
+      "done": false
+    },
+    {
       "id": 1,
       "text": "Run 'gemini' in terminal to authenticate with Google",
       "priority": "medium",
@@ -53,46 +74,60 @@
   "kip": [
     {
       "id": 1,
-      "text": "Monitor inbox for investor replies (400+ emails sent)",
+      "text": "Monitor inbox for investor replies",
       "priority": "high",
       "category": "outreach",
-      "done": false
+      "done": true
     },
     {
       "id": 2,
-      "text": "Draft follow-up sequences for non-responsive contacts (after 7 days)",
-      "priority": "medium",
+      "text": "Draft follow-up emails",
+      "priority": "high",
       "category": "outreach",
-      "done": false
+      "done": true
     },
     {
       "id": 3,
-      "text": "Complete email outreach tracker sync",
+      "text": "CRM cleanup (duplicates, missing emails)",
       "priority": "medium",
-      "category": "infrastructure",
-      "done": false
+      "category": "maintenance",
+      "done": true
     },
     {
       "id": 4,
-      "text": "Weekly memory synthesis - distill daily notes to MEMORY.md",
-      "priority": "low",
+      "text": "Verify cron jobs",
+      "priority": "medium",
       "category": "maintenance",
-      "done": false
+      "done": true
     },
     {
       "id": 5,
-      "text": "Check Bull Stories Twitter account status (@ImLegitTooReal)",
+      "text": "Git backup workspace",
+      "priority": "medium",
+      "category": "maintenance",
+      "done": true
+    },
+    {
+      "id": 6,
+      "text": "Export Command Center data",
+      "priority": "low",
+      "category": "maintenance",
+      "done": true
+    },
+    {
+      "id": 7,
+      "text": "Check Bull Stories Twitter",
       "priority": "low",
       "category": "content",
       "done": false
     },
     {
-      "id": 6,
-      "text": "Export Command Center data daily for GitHub Pages sync",
+      "id": 8,
+      "text": "Weekly memory synthesis",
       "priority": "low",
       "category": "maintenance",
       "done": false
     }
   ],
-  "updated_at": "2026-02-18T14:12:00"
+  "updated_at": "2026-02-18T14:30:00"
 }
