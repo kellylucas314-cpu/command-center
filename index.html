@@ -20,6 +20,7 @@
             --success: #28A745;
             --warning: #FFC107;
             --danger: #DC3545;
+            --purple: #9B59B6;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -32,19 +33,20 @@
         
         /* Sidebar */
         .sidebar {
-            width: 220px;
+            width: 200px;
             background: var(--bg-secondary);
             border-right: 1px solid var(--border);
-            padding: 1.5rem 1rem;
+            padding: 1.5rem 0.75rem;
             position: fixed;
             height: 100vh;
             overflow-y: auto;
         }
         .logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            padding: 0 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -58,15 +60,15 @@
             justify-content: center;
             font-size: 14px;
         }
-        .nav { display: flex; flex-direction: column; gap: 0.25rem; }
+        .nav { display: flex; flex-direction: column; gap: 0.2rem; }
         .nav-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.7rem 0.9rem;
-            border-radius: 8px;
+            gap: 0.6rem;
+            padding: 0.6rem 0.75rem;
+            border-radius: 6px;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.2s;
             border: none;
@@ -76,23 +78,50 @@
         }
         .nav-item:hover { background: var(--bg-card); color: var(--text-primary); }
         .nav-item.active { background: rgba(0, 180, 216, 0.15); color: var(--accent-teal); }
-        .nav-item svg { width: 18px; height: 18px; }
+        .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .nav-badge {
+            margin-left: auto;
+            background: var(--accent-teal);
+            color: var(--bg-primary);
+            font-size: 0.7rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 10px;
+            font-weight: 600;
+        }
         
         /* Main */
         main {
             flex: 1;
-            margin-left: 220px;
-            padding: 2rem;
-            max-width: 1200px;
+            margin-left: 200px;
+            padding: 1.5rem;
+            max-width: 1100px;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
-        .header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; }
-        .header-date { color: var(--text-muted); font-size: 0.9rem; }
+        .header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; }
+        .header-date { color: var(--text-muted); font-size: 0.85rem; }
+        .header-actions { display: flex; gap: 0.5rem; }
+        .btn {
+            padding: 0.5rem 1rem;
+            background: var(--accent-teal);
+            border: none;
+            border-radius: 6px;
+            color: var(--bg-primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn:hover { opacity: 0.9; }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
         
         /* Page sections */
         .page { display: none; }
@@ -102,65 +131,118 @@
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.25rem;
-            margin-bottom: 1.25rem;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
         }
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
-        .card-title { font-weight: 600; font-size: 0.95rem; }
+        .card-title { font-weight: 600; font-size: 0.9rem; }
         
         /* Grid */
-        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-        @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        @media (max-width: 900px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
         
         /* Stats */
         .stat-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.25rem;
+            border-radius: 10px;
+            padding: 1rem;
             text-align: center;
         }
-        .stat-value { font-family: 'Space Grotesk'; font-size: 2rem; font-weight: 700; color: var(--accent-teal); }
-        .stat-label { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; }
+        .stat-value { font-family: 'Space Grotesk'; font-size: 1.75rem; font-weight: 700; color: var(--accent-teal); }
+        .stat-label { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.2rem; }
+        .stat-value.success { color: var(--success); }
+        .stat-value.warning { color: var(--warning); }
+        .stat-value.danger { color: var(--danger); }
         
         /* Pipeline bars */
-        .pipeline-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
-        .pipeline-label { width: 120px; font-size: 0.85rem; color: var(--text-muted); }
-        .pipeline-bar-container { flex: 1; height: 8px; background: var(--bg-secondary); border-radius: 4px; }
-        .pipeline-bar { height: 100%; border-radius: 4px; transition: width 0.3s; }
+        .pipeline-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+        .pipeline-label { width: 110px; font-size: 0.8rem; color: var(--text-muted); }
+        .pipeline-bar-container { flex: 1; height: 6px; background: var(--bg-secondary); border-radius: 3px; }
+        .pipeline-bar { height: 100%; border-radius: 3px; transition: width 0.3s; }
         .pipeline-bar.committed { background: var(--success); }
         .pipeline-bar.conversation { background: var(--accent-teal); }
+        .pipeline-bar.negotiation { background: var(--purple); }
         .pipeline-bar.warm { background: var(--warning); }
+        .pipeline-bar.outreach { background: #6C757D; }
         .pipeline-bar.cold { background: var(--text-muted); }
-        .pipeline-count { width: 30px; text-align: right; font-weight: 600; font-size: 0.9rem; }
+        .pipeline-count { width: 35px; text-align: right; font-weight: 600; font-size: 0.85rem; }
         
-        /* Contact list */
-        .contact-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
+        /* Search */
+        .search-box { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+        .search-input {
+            flex: 1;
+            padding: 0.6rem 0.9rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+        }
+        .search-input:focus { outline: none; border-color: var(--accent-teal); }
+        .filter-select {
+            padding: 0.6rem 0.9rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            min-width: 140px;
+        }
+        
+        /* Tables */
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .data-table th { 
+            text-align: left; 
+            padding: 0.6rem; 
+            color: var(--text-muted); 
+            font-weight: 500;
             border-bottom: 1px solid var(--border);
         }
-        .contact-item:last-child { border-bottom: none; }
-        .contact-name { font-weight: 500; }
-        .contact-company { color: var(--text-muted); font-size: 0.85rem; }
-        .contact-status {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.6rem;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.1);
+        .data-table td { 
+            padding: 0.6rem; 
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
         }
-        .contact-status.committed { background: rgba(40, 167, 69, 0.2); color: var(--success); }
-        .contact-status.warm { background: rgba(255, 193, 7, 0.2); color: var(--warning); }
-        .contact-status.conversation { background: rgba(0, 180, 216, 0.2); color: var(--accent-teal); }
+        .data-table tr:hover { background: var(--bg-card); }
+        .data-table .name { font-weight: 500; }
+        .data-table .company { color: var(--text-muted); font-size: 0.8rem; }
+        .data-table .email { color: var(--accent-teal); font-size: 0.8rem; }
+        
+        /* Status badges */
+        .status-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        .status-badge.committed { background: rgba(40, 167, 69, 0.2); color: var(--success); }
+        .status-badge.conversation { background: rgba(0, 180, 216, 0.2); color: var(--accent-teal); }
+        .status-badge.negotiation { background: rgba(155, 89, 182, 0.2); color: var(--purple); }
+        .status-badge.warm { background: rgba(255, 193, 7, 0.2); color: var(--warning); }
+        .status-badge.outreach { background: rgba(108, 117, 125, 0.2); color: #ADB5BD; }
+        .status-badge.cold { background: rgba(139, 156, 173, 0.2); color: var(--text-muted); }
+        
+        .priority-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-left: 0.3rem;
+        }
+        .priority-badge.a { background: var(--danger); color: white; }
+        .priority-badge.b { background: var(--warning); color: var(--bg-primary); }
+        .priority-badge.c { background: var(--text-muted); color: var(--bg-primary); }
         
         /* Memory items */
         .memory-item {
@@ -168,35 +250,49 @@
             background: var(--bg-secondary);
             border-radius: 8px;
             margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: border 0.2s;
+            border: 1px solid transparent;
         }
-        .memory-date { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.25rem; }
-        .memory-text { font-size: 0.9rem; line-height: 1.4; }
-        
-        /* Search */
-        .search-box {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+        .memory-item:hover { border-color: var(--accent-teal); }
+        .memory-date { color: var(--accent-teal); font-size: 0.8rem; margin-bottom: 0.3rem; font-weight: 500; }
+        .memory-highlights { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+        .memory-highlight {
+            font-size: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            background: var(--bg-card);
+            border-radius: 4px;
+            color: var(--text-muted);
         }
-        .search-input {
-            flex: 1;
-            padding: 0.75rem 1rem;
+        .memory-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 2rem;
+        }
+        .memory-modal.active { display: flex; }
+        .memory-modal-content {
             background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 0.9rem;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 1.5rem;
         }
-        .search-input:focus { outline: none; border-color: var(--accent-teal); }
-        .search-btn {
-            padding: 0.75rem 1.25rem;
-            background: var(--accent-teal);
+        .memory-modal-close {
+            float: right;
+            background: none;
             border: none;
-            border-radius: 8px;
-            color: var(--bg-primary);
-            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 1.5rem;
             cursor: pointer;
         }
+        .memory-content { white-space: pre-wrap; font-family: monospace; font-size: 0.85rem; line-height: 1.5; }
         
         /* Knowledge base */
         .kb-item {
@@ -206,44 +302,70 @@
             margin-bottom: 0.5rem;
         }
         .kb-type {
-            font-size: 0.7rem;
-            padding: 0.15rem 0.5rem;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.4rem;
             border-radius: 4px;
             background: var(--accent-teal);
             color: var(--bg-primary);
             text-transform: uppercase;
-            margin-right: 0.5rem;
+            margin-right: 0.4rem;
+            font-weight: 600;
         }
-        .kb-title { font-weight: 500; margin-bottom: 0.25rem; }
-        .kb-url { color: var(--text-muted); font-size: 0.8rem; word-break: break-all; }
+        .kb-title { font-weight: 500; margin-bottom: 0.25rem; font-size: 0.9rem; }
+        .kb-summary { color: var(--text-muted); font-size: 0.8rem; line-height: 1.4; margin-top: 0.3rem; }
+        .kb-url { color: var(--accent-teal); font-size: 0.75rem; word-break: break-all; }
         
         /* Tasks */
         .task-item {
             display: flex;
             align-items: flex-start;
-            gap: 0.75rem;
-            padding: 0.75rem 0;
+            gap: 0.6rem;
+            padding: 0.6rem 0;
             border-bottom: 1px solid var(--border);
         }
         .task-checkbox {
-            width: 20px; height: 20px;
+            width: 18px; height: 18px;
             border: 2px solid var(--accent-teal);
             border-radius: 50%;
             cursor: pointer;
             flex-shrink: 0;
+            margin-top: 2px;
         }
         .task-checkbox.done { background: var(--accent-teal); }
-        .task-text { flex: 1; }
+        .task-text { flex: 1; font-size: 0.9rem; }
+        .task-source { color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem; }
         .task-priority {
-            font-size: 0.7rem;
-            padding: 0.15rem 0.4rem;
+            font-size: 0.65rem;
+            padding: 0.1rem 0.35rem;
             border-radius: 4px;
         }
         .task-priority.high { background: rgba(220, 53, 69, 0.2); color: var(--danger); }
         .task-priority.medium { background: rgba(255, 193, 7, 0.2); color: var(--warning); }
         
+        /* Outreach */
+        .outreach-stat { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .outreach-stat-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        .outreach-stat-value { font-weight: 600; color: var(--accent-teal); }
+        
         /* Empty state */
         .empty { text-align: center; padding: 2rem; color: var(--text-muted); }
+        
+        /* Loading */
+        .loading { text-align: center; padding: 3rem; color: var(--text-muted); }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar { width: 60px; padding: 1rem 0.5rem; }
+            .logo span, .nav-item span, .nav-badge { display: none; }
+            .nav-item { justify-content: center; padding: 0.6rem; }
+            main { margin-left: 60px; padding: 1rem; }
+        }
     </style>
 </head>
 <body>
@@ -251,28 +373,33 @@
         <nav class="sidebar">
             <div class="logo">
                 <div class="logo-icon">🦉</div>
-                <span>Command Center</span>
+                <span>Command</span>
             </div>
             <div class="nav">
                 <button class="nav-item active" data-page="dashboard">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                    Dashboard
+                    <span>Dashboard</span>
                 </button>
                 <button class="nav-item" data-page="crm">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    CRM
+                    <span>CRM</span>
+                    <span class="nav-badge" id="crm-count">-</span>
                 </button>
                 <button class="nav-item" data-page="memory">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
-                    Memory
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <span>Memory</span>
                 </button>
                 <button class="nav-item" data-page="knowledge">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                    Knowledge Base
+                    <span>Knowledge</span>
                 </button>
                 <button class="nav-item" data-page="tasks">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                    Tasks
+                    <span>Tasks</span>
+                </button>
+                <button class="nav-item" data-page="outreach">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>Outreach</span>
                 </button>
             </div>
         </nav>
@@ -287,37 +414,52 @@
             
             <!-- DASHBOARD -->
             <div class="page active" id="page-dashboard">
-                <div class="grid-3" style="margin-bottom: 1.5rem;">
+                <div class="grid-4" style="margin-bottom: 1rem;">
                     <div class="stat-card">
-                        <div class="stat-value" id="stat-contacts">--</div>
+                        <div class="stat-value" id="stat-total">-</div>
                         <div class="stat-label">Total Contacts</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value" id="stat-warm">--</div>
+                        <div class="stat-value success" id="stat-committed">-</div>
+                        <div class="stat-label">Committed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value warning" id="stat-warm">-</div>
                         <div class="stat-label">Warm Leads</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value" id="stat-committed">--</div>
-                        <div class="stat-label">Committed</div>
+                        <div class="stat-value" id="stat-priority-a">-</div>
+                        <div class="stat-label">Priority A</div>
                     </div>
                 </div>
                 
                 <div class="grid-2">
                     <div class="card">
                         <div class="card-header">
-                            <span class="card-title">Pipeline Overview</span>
+                            <span class="card-title">📊 Pipeline</span>
                         </div>
-                        <div id="pipeline-stats"></div>
+                        <div id="pipeline-chart"></div>
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <span class="card-title">Recent Activity</span>
+                            <span class="card-title">🔥 Top Priority Contacts</span>
                         </div>
-                        <div id="recent-activity">
-                            <div class="memory-item">
-                                <div class="memory-date">Loading...</div>
-                            </div>
+                        <div id="top-contacts"></div>
+                    </div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">📝 Recent Memory</span>
                         </div>
+                        <div id="recent-memory"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">✅ Active Tasks</span>
+                        </div>
+                        <div id="active-tasks"></div>
                     </div>
                 </div>
             </div>
@@ -325,29 +467,49 @@
             <!-- CRM -->
             <div class="page" id="page-crm">
                 <div class="search-box">
-                    <input type="text" class="search-input" id="crm-search" placeholder="Search contacts... (try natural language!)">
-                    <button class="search-btn" onclick="searchCRM()">Search</button>
+                    <input type="text" class="search-input" id="crm-search" placeholder="Search contacts...">
+                    <select class="filter-select" id="crm-status-filter">
+                        <option value="">All Status</option>
+                        <option value="Committed">Committed</option>
+                        <option value="Active Negotiation">Active Negotiation</option>
+                        <option value="In Conversation">In Conversation</option>
+                        <option value="Warm Lead">Warm Lead</option>
+                        <option value="Cold Outreach">Cold Outreach</option>
+                        <option value="Cold">Cold</option>
+                    </select>
+                    <select class="filter-select" id="crm-priority-filter">
+                        <option value="">All Priority</option>
+                        <option value="A">Priority A</option>
+                        <option value="B">Priority B</option>
+                        <option value="C">Priority C</option>
+                    </select>
                 </div>
                 <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Contacts</span>
-                        <span id="contact-count" style="color: var(--text-muted); font-size: 0.85rem;"></span>
-                    </div>
-                    <div id="contact-list"></div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>Status</th>
+                                <th>Category</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody id="crm-table-body">
+                            <tr><td colspan="5" class="loading">Loading contacts...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
+                <div id="crm-pagination" style="text-align: center; margin-top: 1rem;"></div>
             </div>
             
             <!-- MEMORY -->
             <div class="page" id="page-memory">
                 <div class="search-box">
-                    <input type="text" class="search-input" id="memory-search" placeholder="Search memories...">
-                    <button class="search-btn" onclick="searchMemory()">Search</button>
+                    <input type="text" class="search-input" id="memory-search" placeholder="Search memory...">
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Recent Memories</span>
-                    </div>
-                    <div id="memory-list"></div>
+                <div id="memory-list">
+                    <div class="loading">Loading memory files...</div>
                 </div>
             </div>
             
@@ -355,14 +517,9 @@
             <div class="page" id="page-knowledge">
                 <div class="search-box">
                     <input type="text" class="search-input" id="kb-search" placeholder="Search knowledge base...">
-                    <button class="search-btn" onclick="searchKB()">Search</button>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Knowledge Base</span>
-                        <span id="kb-count" style="color: var(--text-muted); font-size: 0.85rem;"></span>
-                    </div>
-                    <div id="kb-list"></div>
+                <div id="kb-list">
+                    <div class="loading">Loading knowledge base...</div>
                 </div>
             </div>
             
@@ -370,211 +527,387 @@
             <div class="page" id="page-tasks">
                 <div class="card">
                     <div class="card-header">
-                        <span class="card-title">Today's Priorities</span>
+                        <span class="card-title">📋 All Tasks</span>
                     </div>
-                    <div id="task-list"></div>
+                    <div id="tasks-list">
+                        <div class="loading">Loading tasks...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- OUTREACH -->
+            <div class="page" id="page-outreach">
+                <div class="outreach-stat" id="outreach-stats"></div>
+                <div class="search-box">
+                    <input type="text" class="search-input" id="outreach-search" placeholder="Search emails...">
+                    <select class="filter-select" id="outreach-status-filter">
+                        <option value="">All Status</option>
+                        <option value="sent">Sent</option>
+                        <option value="replied">Replied</option>
+                        <option value="bounced">Bounced</option>
+                    </select>
+                </div>
+                <div class="card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>To</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                                <th>Sent</th>
+                            </tr>
+                        </thead>
+                        <tbody id="outreach-table-body">
+                            <tr><td colspan="4" class="loading">Loading outreach data...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>
     </div>
     
+    <!-- Memory Modal -->
+    <div class="memory-modal" id="memory-modal">
+        <div class="memory-modal-content">
+            <button class="memory-modal-close" onclick="closeMemoryModal()">&times;</button>
+            <h2 id="memory-modal-title"></h2>
+            <div class="memory-content" id="memory-modal-content"></div>
+        </div>
+    </div>
+
     <script>
-        // Sample data (in production, this would come from API)
-        const DATA = {
-            contacts: [
-                { name: "Alan Pham", company: "Hamamatsu", status: "conversation", priority: "A" },
-                { name: "Robert Warren", company: "Hamamatsu Ventures", status: "conversation", priority: "A" },
-                { name: "Jim Armstrong", company: "Composite Ventures", status: "committed", priority: "A" },
-                { name: "Dave Asprey", company: "Bulletproof", status: "warm", priority: "A" },
-                { name: "Rakesh Ramaswamy", company: "Moffitt/CancerX", status: "warm", priority: "A" },
-                { name: "Andy Lehman", company: "The Mill", status: "warm", priority: "A" },
-                { name: "Emily Atkinson", company: "IU Ventures", status: "warm", priority: "B" },
-                { name: "Reed Jobs", company: "Yosemite Fund", status: "cold", priority: "A" },
-                { name: "Mike Stebbins", company: "ARPA-H", status: "warm", priority: "A" },
-                { name: "Lindsay Bourgeois", company: "BioLabs", status: "warm", priority: "B" }
-            ],
-            pipeline: {
-                committed: 5,
-                conversation: 2,
-                warm: 15,
-                cold: 478
-            },
-            memories: [
-                { date: "Feb 18, 2026", text: "Built Email→CRM sync, Knowledge Base, Security Council, Business Council. Two-way Notion sync completed - 500+ contacts now synced." },
-                { date: "Feb 18, 2026", text: "Hamamatsu meeting at 9am with Alan Pham, Margaret Duncan. Rakesh Ramaswamy (Moffitt) wants call week of Feb 23." },
-                { date: "Feb 16, 2026", text: "Keanu Reeves campaign research - sister Kim had leukemia, donated $31.5M to research. Multiple contact routes identified." },
-                { date: "Feb 14, 2026", text: "42 emails sent to cancer foundations, athletes, celebrities, family offices. Grand total: 252+ emails since Feb 11." }
-            ],
-            knowledge: [
-                { type: "youtube", title: "Matt Wolfe OpenClaw Masterclass", url: "https://youtu.be/8kNv3rjQaVA" },
-                { type: "youtube", title: "Matt Wolfe Advanced Setup", url: "https://youtu.be/Q7r--i9lLck" }
-            ],
-            tasks: [
-                { text: "Reply to Rakesh Ramaswamy (Moffitt) - schedule call for week of Feb 23", priority: "high", done: false },
-                { text: "Follow up with Lindsay Bourgeois (BioLabs) about LA lab space", priority: "high", done: false },
-                { text: "File provisional patent with Mike Scholdenbrand ($2,500)", priority: "high", done: false }
-            ]
-        };
+        // Data storage
+        let crmData = { contacts: [], stats: {} };
+        let memoryData = { entries: [] };
+        let kbData = { entries: [] };
+        let tasksData = { tasks: [] };
+        let outreachData = { emails: [], stats: {} };
         
-        // Navigation
-        document.querySelectorAll('.nav-item').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const page = btn.dataset.page;
-                
-                document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                document.getElementById('page-' + page).classList.add('active');
-                
-                const titles = {
-                    dashboard: getGreeting() + ', Kelly',
-                    crm: 'CRM - Contacts',
-                    memory: 'Memory',
-                    knowledge: 'Knowledge Base',
-                    tasks: 'Tasks'
-                };
-                document.getElementById('pageTitle').textContent = titles[page];
-            });
+        // Pagination
+        let crmPage = 1;
+        const pageSize = 25;
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            updateDate();
+            setupNavigation();
+            await loadAllData();
+            renderDashboard();
         });
+        
+        function updateDate() {
+            const now = new Date();
+            const hour = now.getHours();
+            let greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+            document.getElementById('pageTitle').textContent = `${greeting}, Kelly`;
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+            });
+        }
+        
+        function setupNavigation() {
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const page = btn.dataset.page;
+                    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                    document.getElementById(`page-${page}`).classList.add('active');
+                    
+                    // Update title
+                    const titles = {
+                        dashboard: getGreeting() + ', Kelly',
+                        crm: 'CRM',
+                        memory: 'Memory',
+                        knowledge: 'Knowledge Base',
+                        tasks: 'Tasks',
+                        outreach: 'Email Outreach'
+                    };
+                    document.getElementById('pageTitle').textContent = titles[page] || page;
+                });
+            });
+            
+            // Search handlers
+            document.getElementById('crm-search').addEventListener('input', renderCRM);
+            document.getElementById('crm-status-filter').addEventListener('change', renderCRM);
+            document.getElementById('crm-priority-filter').addEventListener('change', renderCRM);
+            document.getElementById('memory-search').addEventListener('input', renderMemory);
+            document.getElementById('kb-search').addEventListener('input', renderKnowledgeBase);
+            document.getElementById('outreach-search').addEventListener('input', renderOutreach);
+            document.getElementById('outreach-status-filter').addEventListener('change', renderOutreach);
+        }
         
         function getGreeting() {
             const hour = new Date().getHours();
             return hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
         }
         
-        // Initialize
-        function init() {
-            const now = new Date();
-            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', { 
-                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
-            });
-            document.getElementById('pageTitle').textContent = getGreeting() + ', Kelly';
+        async function loadAllData() {
+            const baseUrl = window.location.href.includes('github.io') ? './data/' : './data/';
             
-            // Stats
-            const total = DATA.pipeline.committed + DATA.pipeline.conversation + DATA.pipeline.warm + DATA.pipeline.cold;
-            document.getElementById('stat-contacts').textContent = total;
-            document.getElementById('stat-warm').textContent = DATA.pipeline.warm;
-            document.getElementById('stat-committed').textContent = DATA.pipeline.committed;
+            try {
+                const [crm, memory, kb, tasks, outreach] = await Promise.all([
+                    fetch(baseUrl + 'crm.json').then(r => r.json()).catch(() => ({ contacts: [], stats: {} })),
+                    fetch(baseUrl + 'memory.json').then(r => r.json()).catch(() => ({ entries: [] })),
+                    fetch(baseUrl + 'knowledge.json').then(r => r.json()).catch(() => ({ entries: [] })),
+                    fetch(baseUrl + 'tasks.json').then(r => r.json()).catch(() => ({ tasks: [] })),
+                    fetch(baseUrl + 'outreach.json').then(r => r.json()).catch(() => ({ emails: [], stats: {} }))
+                ]);
+                
+                crmData = crm;
+                memoryData = memory;
+                kbData = kb;
+                tasksData = tasks;
+                outreachData = outreach;
+                
+                document.getElementById('crm-count').textContent = crmData.stats?.total || crmData.contacts?.length || 0;
+                
+                renderCRM();
+                renderMemory();
+                renderKnowledgeBase();
+                renderTasks();
+                renderOutreach();
+            } catch (e) {
+                console.error('Failed to load data:', e);
+            }
+        }
+        
+        function renderDashboard() {
+            const stats = crmData.stats || {};
+            const byStatus = stats.by_status || {};
+            const byPriority = stats.by_priority || {};
             
-            // Pipeline
-            const pipelineHTML = `
-                <div class="pipeline-row">
-                    <span class="pipeline-label">Committed</span>
-                    <div class="pipeline-bar-container"><div class="pipeline-bar committed" style="width: ${DATA.pipeline.committed/total*100}%"></div></div>
-                    <span class="pipeline-count">${DATA.pipeline.committed}</span>
-                </div>
-                <div class="pipeline-row">
-                    <span class="pipeline-label">In Conversation</span>
-                    <div class="pipeline-bar-container"><div class="pipeline-bar conversation" style="width: ${DATA.pipeline.conversation/total*100}%"></div></div>
-                    <span class="pipeline-count">${DATA.pipeline.conversation}</span>
-                </div>
-                <div class="pipeline-row">
-                    <span class="pipeline-label">Warm Lead</span>
-                    <div class="pipeline-bar-container"><div class="pipeline-bar warm" style="width: ${DATA.pipeline.warm/total*100}%"></div></div>
-                    <span class="pipeline-count">${DATA.pipeline.warm}</span>
-                </div>
-                <div class="pipeline-row">
-                    <span class="pipeline-label">Cold/Outreach</span>
-                    <div class="pipeline-bar-container"><div class="pipeline-bar cold" style="width: ${DATA.pipeline.cold/total*100}%"></div></div>
-                    <span class="pipeline-count">${DATA.pipeline.cold}</span>
-                </div>
-            `;
-            document.getElementById('pipeline-stats').innerHTML = pipelineHTML;
+            document.getElementById('stat-total').textContent = stats.total || 0;
+            document.getElementById('stat-committed').textContent = byStatus['Committed'] || 0;
+            document.getElementById('stat-warm').textContent = byStatus['Warm Lead'] || 0;
+            document.getElementById('stat-priority-a').textContent = byPriority['A'] || 0;
             
-            // Recent activity
-            document.getElementById('recent-activity').innerHTML = DATA.memories.slice(0,3).map(m => `
-                <div class="memory-item">
+            // Pipeline chart
+            const pipeline = document.getElementById('pipeline-chart');
+            const statuses = [
+                { key: 'Committed', label: 'Committed', class: 'committed' },
+                { key: 'Active Negotiation', label: 'Negotiation', class: 'negotiation' },
+                { key: 'In Conversation', label: 'In Conversation', class: 'conversation' },
+                { key: 'Warm Lead', label: 'Warm Lead', class: 'warm' },
+                { key: 'Cold Outreach', label: 'Cold Outreach', class: 'outreach' },
+                { key: 'Cold', label: 'Cold', class: 'cold' }
+            ];
+            const maxCount = Math.max(...Object.values(byStatus)) || 1;
+            
+            pipeline.innerHTML = statuses.map(s => {
+                const count = byStatus[s.key] || 0;
+                const width = (count / maxCount * 100).toFixed(1);
+                return `
+                    <div class="pipeline-row">
+                        <span class="pipeline-label">${s.label}</span>
+                        <div class="pipeline-bar-container">
+                            <div class="pipeline-bar ${s.class}" style="width: ${width}%"></div>
+                        </div>
+                        <span class="pipeline-count">${count}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            // Top contacts (Priority A)
+            const topContacts = (crmData.contacts || [])
+                .filter(c => c.priority === 'A')
+                .slice(0, 5);
+            
+            document.getElementById('top-contacts').innerHTML = topContacts.length ? topContacts.map(c => `
+                <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border);">
+                    <div>
+                        <div class="name">${c.name}</div>
+                        <div class="company">${c.company || ''}</div>
+                    </div>
+                    <span class="status-badge ${getStatusClass(c.status)}">${c.status || ''}</span>
+                </div>
+            `).join('') : '<div class="empty">No priority A contacts</div>';
+            
+            // Recent memory
+            const recentMemory = (memoryData.entries || []).slice(0, 3);
+            document.getElementById('recent-memory').innerHTML = recentMemory.length ? recentMemory.map(m => `
+                <div class="memory-item" onclick="showMemory('${m.filename}')">
                     <div class="memory-date">${m.date}</div>
-                    <div class="memory-text">${m.text}</div>
+                    <div class="memory-highlights">
+                        ${(m.highlights || []).slice(0, 3).map(h => `<span class="memory-highlight">${h}</span>`).join('')}
+                    </div>
                 </div>
-            `).join('');
+            `).join('') : '<div class="empty">No memory files</div>';
             
-            // Contacts
-            renderContacts(DATA.contacts);
-            
-            // Memories
-            document.getElementById('memory-list').innerHTML = DATA.memories.map(m => `
-                <div class="memory-item">
-                    <div class="memory-date">${m.date}</div>
-                    <div class="memory-text">${m.text}</div>
-                </div>
-            `).join('');
-            
-            // Knowledge base
-            document.getElementById('kb-count').textContent = DATA.knowledge.length + ' entries';
-            document.getElementById('kb-list').innerHTML = DATA.knowledge.map(k => `
-                <div class="kb-item">
-                    <span class="kb-type">${k.type}</span>
-                    <div class="kb-title">${k.title}</div>
-                    <div class="kb-url">${k.url}</div>
-                </div>
-            `).join('') || '<div class="empty">No entries yet. Send me links to add!</div>';
-            
-            // Tasks
-            document.getElementById('task-list').innerHTML = DATA.tasks.map(t => `
+            // Active tasks
+            const activeTasks = (tasksData.tasks || []).filter(t => !t.done).slice(0, 5);
+            document.getElementById('active-tasks').innerHTML = activeTasks.length ? activeTasks.map(t => `
                 <div class="task-item">
                     <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
-                    <div class="task-text">${t.text}</div>
+                    <div>
+                        <div class="task-text">${t.text}</div>
+                        <div class="task-source">${t.source || ''}</div>
+                    </div>
                     <span class="task-priority ${t.priority}">${t.priority}</span>
                 </div>
-            `).join('') || '<div class="empty">No tasks yet</div>';
+            `).join('') : '<div class="empty">No active tasks</div>';
         }
         
-        function renderContacts(contacts) {
-            document.getElementById('contact-count').textContent = contacts.length + ' contacts';
-            document.getElementById('contact-list').innerHTML = contacts.map(c => `
-                <div class="contact-item">
-                    <div>
-                        <div class="contact-name">${c.name}</div>
-                        <div class="contact-company">${c.company || ''}</div>
+        function getStatusClass(status) {
+            if (!status) return '';
+            const s = status.toLowerCase();
+            if (s.includes('committed')) return 'committed';
+            if (s.includes('negotiation')) return 'negotiation';
+            if (s.includes('conversation')) return 'conversation';
+            if (s.includes('warm')) return 'warm';
+            if (s.includes('outreach')) return 'outreach';
+            return 'cold';
+        }
+        
+        function renderCRM() {
+            const search = document.getElementById('crm-search').value.toLowerCase();
+            const statusFilter = document.getElementById('crm-status-filter').value;
+            const priorityFilter = document.getElementById('crm-priority-filter').value;
+            
+            let filtered = (crmData.contacts || []).filter(c => {
+                const matchSearch = !search || 
+                    (c.name || '').toLowerCase().includes(search) ||
+                    (c.company || '').toLowerCase().includes(search) ||
+                    (c.email || '').toLowerCase().includes(search);
+                const matchStatus = !statusFilter || c.status === statusFilter;
+                const matchPriority = !priorityFilter || c.priority === priorityFilter;
+                return matchSearch && matchStatus && matchPriority;
+            });
+            
+            const total = filtered.length;
+            const start = (crmPage - 1) * pageSize;
+            const paged = filtered.slice(start, start + pageSize);
+            
+            const tbody = document.getElementById('crm-table-body');
+            tbody.innerHTML = paged.length ? paged.map(c => `
+                <tr>
+                    <td>
+                        <div class="name">${c.name}${c.priority ? `<span class="priority-badge ${c.priority.toLowerCase()}">${c.priority}</span>` : ''}</div>
+                    </td>
+                    <td>${c.company || '-'}</td>
+                    <td><span class="status-badge ${getStatusClass(c.status)}">${c.status || '-'}</span></td>
+                    <td>${c.category || '-'}</td>
+                    <td class="email">${c.email || '-'}</td>
+                </tr>
+            `).join('') : '<tr><td colspan="5" class="empty">No contacts found</td></tr>';
+            
+            // Pagination
+            const totalPages = Math.ceil(total / pageSize);
+            document.getElementById('crm-pagination').innerHTML = totalPages > 1 ? `
+                <button class="btn btn-outline" ${crmPage <= 1 ? 'disabled' : ''} onclick="crmPage--; renderCRM()">Prev</button>
+                <span style="margin: 0 1rem; color: var(--text-muted);">Page ${crmPage} of ${totalPages} (${total} contacts)</span>
+                <button class="btn btn-outline" ${crmPage >= totalPages ? 'disabled' : ''} onclick="crmPage++; renderCRM()">Next</button>
+            ` : `<span style="color: var(--text-muted);">${total} contacts</span>`;
+        }
+        
+        function renderMemory() {
+            const search = document.getElementById('memory-search').value.toLowerCase();
+            const filtered = (memoryData.entries || []).filter(m => 
+                !search || 
+                m.date.includes(search) ||
+                (m.highlights || []).some(h => h.toLowerCase().includes(search)) ||
+                (m.preview || '').toLowerCase().includes(search)
+            );
+            
+            document.getElementById('memory-list').innerHTML = filtered.length ? filtered.map(m => `
+                <div class="memory-item" onclick="showMemory('${m.filename}')">
+                    <div class="memory-date">📅 ${m.date}</div>
+                    <div class="memory-highlights">
+                        ${(m.highlights || []).map(h => `<span class="memory-highlight">${h}</span>`).join('')}
                     </div>
-                    <span class="contact-status ${c.status}">${c.status.replace('_', ' ')}</span>
                 </div>
-            `).join('') || '<div class="empty">No contacts found</div>';
+            `).join('') : '<div class="empty">No memory files found</div>';
         }
         
-        function searchCRM() {
-            const q = document.getElementById('crm-search').value.toLowerCase();
-            const filtered = DATA.contacts.filter(c => 
-                c.name.toLowerCase().includes(q) || 
-                (c.company && c.company.toLowerCase().includes(q)) ||
-                c.status.includes(q)
+        function showMemory(filename) {
+            const entry = (memoryData.entries || []).find(m => m.filename === filename);
+            if (!entry) return;
+            
+            document.getElementById('memory-modal-title').textContent = entry.date;
+            document.getElementById('memory-modal-content').textContent = entry.full_content || entry.preview;
+            document.getElementById('memory-modal').classList.add('active');
+        }
+        
+        function closeMemoryModal() {
+            document.getElementById('memory-modal').classList.remove('active');
+        }
+        
+        document.getElementById('memory-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'memory-modal') closeMemoryModal();
+        });
+        
+        function renderKnowledgeBase() {
+            const search = document.getElementById('kb-search').value.toLowerCase();
+            const filtered = (kbData.entries || []).filter(k =>
+                !search ||
+                (k.title || '').toLowerCase().includes(search) ||
+                (k.summary || '').toLowerCase().includes(search) ||
+                (k.url || '').toLowerCase().includes(search)
             );
-            renderContacts(filtered);
-        }
-        
-        function searchMemory() {
-            const q = document.getElementById('memory-search').value.toLowerCase();
-            const filtered = DATA.memories.filter(m => m.text.toLowerCase().includes(q));
-            document.getElementById('memory-list').innerHTML = filtered.map(m => `
-                <div class="memory-item">
-                    <div class="memory-date">${m.date}</div>
-                    <div class="memory-text">${m.text}</div>
-                </div>
-            `).join('') || '<div class="empty">No memories found</div>';
-        }
-        
-        function searchKB() {
-            const q = document.getElementById('kb-search').value.toLowerCase();
-            const filtered = DATA.knowledge.filter(k => 
-                k.title.toLowerCase().includes(q) || k.url.toLowerCase().includes(q)
-            );
-            document.getElementById('kb-list').innerHTML = filtered.map(k => `
+            
+            document.getElementById('kb-list').innerHTML = filtered.length ? filtered.map(k => `
                 <div class="kb-item">
-                    <span class="kb-type">${k.type}</span>
-                    <div class="kb-title">${k.title}</div>
-                    <div class="kb-url">${k.url}</div>
+                    <div class="kb-title">
+                        <span class="kb-type">${k.type || 'link'}</span>
+                        ${k.title || 'Untitled'}
+                    </div>
+                    ${k.summary ? `<div class="kb-summary">${k.summary.slice(0, 200)}${k.summary.length > 200 ? '...' : ''}</div>` : ''}
+                    ${k.url ? `<div class="kb-url"><a href="${k.url}" target="_blank">${k.url}</a></div>` : ''}
                 </div>
-            `).join('') || '<div class="empty">No entries found</div>';
+            `).join('') : '<div class="empty">No knowledge base entries. Add content with kb.py!</div>';
         }
         
-        // Allow Enter to search
-        document.getElementById('crm-search').addEventListener('keyup', e => { if (e.key === 'Enter') searchCRM(); });
-        document.getElementById('memory-search').addEventListener('keyup', e => { if (e.key === 'Enter') searchMemory(); });
-        document.getElementById('kb-search').addEventListener('keyup', e => { if (e.key === 'Enter') searchKB(); });
+        function renderTasks() {
+            const tasks = tasksData.tasks || [];
+            document.getElementById('tasks-list').innerHTML = tasks.length ? tasks.map(t => `
+                <div class="task-item">
+                    <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
+                    <div style="flex: 1;">
+                        <div class="task-text">${t.text}</div>
+                        <div class="task-source">${t.source || ''}</div>
+                    </div>
+                    <span class="task-priority ${t.priority}">${t.priority}</span>
+                </div>
+            `).join('') : '<div class="empty">No tasks found</div>';
+        }
         
-        init();
+        function renderOutreach() {
+            const search = document.getElementById('outreach-search').value.toLowerCase();
+            const statusFilter = document.getElementById('outreach-status-filter').value;
+            
+            // Stats
+            const stats = outreachData.stats || {};
+            const byStatus = stats.by_status || {};
+            document.getElementById('outreach-stats').innerHTML = `
+                <div class="outreach-stat-item">Total: <span class="outreach-stat-value">${stats.total || 0}</span></div>
+                ${Object.entries(byStatus).map(([k, v]) => 
+                    `<div class="outreach-stat-item">${k}: <span class="outreach-stat-value">${v}</span></div>`
+                ).join('')}
+            `;
+            
+            // Filter emails
+            let filtered = (outreachData.emails || []).filter(e => {
+                const matchSearch = !search ||
+                    (e.to_email || '').toLowerCase().includes(search) ||
+                    (e.to_name || '').toLowerCase().includes(search) ||
+                    (e.subject || '').toLowerCase().includes(search);
+                const matchStatus = !statusFilter || e.status === statusFilter;
+                return matchSearch && matchStatus;
+            });
+            
+            const tbody = document.getElementById('outreach-table-body');
+            tbody.innerHTML = filtered.length ? filtered.slice(0, 100).map(e => `
+                <tr>
+                    <td>
+                        <div class="name">${e.to_name || 'Unknown'}</div>
+                        <div class="email">${e.to_email || ''}</div>
+                    </td>
+                    <td>${e.subject || '-'}</td>
+                    <td><span class="status-badge ${e.status === 'replied' ? 'committed' : e.status === 'bounced' ? 'cold' : 'outreach'}">${e.status || 'sent'}</span></td>
+                    <td>${e.sent_at ? new Date(e.sent_at).toLocaleDateString() : '-'}</td>
+                </tr>
+            `).join('') : '<tr><td colspan="4" class="empty">No outreach emails tracked yet. Run email_tracker.py to sync!</td></tr>';
+        }
     </script>
 </body>
 </html>

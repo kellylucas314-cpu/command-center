@@ -1,0 +1,48 @@
+{
+  "crm": {
+    "total": 470,
+    "by_status": {
+      "Active Negotiation": 16,
+      "Cold": 6,
+      "Cold Outreach": 117,
+      "Committed": 48,
+      "In Conversation": 31,
+      "On Hold": 2,
+      "Passed": 2,
+      "Warm Lead": 248
+    },
+    "by_category": {
+      "null": 15,
+      "Accelerator/Program": 18,
+      "Active Partnership": 6,
+      "Advisor": 29,
+      "Angel/HNW Individual": 141,
+      "Clinical Partner": 8,
+      "Co-founder": 1,
+      "Crowdfunding": 45,
+      "Family Office": 6,
+      "Strategic Partner": 100,
+      "Team": 1,
+      "VC/Fund": 100
+    },
+    "by_priority": {
+      "A": 66,
+      "B": 61,
+      "C": 26
+    }
+  },
+  "knowledge_base": {
+    "count": 2
+  },
+  "outreach": {
+    "total": 0,
+    "by_status": {}
+  },
+  "memory": {
+    "count": 14
+  },
+  "tasks": {
+    "count": 2
+  },
+  "exported_at": "2026-02-18T13:32:22.429744"
+}
