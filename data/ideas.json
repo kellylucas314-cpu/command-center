@@ -1,0 +1,42 @@
+{
+  "inbox": [
+    {"id": 1, "text": "Newsletter digest / inbox declutter", "added": "2026-02-18", "status": "inbox"},
+    {"id": 2, "text": "Meeting action item extraction (needs Fathom/Otter)", "added": "2026-02-18", "status": "inbox"},
+    {"id": 3, "text": "Encrypted Google Drive backups", "added": "2026-02-18", "status": "inbox"},
+    {"id": 4, "text": "Model routing logic (Sonnet vs Opus)", "added": "2026-02-18", "status": "inbox"},
+    {"id": 5, "text": "Bull Stories social media growth", "added": "2026-02-18", "status": "inbox"},
+    {"id": 6, "text": "Get Mac mini for Kip 24/7", "added": "2026-02-18", "status": "inbox"},
+    {"id": 7, "text": "Auto follow-up sequences for outreach", "added": "2026-02-18", "status": "inbox"},
+    {"id": 8, "text": "LinkedIn automation", "added": "2026-02-18", "status": "inbox"},
+    {"id": 9, "text": "Investor match scoring AI", "added": "2026-02-18", "status": "inbox"},
+    {"id": 10, "text": "Voice command interface", "added": "2026-02-18", "status": "inbox"}
+  ],
+  "in_progress": [
+    {"id": 11, "text": "Email outreach tracker", "added": "2026-02-18", "status": "in_progress"},
+    {"id": 12, "text": "Browser automation (needs Chrome)", "added": "2026-02-18", "status": "blocked"}
+  ],
+  "done": [
+    {"id": 13, "text": "Command Center rebuild", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 14, "text": "Email → CRM auto-sync", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 15, "text": "Knowledge Base", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 16, "text": "Security Council cron", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 17, "text": "Business Advisory Council cron", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 18, "text": "Vector search for CRM", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 19, "text": "Two-way Notion sync", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 20, "text": "OpenClaw Ideas tab", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 21, "text": "Kelly/Kip to-do sections", "added": "2026-02-18", "completed": "2026-02-18"}
+  ],
+  "weekly_commits": {
+    "week": "Feb 17-23, 2026",
+    "big_3": [
+      {"text": "Submit MABA application", "done": false},
+      {"text": "Patent engagement signed + retainer sent", "done": false},
+      {"text": "Nail the Arye Lipman meeting (Thu Feb 19)", "done": false}
+    ],
+    "bonus": [
+      {"text": "Apply to BCIC Biomedical Pitch (Feb 28)", "done": false},
+      {"text": "Apply to Tufts New Ventures (Feb 22)", "done": false}
+    ]
+  },
+  "updated_at": "2026-02-18T15:15:00"
+}

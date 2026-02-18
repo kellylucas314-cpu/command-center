@@ -401,6 +401,10 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     <span>Outreach</span>
                 </button>
+                <button class="nav-item" data-page="ideas">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/><path d="M9 18h6"/></svg>
+                    <span>Ideas</span>
+                </button>
                 <button class="nav-item" data-page="openclaw">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                     <span>OpenClaw</span>
@@ -575,6 +579,33 @@
                 </div>
             </div>
             
+            <!-- IDEAS TRACKER -->
+            <div class="page" id="page-ideas">
+                <div class="card" style="background: linear-gradient(135deg, rgba(0,180,216,0.1), rgba(125,249,255,0.05)); margin-bottom: 1rem;">
+                    <div class="card-header">
+                        <span class="card-title">🎯 This Week's Big 3</span>
+                        <span style="color: var(--text-muted); font-size: 0.8rem;" id="ideas-week"></span>
+                    </div>
+                    <div id="weekly-big-3"></div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">💡 Ideas Inbox</span>
+                            <span class="nav-badge" id="inbox-count">0</span>
+                        </div>
+                        <div id="ideas-inbox-list"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">✅ Recently Done</span>
+                        </div>
+                        <div id="ideas-done-list"></div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- OPENCLAW IDEAS -->
             <div class="page" id="page-openclaw">
                 <div class="grid-4" style="margin-bottom: 1rem;" id="openclaw-stats">
@@ -632,6 +663,7 @@
         let outreachData = { emails: [], stats: {} };
         let openclawData = { ideas: [] };
         let todosData = { kelly: [], kip: [] };
+        let ideasData = { inbox: [], in_progress: [], done: [], weekly_commits: {} };
         
         // Pagination
         let crmPage = 1;
@@ -672,7 +704,8 @@
                         knowledge: 'Knowledge Base',
                         tasks: 'Tasks',
                         outreach: 'Email Outreach',
-                        openclaw: 'OpenClaw Ideas'
+                        ideas: 'Ideas Tracker',
+                        openclaw: 'OpenClaw Capabilities'
                     };
                     document.getElementById('pageTitle').textContent = titles[page] || page;
                 });
@@ -699,14 +732,15 @@
             const baseUrl = window.location.href.includes('github.io') ? './data/' : './data/';
             
             try {
-                const [crm, memory, kb, tasks, outreach, openclaw, todos] = await Promise.all([
+                const [crm, memory, kb, tasks, outreach, openclaw, todos, ideas] = await Promise.all([
                     fetch(baseUrl + 'crm.json').then(r => r.json()).catch(() => ({ contacts: [], stats: {} })),
                     fetch(baseUrl + 'memory.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'knowledge.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'tasks.json').then(r => r.json()).catch(() => ({ tasks: [] })),
                     fetch(baseUrl + 'outreach.json').then(r => r.json()).catch(() => ({ emails: [], stats: {} })),
                     fetch(baseUrl + 'openclaw-ideas.json').then(r => r.json()).catch(() => ({ ideas: [] })),
-                    fetch(baseUrl + 'todos.json').then(r => r.json()).catch(() => ({ kelly: [], kip: [] }))
+                    fetch(baseUrl + 'todos.json').then(r => r.json()).catch(() => ({ kelly: [], kip: [] })),
+                    fetch(baseUrl + 'ideas.json').then(r => r.json()).catch(() => ({ inbox: [], done: [], weekly_commits: {} }))
                 ]);
                 
                 crmData = crm;
@@ -716,6 +750,7 @@
                 outreachData = outreach;
                 openclawData = openclaw;
                 todosData = todos;
+                ideasData = ideas;
                 
                 document.getElementById('crm-count').textContent = crmData.stats?.total || crmData.contacts?.length || 0;
                 
@@ -725,6 +760,7 @@
                 renderTasks();
                 renderOutreach();
                 renderOpenClaw();
+                renderIdeas();
             } catch (e) {
                 console.error('Failed to load data:', e);
             }
@@ -1037,6 +1073,55 @@
                     </div>
                 </div>
             `).join('') : '<div class="empty">No ideas match your search</div>';
+        }
+        
+        function renderIdeas() {
+            const weekly = ideasData.weekly_commits || {};
+            const inbox = ideasData.inbox || [];
+            const done = ideasData.done || [];
+            
+            // Week label
+            document.getElementById('ideas-week').textContent = weekly.week || '';
+            
+            // Big 3
+            const big3 = weekly.big_3 || [];
+            document.getElementById('weekly-big-3').innerHTML = big3.length ? big3.map((item, i) => `
+                <div class="task-item">
+                    <div class="task-checkbox ${item.done ? 'done' : ''}"></div>
+                    <div style="flex: 1;">
+                        <div class="task-text" style="${item.done ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${item.text}</div>
+                    </div>
+                    <span class="priority-badge a">${i + 1}</span>
+                </div>
+            `).join('') + (weekly.bonus?.length ? `
+                <div style="margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--border);">
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">Bonus if time:</div>
+                    ${weekly.bonus.map(b => `
+                        <div style="font-size: 0.85rem; color: var(--text-muted); padding: 0.25rem 0;">
+                            ${b.done ? '✅' : '○'} ${b.text}
+                        </div>
+                    `).join('')}
+                </div>
+            ` : '') : '<div class="empty">No commitments set. Pick your Big 3!</div>';
+            
+            // Inbox count
+            document.getElementById('inbox-count').textContent = inbox.length;
+            
+            // Ideas inbox
+            document.getElementById('ideas-inbox-list').innerHTML = inbox.length ? inbox.map(idea => `
+                <div style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                    <div style="font-size: 0.9rem;">💡 ${idea.text}</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Added ${idea.added}</div>
+                </div>
+            `).join('') : '<div class="empty">Inbox empty! Text Kip: "idea: [thing]"</div>';
+            
+            // Done list
+            document.getElementById('ideas-done-list').innerHTML = done.slice(0, 8).map(idea => `
+                <div style="padding: 0.4rem 0; border-bottom: 1px solid var(--border);">
+                    <div style="font-size: 0.85rem; color: var(--success);">✅ ${idea.text}</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">${idea.completed || idea.added}</div>
+                </div>
+            `).join('') || '<div class="empty">Nothing completed yet</div>';
         }
     </script>
 </body>
