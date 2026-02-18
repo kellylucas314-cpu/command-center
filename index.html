@@ -455,16 +455,23 @@
                 <div class="grid-2">
                     <div class="card">
                         <div class="card-header">
-                            <span class="card-title">📝 Recent Memory</span>
+                            <span class="card-title">📋 Kelly's To-Dos</span>
                         </div>
-                        <div id="recent-memory"></div>
+                        <div id="kelly-todos"></div>
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <span class="card-title">✅ Active Tasks</span>
+                            <span class="card-title">🦉 Kip's To-Dos</span>
                         </div>
-                        <div id="active-tasks"></div>
+                        <div id="kip-todos"></div>
                     </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">📝 Recent Memory</span>
+                    </div>
+                    <div id="recent-memory"></div>
                 </div>
             </div>
             
@@ -624,6 +631,7 @@
         let tasksData = { tasks: [] };
         let outreachData = { emails: [], stats: {} };
         let openclawData = { ideas: [] };
+        let todosData = { kelly: [], kip: [] };
         
         // Pagination
         let crmPage = 1;
@@ -691,13 +699,14 @@
             const baseUrl = window.location.href.includes('github.io') ? './data/' : './data/';
             
             try {
-                const [crm, memory, kb, tasks, outreach, openclaw] = await Promise.all([
+                const [crm, memory, kb, tasks, outreach, openclaw, todos] = await Promise.all([
                     fetch(baseUrl + 'crm.json').then(r => r.json()).catch(() => ({ contacts: [], stats: {} })),
                     fetch(baseUrl + 'memory.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'knowledge.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'tasks.json').then(r => r.json()).catch(() => ({ tasks: [] })),
                     fetch(baseUrl + 'outreach.json').then(r => r.json()).catch(() => ({ emails: [], stats: {} })),
-                    fetch(baseUrl + 'openclaw-ideas.json').then(r => r.json()).catch(() => ({ ideas: [] }))
+                    fetch(baseUrl + 'openclaw-ideas.json').then(r => r.json()).catch(() => ({ ideas: [] })),
+                    fetch(baseUrl + 'todos.json').then(r => r.json()).catch(() => ({ kelly: [], kip: [] }))
                 ]);
                 
                 crmData = crm;
@@ -706,6 +715,7 @@
                 tasksData = tasks;
                 outreachData = outreach;
                 openclawData = openclaw;
+                todosData = todos;
                 
                 document.getElementById('crm-count').textContent = crmData.stats?.total || crmData.contacts?.length || 0;
                 
@@ -771,29 +781,42 @@
                 </div>
             `).join('') : '<div class="empty">No priority A contacts</div>';
             
-            // Recent memory
-            const recentMemory = (memoryData.entries || []).slice(0, 3);
-            document.getElementById('recent-memory').innerHTML = recentMemory.length ? recentMemory.map(m => `
-                <div class="memory-item" onclick="showMemory('${m.filename}')">
-                    <div class="memory-date">${m.date}</div>
-                    <div class="memory-highlights">
-                        ${(m.highlights || []).slice(0, 3).map(h => `<span class="memory-highlight">${h}</span>`).join('')}
-                    </div>
-                </div>
-            `).join('') : '<div class="empty">No memory files</div>';
-            
-            // Active tasks
-            const activeTasks = (tasksData.tasks || []).filter(t => !t.done).slice(0, 5);
-            document.getElementById('active-tasks').innerHTML = activeTasks.length ? activeTasks.map(t => `
+            // Kelly's To-Dos
+            const kellyTodos = (todosData.kelly || []).filter(t => !t.done).slice(0, 5);
+            document.getElementById('kelly-todos').innerHTML = kellyTodos.length ? kellyTodos.map(t => `
                 <div class="task-item">
                     <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
-                    <div>
+                    <div style="flex: 1;">
                         <div class="task-text">${t.text}</div>
-                        <div class="task-source">${t.source || ''}</div>
+                        <div class="task-source">${t.category || ''}</div>
                     </div>
                     <span class="task-priority ${t.priority}">${t.priority}</span>
                 </div>
-            `).join('') : '<div class="empty">No active tasks</div>';
+            `).join('') : '<div class="empty">All done! 🎉</div>';
+            
+            // Kip's To-Dos
+            const kipTodos = (todosData.kip || []).filter(t => !t.done).slice(0, 5);
+            document.getElementById('kip-todos').innerHTML = kipTodos.length ? kipTodos.map(t => `
+                <div class="task-item">
+                    <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
+                    <div style="flex: 1;">
+                        <div class="task-text">${t.text}</div>
+                        <div class="task-source">${t.category || ''}</div>
+                    </div>
+                    <span class="task-priority ${t.priority}">${t.priority}</span>
+                </div>
+            `).join('') : '<div class="empty">All done! 🦉</div>';
+            
+            // Recent memory
+            const recentMemory = (memoryData.entries || []).slice(0, 3);
+            document.getElementById('recent-memory').innerHTML = recentMemory.length ? recentMemory.map(m => `
+                <div class="memory-item" onclick="showMemory('${m.filename}')" style="display: inline-block; margin-right: 0.5rem; margin-bottom: 0.5rem;">
+                    <div class="memory-date">${m.date}</div>
+                    <div class="memory-highlights">
+                        ${(m.highlights || []).slice(0, 2).map(h => `<span class="memory-highlight">${h}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('') : '<div class="empty">No memory files</div>';
         }
         
         function getStatusClass(status) {

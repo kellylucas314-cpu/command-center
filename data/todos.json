@@ -1,0 +1,98 @@
+{
+  "kelly": [
+    {
+      "id": 1,
+      "text": "Run 'gemini' in terminal to authenticate with Google",
+      "priority": "medium",
+      "category": "setup",
+      "done": false
+    },
+    {
+      "id": 2,
+      "text": "Install Chrome or Brave for browser automation",
+      "priority": "medium",
+      "category": "setup",
+      "done": false
+    },
+    {
+      "id": 3,
+      "text": "Submit MABA application - download form from bioangels.net, fill in, attach deck",
+      "priority": "high",
+      "category": "fundraising",
+      "done": false
+    },
+    {
+      "id": 4,
+      "text": "Sign patent engagement agreement + send $2,500 retainer to Mike Scholdenbrand",
+      "priority": "high",
+      "category": "legal",
+      "done": false
+    },
+    {
+      "id": 5,
+      "text": "Confirm Rakesh Ramaswamy call time (week of Feb 23)",
+      "priority": "high",
+      "category": "meetings",
+      "done": false
+    },
+    {
+      "id": 6,
+      "text": "StartEngine meeting with Doryn - confirm time",
+      "priority": "high",
+      "category": "fundraising",
+      "done": false
+    },
+    {
+      "id": 7,
+      "text": "Review Conafay 5-year roadmap with Nirosha",
+      "priority": "medium",
+      "category": "strategy",
+      "done": false
+    }
+  ],
+  "kip": [
+    {
+      "id": 1,
+      "text": "Monitor inbox for investor replies (400+ emails sent)",
+      "priority": "high",
+      "category": "outreach",
+      "done": false
+    },
+    {
+      "id": 2,
+      "text": "Draft follow-up sequences for non-responsive contacts (after 7 days)",
+      "priority": "medium",
+      "category": "outreach",
+      "done": false
+    },
+    {
+      "id": 3,
+      "text": "Complete email outreach tracker sync",
+      "priority": "medium",
+      "category": "infrastructure",
+      "done": false
+    },
+    {
+      "id": 4,
+      "text": "Weekly memory synthesis - distill daily notes to MEMORY.md",
+      "priority": "low",
+      "category": "maintenance",
+      "done": false
+    },
+    {
+      "id": 5,
+      "text": "Check Bull Stories Twitter account status (@ImLegitTooReal)",
+      "priority": "low",
+      "category": "content",
+      "done": false
+    },
+    {
+      "id": 6,
+      "text": "Export Command Center data daily for GitHub Pages sync",
+      "priority": "low",
+      "category": "maintenance",
+      "done": false
+    }
+  ],
+  "updated_at": "2026-02-18T14:10:00"
+}
