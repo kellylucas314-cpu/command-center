@@ -37,7 +37,7 @@
     },
     {
       "id": 6,
-      "text": "StartEngine meeting with Doryn - confirm time",
+      "text": "StartEngine meeting with Doryn - Wed Feb 25 @ 12pm PST \u2705 SCHEDULED",
       "priority": "high",
       "category": "fundraising",
       "done": false
@@ -94,5 +94,5 @@
       "done": false
     }
   ],
-  "updated_at": "2026-02-18T14:10:00"
+  "updated_at": "2026-02-18T14:12:00"
 }
