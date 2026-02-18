@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelly's Command Center</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --bg-primary: #0A2540;
@@ -23,965 +21,560 @@
             --warning: #FFC107;
             --danger: #DC3545;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
         }
-
-        /* Layout */
-        .app {
-            display: flex;
-            min-height: 100vh;
-        }
-
+        .app { display: flex; min-height: 100vh; }
+        
         /* Sidebar */
         .sidebar {
-            width: 240px;
+            width: 220px;
             background: var(--bg-secondary);
             border-right: 1px solid var(--border);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
+            padding: 1.5rem 1rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
         }
-
         .logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
-            color: var(--text-primary);
             margin-bottom: 2rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-
         .logo-icon {
-            width: 32px;
-            height: 32px;
+            width: 28px; height: 28px;
             background: linear-gradient(135deg, var(--accent-teal), var(--accent-glow));
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 14px;
         }
-
-        .nav {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
+        .nav { display: flex; flex-direction: column; gap: 0.25rem; }
         .nav-item {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.75rem 1rem;
+            padding: 0.7rem 0.9rem;
             border-radius: 8px;
             color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
+            font-size: 0.9rem;
             cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
         }
-
-        .nav-item:hover {
-            background: var(--bg-card);
-            color: var(--text-primary);
-        }
-
-        .nav-item.active {
-            background: rgba(0, 180, 216, 0.15);
-            color: var(--accent-glow);
-        }
-
-        .nav-item svg {
-            width: 20px;
-            height: 20px;
-            opacity: 0.7;
-        }
-
-        .nav-item.active svg {
-            opacity: 1;
-        }
-
-        .nav-badge {
-            margin-left: auto;
-            background: var(--accent-teal);
-            color: var(--bg-primary);
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.15rem 0.5rem;
-            border-radius: 10px;
-        }
-
-        /* Main Content */
-        .main {
+        .nav-item:hover { background: var(--bg-card); color: var(--text-primary); }
+        .nav-item.active { background: rgba(0, 180, 216, 0.15); color: var(--accent-teal); }
+        .nav-item svg { width: 18px; height: 18px; }
+        
+        /* Main */
+        main {
             flex: 1;
+            margin-left: 220px;
             padding: 2rem;
-            overflow-y: auto;
+            max-width: 1200px;
         }
-
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
         }
-
-        .header h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.75rem;
-            font-weight: 600;
-        }
-
-        .header-date {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Grid Layout */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 1200px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        .header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; }
+        .header-date { color: var(--text-muted); font-size: 0.9rem; }
+        
+        /* Page sections */
+        .page { display: none; }
+        .page.active { display: block; }
+        
         /* Cards */
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
         }
-
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
         }
-
-        .card-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
+        .card-title { font-weight: 600; font-size: 0.95rem; }
+        
+        /* Grid */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+        
+        /* Stats */
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .stat-value { font-family: 'Space Grotesk'; font-size: 2rem; font-weight: 700; color: var(--accent-teal); }
+        .stat-label { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; }
+        
+        /* Pipeline bars */
+        .pipeline-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+        .pipeline-label { width: 120px; font-size: 0.85rem; color: var(--text-muted); }
+        .pipeline-bar-container { flex: 1; height: 8px; background: var(--bg-secondary); border-radius: 4px; }
+        .pipeline-bar { height: 100%; border-radius: 4px; transition: width 0.3s; }
+        .pipeline-bar.committed { background: var(--success); }
+        .pipeline-bar.conversation { background: var(--accent-teal); }
+        .pipeline-bar.warm { background: var(--warning); }
+        .pipeline-bar.cold { background: var(--text-muted); }
+        .pipeline-count { width: 30px; text-align: right; font-weight: 600; font-size: 0.9rem; }
+        
+        /* Contact list */
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .contact-item:last-child { border-bottom: none; }
+        .contact-name { font-weight: 500; }
+        .contact-company { color: var(--text-muted); font-size: 0.85rem; }
+        .contact-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+        }
+        .contact-status.committed { background: rgba(40, 167, 69, 0.2); color: var(--success); }
+        .contact-status.warm { background: rgba(255, 193, 7, 0.2); color: var(--warning); }
+        .contact-status.conversation { background: rgba(0, 180, 216, 0.2); color: var(--accent-teal); }
+        
+        /* Memory items */
+        .memory-item {
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .memory-date { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.25rem; }
+        .memory-text { font-size: 0.9rem; line-height: 1.4; }
+        
+        /* Search */
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .search-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+        .search-input:focus { outline: none; border-color: var(--accent-teal); }
+        .search-btn {
+            padding: 0.75rem 1.25rem;
+            background: var(--accent-teal);
+            border: none;
+            border-radius: 8px;
+            color: var(--bg-primary);
             font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .card-action {
-            color: var(--accent-teal);
-            font-size: 0.85rem;
-            text-decoration: none;
             cursor: pointer;
         }
-
-        .card-action:hover {
-            color: var(--accent-glow);
+        
+        /* Knowledge base */
+        .kb-item {
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
         }
-
-        /* Today's Priorities */
-        .priority-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+        .kb-type {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            background: var(--accent-teal);
+            color: var(--bg-primary);
+            text-transform: uppercase;
+            margin-right: 0.5rem;
         }
-
-        .priority-item {
+        .kb-title { font-weight: 500; margin-bottom: 0.25rem; }
+        .kb-url { color: var(--text-muted); font-size: 0.8rem; word-break: break-all; }
+        
+        /* Tasks */
+        .task-item {
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            transition: all 0.2s ease;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
         }
-
-        .priority-item:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .priority-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-teal);
-            min-width: 24px;
-        }
-
-        .priority-checkbox {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--text-muted);
-            border-radius: 4px;
+        .task-checkbox {
+            width: 20px; height: 20px;
+            border: 2px solid var(--accent-teal);
+            border-radius: 50%;
             cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-shrink: 0;
         }
-
-        .priority-checkbox:hover {
-            border-color: var(--accent-teal);
-        }
-
-        .priority-checkbox.checked {
-            background: var(--success);
-            border-color: var(--success);
-        }
-
-        .priority-checkbox.checked svg {
-            opacity: 1;
-        }
-
-        .priority-checkbox svg {
-            width: 14px;
-            height: 14px;
-            opacity: 0;
-            color: white;
-        }
-
-        .priority-content {
-            flex: 1;
-        }
-
-        .priority-title {
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .priority-title.completed {
-            text-decoration: line-through;
-            opacity: 0.5;
-        }
-
-        .priority-meta {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .priority-tag {
-            display: inline-block;
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
+        .task-checkbox.done { background: var(--accent-teal); }
+        .task-text { flex: 1; }
+        .task-priority {
             font-size: 0.7rem;
-            font-weight: 500;
-            text-transform: uppercase;
-        }
-
-        .priority-tag.helioflux {
-            background: rgba(0, 180, 216, 0.15);
-            color: var(--accent-teal);
-        }
-
-        .priority-tag.job {
-            background: rgba(40, 167, 69, 0.15);
-            color: var(--success);
-        }
-
-        /* Pipeline */
-        .pipeline-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .pipeline-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .pipeline-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            min-width: 120px;
-        }
-
-        .pipeline-bar-container {
-            flex: 1;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.05);
+            padding: 0.15rem 0.4rem;
             border-radius: 4px;
-            overflow: hidden;
         }
-
-        .pipeline-bar {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.3s ease;
-        }
-
-        .pipeline-bar.committed {
-            background: var(--success);
-        }
-
-        .pipeline-bar.conversation {
-            background: var(--accent-teal);
-        }
-
-        .pipeline-bar.warm {
-            background: var(--warning);
-        }
-
-        .pipeline-bar.outreach {
-            background: var(--text-muted);
-        }
-
-        .pipeline-count {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            min-width: 30px;
-            text-align: right;
-        }
-
-        /* Follow-ups */
-        .followup-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .followup-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 6px;
-        }
-
-        .followup-name {
-            font-size: 0.9rem;
-        }
-
-        .followup-days {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .followup-days.overdue {
-            color: var(--danger);
-        }
-
-        /* Recent Docs */
-        .doc-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .doc-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .doc-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .doc-icon {
-            width: 32px;
-            height: 32px;
-            background: rgba(0, 180, 216, 0.15);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .doc-icon svg {
-            width: 16px;
-            height: 16px;
-            color: var(--accent-teal);
-        }
-
-        .doc-title {
-            font-size: 0.9rem;
-        }
-
-        .doc-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        /* Quick Actions */
-        .quick-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .quick-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
-            background: rgba(0, 180, 216, 0.1);
-            border: 1px solid rgba(0, 180, 216, 0.2);
-            border-radius: 8px;
-            color: var(--accent-teal);
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .quick-btn:hover {
-            background: rgba(0, 180, 216, 0.2);
-            border-color: rgba(0, 180, 216, 0.3);
-        }
-
-        .quick-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Investors Section */
-        .investor-highlight {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .investor-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 6px;
-        }
-
-        .investor-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .investor-name {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .investor-type {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .fit-score {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-        }
-
-        .fit-score.high {
-            background: rgba(40, 167, 69, 0.15);
-            color: var(--success);
-        }
-
-        .fit-score.medium {
-            background: rgba(255, 193, 7, 0.15);
-            color: var(--warning);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .sidebar {
-                display: none;
-            }
-            
-            .main {
-                padding: 1rem;
-            }
-        }
+        .task-priority.high { background: rgba(220, 53, 69, 0.2); color: var(--danger); }
+        .task-priority.medium { background: rgba(255, 193, 7, 0.2); color: var(--warning); }
+        
+        /* Empty state */
+        .empty { text-align: center; padding: 2rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
     <div class="app">
-        <!-- Sidebar -->
         <nav class="sidebar">
             <div class="logo">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="18" height="18">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/>
-                    </svg>
-                </div>
-                Command Center
+                <div class="logo-icon">🦉</div>
+                <span>Command Center</span>
             </div>
-            
             <div class="nav">
-                <a class="nav-item active" href="index.html">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="7" height="7"/>
-                        <rect x="14" y="3" width="7" height="7"/>
-                        <rect x="3" y="14" width="7" height="7"/>
-                        <rect x="14" y="14" width="7" height="7"/>
-                    </svg>
+                <button class="nav-item active" data-page="dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                     Dashboard
-                </a>
-                
-                <a class="nav-item" href="crm.html">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
+                </button>
+                <button class="nav-item" data-page="crm">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     CRM
-                    <span class="nav-badge">35</span>
-                </a>
-                
-                <a class="nav-item" href="todos.html">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 11l3 3L22 4"/>
-                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                    </svg>
-                    To-Dos
-                    <span class="nav-badge">3</span>
-                </a>
-                
-                <a class="nav-item" href="investors.html">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                    </svg>
-                    Investor Finder
-                </a>
-                
-                <a class="nav-item" href="vault.html">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-                    </svg>
-                    Vault
-                    <span class="nav-badge">8</span>
-                </a>
+                </button>
+                <button class="nav-item" data-page="memory">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+                    Memory
+                </button>
+                <button class="nav-item" data-page="knowledge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    Knowledge Base
+                </button>
+                <button class="nav-item" data-page="tasks">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    Tasks
+                </button>
             </div>
         </nav>
         
-        <!-- Main Content -->
-        <main class="main">
-            <div class="header">
-                <h1>Good evening, Kelly</h1>
-                <div class="header-date" id="currentDate"></div>
+        <main>
+            <header class="header">
+                <div>
+                    <h1 id="pageTitle">Good morning, Kelly</h1>
+                    <div class="header-date" id="currentDate"></div>
+                </div>
+            </header>
+            
+            <!-- DASHBOARD -->
+            <div class="page active" id="page-dashboard">
+                <div class="grid-3" style="margin-bottom: 1.5rem;">
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-contacts">--</div>
+                        <div class="stat-label">Total Contacts</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-warm">--</div>
+                        <div class="stat-label">Warm Leads</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-committed">--</div>
+                        <div class="stat-label">Committed</div>
+                    </div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Pipeline Overview</span>
+                        </div>
+                        <div id="pipeline-stats"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Recent Activity</span>
+                        </div>
+                        <div id="recent-activity">
+                            <div class="memory-item">
+                                <div class="memory-date">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="dashboard-grid">
-                <!-- Today's Priorities -->
+            <!-- CRM -->
+            <div class="page" id="page-crm">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="crm-search" placeholder="Search contacts... (try natural language!)">
+                    <button class="search-btn" onclick="searchCRM()">Search</button>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Contacts</span>
+                        <span id="contact-count" style="color: var(--text-muted); font-size: 0.85rem;"></span>
+                    </div>
+                    <div id="contact-list"></div>
+                </div>
+            </div>
+            
+            <!-- MEMORY -->
+            <div class="page" id="page-memory">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="memory-search" placeholder="Search memories...">
+                    <button class="search-btn" onclick="searchMemory()">Search</button>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Recent Memories</span>
+                    </div>
+                    <div id="memory-list"></div>
+                </div>
+            </div>
+            
+            <!-- KNOWLEDGE BASE -->
+            <div class="page" id="page-knowledge">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="kb-search" placeholder="Search knowledge base...">
+                    <button class="search-btn" onclick="searchKB()">Search</button>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Knowledge Base</span>
+                        <span id="kb-count" style="color: var(--text-muted); font-size: 0.85rem;"></span>
+                    </div>
+                    <div id="kb-list"></div>
+                </div>
+            </div>
+            
+            <!-- TASKS -->
+            <div class="page" id="page-tasks">
                 <div class="card">
                     <div class="card-header">
                         <span class="card-title">Today's Priorities</span>
-                        <a class="card-action" href="todos.html">View all</a>
                     </div>
-                    <div class="priority-list" id="priorityList">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-                
-                <!-- Pipeline -->
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Pipeline</span>
-                        <a class="card-action" href="crm.html">View CRM</a>
-                    </div>
-                    <div class="pipeline-stats">
-                        <div class="pipeline-row">
-                            <span class="pipeline-label">Committed</span>
-                            <div class="pipeline-bar-container">
-                                <div class="pipeline-bar committed" style="width: 14%"></div>
-                            </div>
-                            <span class="pipeline-count">5</span>
-                        </div>
-                        <div class="pipeline-row">
-                            <span class="pipeline-label">In Conversation</span>
-                            <div class="pipeline-bar-container">
-                                <div class="pipeline-bar conversation" style="width: 3%"></div>
-                            </div>
-                            <span class="pipeline-count">1</span>
-                        </div>
-                        <div class="pipeline-row">
-                            <span class="pipeline-label">Warm Lead</span>
-                            <div class="pipeline-bar-container">
-                                <div class="pipeline-bar warm" style="width: 31%"></div>
-                            </div>
-                            <span class="pipeline-count">11</span>
-                        </div>
-                        <div class="pipeline-row">
-                            <span class="pipeline-label">Cold Outreach</span>
-                            <div class="pipeline-bar-container">
-                                <div class="pipeline-bar outreach" style="width: 34%"></div>
-                            </div>
-                            <span class="pipeline-count">12</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Top Investor Matches -->
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Top Investor Matches</span>
-                        <a class="card-action" href="investors.html">Find more</a>
-                    </div>
-                    <div class="investor-highlight" id="investorList">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-                
-                <!-- Recent Docs -->
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Recent Documents</span>
-                        <a class="card-action" href="vault.html">View vault</a>
-                    </div>
-                    <div class="doc-list">
-                        <div class="doc-item">
-                            <div class="doc-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                    <polyline points="14 2 14 8 20 8"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="doc-title">Competitor Landscape</div>
-                                <div class="doc-meta">Research • Today</div>
-                            </div>
-                        </div>
-                        <div class="doc-item">
-                            <div class="doc-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                    <polyline points="14 2 14 8 20 8"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="doc-title">Biotech Investors</div>
-                                <div class="doc-meta">Research • Today</div>
-                            </div>
-                        </div>
-                        <div class="doc-item">
-                            <div class="doc-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                    <polyline points="14 2 14 8 20 8"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="doc-title">Patient Journey Spec</div>
-                                <div class="doc-meta">Spec • Today</div>
-                            </div>
-                        </div>
-                        <div class="doc-item">
-                            <div class="doc-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                    <polyline points="14 2 14 8 20 8"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="doc-title">Grant Opportunities</div>
-                                <div class="doc-meta">Research • Today</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Quick Actions -->
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Quick Actions</span>
-                    </div>
-                    <div class="quick-actions">
-                        <button class="quick-btn">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="8.5" cy="7" r="4"/>
-                                <line x1="20" y1="8" x2="20" y2="14"/>
-                                <line x1="23" y1="11" x2="17" y2="11"/>
-                            </svg>
-                            Add Contact
-                        </button>
-                        <button class="quick-btn">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="12" y1="5" x2="12" y2="19"/>
-                                <line x1="5" y1="12" x2="19" y2="12"/>
-                            </svg>
-                            Add Task
-                        </button>
-                        <button class="quick-btn">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="12" y1="18" x2="12" y2="12"/>
-                                <line x1="9" y1="15" x2="15" y2="15"/>
-                            </svg>
-                            Upload Document
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Need Follow-up -->
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Need Follow-up</span>
-                        <a class="card-action" href="crm.html">View all</a>
-                    </div>
-                    <div class="followup-list">
-                        <div class="followup-item">
-                            <span class="followup-name">Jim Armstrong</span>
-                            <span class="followup-days overdue">3 days ago</span>
-                        </div>
-                        <div class="followup-item">
-                            <span class="followup-name">Andy Lehman</span>
-                            <span class="followup-days">5 days ago</span>
-                        </div>
-                        <div class="followup-item">
-                            <span class="followup-name">Emily Atkinson</span>
-                            <span class="followup-days">7 days ago</span>
-                        </div>
-                    </div>
+                    <div id="task-list"></div>
                 </div>
             </div>
         </main>
     </div>
     
     <script>
-        // ============ INITIALIZATION ============
+        // Sample data (in production, this would come from API)
+        const DATA = {
+            contacts: [
+                { name: "Alan Pham", company: "Hamamatsu", status: "conversation", priority: "A" },
+                { name: "Robert Warren", company: "Hamamatsu Ventures", status: "conversation", priority: "A" },
+                { name: "Jim Armstrong", company: "Composite Ventures", status: "committed", priority: "A" },
+                { name: "Dave Asprey", company: "Bulletproof", status: "warm", priority: "A" },
+                { name: "Rakesh Ramaswamy", company: "Moffitt/CancerX", status: "warm", priority: "A" },
+                { name: "Andy Lehman", company: "The Mill", status: "warm", priority: "A" },
+                { name: "Emily Atkinson", company: "IU Ventures", status: "warm", priority: "B" },
+                { name: "Reed Jobs", company: "Yosemite Fund", status: "cold", priority: "A" },
+                { name: "Mike Stebbins", company: "ARPA-H", status: "warm", priority: "A" },
+                { name: "Lindsay Bourgeois", company: "BioLabs", status: "warm", priority: "B" }
+            ],
+            pipeline: {
+                committed: 5,
+                conversation: 2,
+                warm: 15,
+                cold: 478
+            },
+            memories: [
+                { date: "Feb 18, 2026", text: "Built Email→CRM sync, Knowledge Base, Security Council, Business Council. Two-way Notion sync completed - 500+ contacts now synced." },
+                { date: "Feb 18, 2026", text: "Hamamatsu meeting at 9am with Alan Pham, Margaret Duncan. Rakesh Ramaswamy (Moffitt) wants call week of Feb 23." },
+                { date: "Feb 16, 2026", text: "Keanu Reeves campaign research - sister Kim had leukemia, donated $31.5M to research. Multiple contact routes identified." },
+                { date: "Feb 14, 2026", text: "42 emails sent to cancer foundations, athletes, celebrities, family offices. Grand total: 252+ emails since Feb 11." }
+            ],
+            knowledge: [
+                { type: "youtube", title: "Matt Wolfe OpenClaw Masterclass", url: "https://youtu.be/8kNv3rjQaVA" },
+                { type: "youtube", title: "Matt Wolfe Advanced Setup", url: "https://youtu.be/Q7r--i9lLck" }
+            ],
+            tasks: [
+                { text: "Reply to Rakesh Ramaswamy (Moffitt) - schedule call for week of Feb 23", priority: "high", done: false },
+                { text: "Follow up with Lindsay Bourgeois (BioLabs) about LA lab space", priority: "high", done: false },
+                { text: "File provisional patent with Mike Scholdenbrand ($2,500)", priority: "high", done: false }
+            ]
+        };
         
-        // Set current date
-        const dateEl = document.getElementById('currentDate');
-        const now = new Date();
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        dateEl.textContent = now.toLocaleDateString('en-US', options);
-        
-        // Set greeting based on time
-        const hour = now.getHours();
-        const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-        document.querySelector('.header h1').textContent = `${greeting}, Kelly`;
-        
-        // Check if running locally (with Flask) or on GitHub Pages
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        
-        // ============ LOAD DATA ============
-        
-        async function loadTasks() {
-            const priorityList = document.getElementById('priorityList');
-            let tasks;
-            
-            if (isLocal) {
-                // Fetch from API
-                try {
-                    const res = await fetch('/api/tasks');
-                    tasks = await res.json();
-                    tasks = tasks.filter(t => t.status !== 'done').slice(0, 3);
-                } catch (e) {
-                    console.error('Could not load tasks from API:', e);
-                    tasks = getDefaultTasks();
-                }
-            } else {
-                // Use default data for GitHub Pages
-                tasks = getDefaultTasks();
-            }
-            
-            priorityList.innerHTML = '';
-            tasks.forEach((task, index) => {
-                const tagClass = task.category === 'HelioFlux' ? 'helioflux' : 'job';
-                const isDone = task.status === 'done';
-                priorityList.innerHTML += `
-                    <div class="priority-item" data-id="${task.id}">
-                        <span class="priority-number">${index + 1}.</span>
-                        <div class="priority-checkbox ${isDone ? 'checked' : ''}" onclick="toggleTask(${task.id})">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                        </div>
-                        <div class="priority-content">
-                            <div class="priority-title ${isDone ? 'completed' : ''}">${task.title}</div>
-                            <div class="priority-meta">
-                                <span class="priority-tag ${tagClass}">${task.category}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-        
-        async function loadInvestors() {
-            const investorList = document.getElementById('investorList');
-            let investors;
-            
-            if (isLocal) {
-                try {
-                    const res = await fetch('/api/investors');
-                    investors = await res.json();
-                    investors = investors.slice(0, 5);
-                } catch (e) {
-                    console.error('Could not load investors from API:', e);
-                    investors = getDefaultInvestors();
-                }
-            } else {
-                investors = getDefaultInvestors();
-            }
-            
-            investorList.innerHTML = '';
-            investors.forEach(inv => {
-                const scoreClass = inv.fit_score >= 90 ? 'high' : 'medium';
-                investorList.innerHTML += `
-                    <div class="investor-item">
-                        <div class="investor-info">
-                            <span class="investor-name">${inv.name}</span>
-                            <span class="investor-type">${inv.type || inv.firm}</span>
-                        </div>
-                        <span class="fit-score ${scoreClass}">${inv.fit_score}%</span>
-                    </div>
-                `;
-            });
-        }
-        
-        async function loadPipeline() {
-            if (!isLocal) return;
-            
-            try {
-                const res = await fetch('/api/pipeline');
-                const pipeline = await res.json();
+        // Navigation
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = btn.dataset.page;
                 
-                const total = pipeline.total || 35;
-                const rows = document.querySelectorAll('.pipeline-row');
+                document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
                 
-                const data = [
-                    { status: 'Committed', count: pipeline['Committed'] || 5 },
-                    { status: 'In Conversation', count: pipeline['In Conversation'] || 1 },
-                    { status: 'Warm Lead', count: pipeline['Warm Lead'] || 11 },
-                    { status: 'Cold Outreach', count: pipeline['Cold Outreach'] || 12 }
-                ];
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById('page-' + page).classList.add('active');
                 
-                rows.forEach((row, i) => {
-                    if (data[i]) {
-                        const bar = row.querySelector('.pipeline-bar');
-                        const count = row.querySelector('.pipeline-count');
-                        bar.style.width = `${(data[i].count / total) * 100}%`;
-                        count.textContent = data[i].count;
-                    }
-                });
-            } catch (e) {
-                console.error('Could not load pipeline:', e);
-            }
-        }
-        
-        // ============ DEFAULT DATA (for GitHub Pages) ============
-        
-        function getDefaultTasks() {
-            return [
-                { id: 1, title: "Sign Mike's patent engagement ($2,500)", category: "HelioFlux", status: "pending" },
-                { id: 2, title: "Apply to Aglaia Oncology", category: "HelioFlux", status: "pending" },
-                { id: 3, title: "Sign up for Outlier.ai", category: "Job Search", status: "pending" }
-            ];
-        }
-        
-        function getDefaultInvestors() {
-            return [
-                { name: "Jim Armstrong", type: "Angel (Existing)", fit_score: 99 },
-                { name: "Aglaia Oncology", type: "VC - Oncology Only", fit_score: 98 },
-                { name: "Mark Foundation", type: "Foundation", fit_score: 95 },
-                { name: "Prevent Cancer Foundation", type: "Foundation", fit_score: 93 },
-                { name: "IndieBio", type: "Accelerator", fit_score: 92 }
-            ];
-        }
-        
-        // ============ ACTIONS ============
-        
-        async function toggleTask(id) {
-            const item = document.querySelector(`[data-id="${id}"]`);
-            const checkbox = item.querySelector('.priority-checkbox');
-            const title = item.querySelector('.priority-title');
-            
-            const isNowChecked = !checkbox.classList.contains('checked');
-            checkbox.classList.toggle('checked');
-            title.classList.toggle('completed');
-            
-            if (isLocal) {
-                try {
-                    await fetch(`/api/tasks/${id}`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ status: isNowChecked ? 'done' : 'pending' })
-                    });
-                } catch (e) {
-                    console.error('Could not update task:', e);
-                }
-            }
-        }
-        
-        // ============ QUICK ACTIONS ============
-        
-        document.querySelectorAll('.quick-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const text = this.textContent.trim();
-                if (text.includes('Add Contact')) {
-                    alert('Opening CRM... (crm.html - to be built)');
-                } else if (text.includes('Add Task')) {
-                    const title = prompt('New task:');
-                    if (title) addTask(title);
-                } else if (text.includes('Upload')) {
-                    alert('Opening Vault... (vault.html - to be built)');
-                }
+                const titles = {
+                    dashboard: getGreeting() + ', Kelly',
+                    crm: 'CRM - Contacts',
+                    memory: 'Memory',
+                    knowledge: 'Knowledge Base',
+                    tasks: 'Tasks'
+                };
+                document.getElementById('pageTitle').textContent = titles[page];
             });
         });
         
-        async function addTask(title) {
-            if (isLocal) {
-                try {
-                    await fetch('/api/tasks', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ title, category: 'HelioFlux', priority: 3 })
-                    });
-                    loadTasks();
-                } catch (e) {
-                    console.error('Could not add task:', e);
-                }
-            } else {
-                alert('Task added: ' + title + '\n(Save to server requires local mode)');
-            }
+        function getGreeting() {
+            const hour = new Date().getHours();
+            return hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
         }
         
-        // ============ INITIALIZE ============
-        
-        loadTasks();
-        loadInvestors();
-        loadPipeline();
-        
-        // Show mode indicator
-        if (isLocal) {
-            console.log('🟢 Running in LOCAL mode - connected to SQLite CRM');
-        } else {
-            console.log('🌐 Running in STATIC mode - using default data');
+        // Initialize
+        function init() {
+            const now = new Date();
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+            });
+            document.getElementById('pageTitle').textContent = getGreeting() + ', Kelly';
+            
+            // Stats
+            const total = DATA.pipeline.committed + DATA.pipeline.conversation + DATA.pipeline.warm + DATA.pipeline.cold;
+            document.getElementById('stat-contacts').textContent = total;
+            document.getElementById('stat-warm').textContent = DATA.pipeline.warm;
+            document.getElementById('stat-committed').textContent = DATA.pipeline.committed;
+            
+            // Pipeline
+            const pipelineHTML = `
+                <div class="pipeline-row">
+                    <span class="pipeline-label">Committed</span>
+                    <div class="pipeline-bar-container"><div class="pipeline-bar committed" style="width: ${DATA.pipeline.committed/total*100}%"></div></div>
+                    <span class="pipeline-count">${DATA.pipeline.committed}</span>
+                </div>
+                <div class="pipeline-row">
+                    <span class="pipeline-label">In Conversation</span>
+                    <div class="pipeline-bar-container"><div class="pipeline-bar conversation" style="width: ${DATA.pipeline.conversation/total*100}%"></div></div>
+                    <span class="pipeline-count">${DATA.pipeline.conversation}</span>
+                </div>
+                <div class="pipeline-row">
+                    <span class="pipeline-label">Warm Lead</span>
+                    <div class="pipeline-bar-container"><div class="pipeline-bar warm" style="width: ${DATA.pipeline.warm/total*100}%"></div></div>
+                    <span class="pipeline-count">${DATA.pipeline.warm}</span>
+                </div>
+                <div class="pipeline-row">
+                    <span class="pipeline-label">Cold/Outreach</span>
+                    <div class="pipeline-bar-container"><div class="pipeline-bar cold" style="width: ${DATA.pipeline.cold/total*100}%"></div></div>
+                    <span class="pipeline-count">${DATA.pipeline.cold}</span>
+                </div>
+            `;
+            document.getElementById('pipeline-stats').innerHTML = pipelineHTML;
+            
+            // Recent activity
+            document.getElementById('recent-activity').innerHTML = DATA.memories.slice(0,3).map(m => `
+                <div class="memory-item">
+                    <div class="memory-date">${m.date}</div>
+                    <div class="memory-text">${m.text}</div>
+                </div>
+            `).join('');
+            
+            // Contacts
+            renderContacts(DATA.contacts);
+            
+            // Memories
+            document.getElementById('memory-list').innerHTML = DATA.memories.map(m => `
+                <div class="memory-item">
+                    <div class="memory-date">${m.date}</div>
+                    <div class="memory-text">${m.text}</div>
+                </div>
+            `).join('');
+            
+            // Knowledge base
+            document.getElementById('kb-count').textContent = DATA.knowledge.length + ' entries';
+            document.getElementById('kb-list').innerHTML = DATA.knowledge.map(k => `
+                <div class="kb-item">
+                    <span class="kb-type">${k.type}</span>
+                    <div class="kb-title">${k.title}</div>
+                    <div class="kb-url">${k.url}</div>
+                </div>
+            `).join('') || '<div class="empty">No entries yet. Send me links to add!</div>';
+            
+            // Tasks
+            document.getElementById('task-list').innerHTML = DATA.tasks.map(t => `
+                <div class="task-item">
+                    <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
+                    <div class="task-text">${t.text}</div>
+                    <span class="task-priority ${t.priority}">${t.priority}</span>
+                </div>
+            `).join('') || '<div class="empty">No tasks yet</div>';
         }
+        
+        function renderContacts(contacts) {
+            document.getElementById('contact-count').textContent = contacts.length + ' contacts';
+            document.getElementById('contact-list').innerHTML = contacts.map(c => `
+                <div class="contact-item">
+                    <div>
+                        <div class="contact-name">${c.name}</div>
+                        <div class="contact-company">${c.company || ''}</div>
+                    </div>
+                    <span class="contact-status ${c.status}">${c.status.replace('_', ' ')}</span>
+                </div>
+            `).join('') || '<div class="empty">No contacts found</div>';
+        }
+        
+        function searchCRM() {
+            const q = document.getElementById('crm-search').value.toLowerCase();
+            const filtered = DATA.contacts.filter(c => 
+                c.name.toLowerCase().includes(q) || 
+                (c.company && c.company.toLowerCase().includes(q)) ||
+                c.status.includes(q)
+            );
+            renderContacts(filtered);
+        }
+        
+        function searchMemory() {
+            const q = document.getElementById('memory-search').value.toLowerCase();
+            const filtered = DATA.memories.filter(m => m.text.toLowerCase().includes(q));
+            document.getElementById('memory-list').innerHTML = filtered.map(m => `
+                <div class="memory-item">
+                    <div class="memory-date">${m.date}</div>
+                    <div class="memory-text">${m.text}</div>
+                </div>
+            `).join('') || '<div class="empty">No memories found</div>';
+        }
+        
+        function searchKB() {
+            const q = document.getElementById('kb-search').value.toLowerCase();
+            const filtered = DATA.knowledge.filter(k => 
+                k.title.toLowerCase().includes(q) || k.url.toLowerCase().includes(q)
+            );
+            document.getElementById('kb-list').innerHTML = filtered.map(k => `
+                <div class="kb-item">
+                    <span class="kb-type">${k.type}</span>
+                    <div class="kb-title">${k.title}</div>
+                    <div class="kb-url">${k.url}</div>
+                </div>
+            `).join('') || '<div class="empty">No entries found</div>';
+        }
+        
+        // Allow Enter to search
+        document.getElementById('crm-search').addEventListener('keyup', e => { if (e.key === 'Enter') searchCRM(); });
+        document.getElementById('memory-search').addEventListener('keyup', e => { if (e.key === 'Enter') searchMemory(); });
+        document.getElementById('kb-search').addEventListener('keyup', e => { if (e.key === 'Enter') searchKB(); });
+        
+        init();
     </script>
 </body>
 </html>
