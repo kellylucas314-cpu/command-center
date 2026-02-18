@@ -1,34 +1,34 @@
 {
   "crm": {
-    "total": 471,
+    "total": 481,
     "by_status": {
       "Active Negotiation": 16,
       "Active Partnership": 2,
       "Cold": 6,
-      "Cold Outreach": 114,
+      "Cold Outreach": 120,
       "Committed": 48,
-      "In Conversation": 33,
+      "In Conversation": 35,
       "On Hold": 2,
       "Passed": 2,
-      "Warm Lead": 248
+      "Warm Lead": 250
     },
     "by_category": {
-      "null": 12,
+      "null": 11,
       "Accelerator/Program": 18,
       "Active Partnership": 6,
       "Advisor": 29,
-      "Angel/HNW Individual": 142,
-      "Clinical Partner": 9,
+      "Angel/HNW Individual": 144,
+      "Clinical Partner": 10,
       "Co-founder": 1,
-      "Crowdfunding": 45,
-      "Family Office": 6,
-      "Strategic Partner": 102,
+      "Crowdfunding": 46,
+      "Family Office": 8,
+      "Strategic Partner": 106,
       "Team": 1,
-      "VC/Fund": 100
+      "VC/Fund": 101
     },
     "by_priority": {
-      "A": 67,
-      "B": 61,
+      "A": 73,
+      "B": 65,
       "C": 26
     }
   },
@@ -45,5 +45,5 @@
   "tasks": {
     "count": 5
   },
-  "exported_at": "2026-02-18T14:08:23.530099"
+  "exported_at": "2026-02-18T14:10:26.352847"
 }
