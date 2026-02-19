@@ -42,7 +42,10 @@
     {"id": 1, "emoji": "🌱", "title": "Agent-powered idea validator", "spark": "Ideabrowser does 40-agent startup validation. We could build this for investor/partner research — 'is this worth pursuing?' instead of 100 tabs.", "added": "2026-02-19"},
     {"id": 2, "emoji": "🧮", "title": "The Clawculator", "spark": "Answer 5 questions about your work, get personalized agent recommendations + hours saved + API cost. Lead magnet for email capture. Could actually use this ourselves.", "added": "2026-02-19"},
     {"id": 3, "emoji": "🔥", "title": "Agent Roast", "spark": "Submit your AGENTS.md, get a brutally honest AI review. Viral shareability + drives Training signups.", "added": "2026-02-19"},
-    {"id": 4, "emoji": "📋", "title": "Agent Templates Gallery", "spark": "Downloadable AGENTS.md + SOUL.md starter kits: 'The Fundraiser,' 'The Content Machine,' 'The Job Hunter.' Drop into OpenClaw and go.", "added": "2026-02-19"}
+    {"id": 4, "emoji": "📋", "title": "Agent Templates Gallery", "spark": "Downloadable AGENTS.md + SOUL.md starter kits: 'The Fundraiser,' 'The Content Machine,' 'The Job Hunter.' Drop into OpenClaw and go.", "added": "2026-02-19"},
+    {"id": 5, "emoji": "🎛️", "title": "Agent Mission Control panel", "spark": "NLW built this for his 10-agent team — shows each agent's up/down status + cost. Add a 'Kip's Team' panel to Command Center: Scout + Quill status, last run, errors, cost.", "added": "2026-02-19"},
+    {"id": 6, "emoji": "📡", "title": "HelioFlux Reddit monitor", "spark": "Jonathan's Reddit agent but for HelioFlux — watch r/biotech, r/investing, r/MachineLearning for biophotonics, UPE, early cancer detection. Daily Telegram briefing on what the internet says about your space.", "added": "2026-02-19"},
+    {"id": 7, "emoji": "🧠", "title": "Knowledge graph memory (Alhazen-style)", "spark": "Gully Burns built TypeDB memory with relationships: Collections → Things → Artifacts → Fragments → Notes. Our flat .md files work but can't query relationships. Someday: upgrade to a proper graph so 'who mentioned HelioFlux + is a VC + in LA' is one query.", "added": "2026-02-19"}
   ],
-  "updated_at": "2026-02-19T15:00:00"
+  "updated_at": "2026-02-19T15:30:00"
 }
