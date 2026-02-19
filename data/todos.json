@@ -16,7 +16,7 @@
     },
     {
       "id": 8,
-      "text": "\ud83d\udd34 TOMORROW: Arye Lipman meeting @ 1pm PST (Google Meet)",
+      "text": "\ud83d\udd34 MONDAY Feb 23: Arye Lipman meeting @ 1pm PST (Google Meet)",
       "priority": "high",
       "category": "meetings",
       "done": false
@@ -74,60 +74,60 @@
   "kip": [
     {
       "id": 1,
-      "text": "Monitor inbox for investor replies",
+      "text": "Phase 1: Build automated follow-up tracker (upgrade email_sync.py)",
       "priority": "high",
-      "category": "outreach",
-      "done": true
+      "category": "upgrade",
+      "done": false
     },
     {
       "id": 2,
-      "text": "Draft follow-up emails",
+      "text": "Post Napoleon Tweet #3 (queued in TWEET-QUEUE-FEB19.md)",
       "priority": "high",
-      "category": "outreach",
-      "done": true
-    },
-    {
-      "id": 3,
-      "text": "CRM cleanup (duplicates, missing emails)",
-      "priority": "medium",
-      "category": "maintenance",
-      "done": true
-    },
-    {
-      "id": 4,
-      "text": "Verify cron jobs",
-      "priority": "medium",
-      "category": "maintenance",
-      "done": true
-    },
-    {
-      "id": 5,
-      "text": "Git backup workspace",
-      "priority": "medium",
-      "category": "maintenance",
-      "done": true
-    },
-    {
-      "id": 6,
-      "text": "Export Command Center data",
-      "priority": "low",
-      "category": "maintenance",
-      "done": true
-    },
-    {
-      "id": 7,
-      "text": "Check Bull Stories Twitter",
-      "priority": "low",
       "category": "content",
       "done": false
     },
     {
-      "id": 8,
-      "text": "Weekly memory synthesis",
-      "priority": "low",
+      "id": 3,
+      "text": "Monitor for AIDB Clawrchitect reply (jobs@aidailybrief.ai)",
+      "priority": "high",
+      "category": "jobs",
+      "done": false
+    },
+    {
+      "id": 4,
+      "text": "Phase 2: Install Antfarm multi-agent pipelines",
+      "priority": "medium",
+      "category": "upgrade",
+      "done": false
+    },
+    {
+      "id": 5,
+      "text": "Phase 2: Build content repurposing pipeline (tweets → LinkedIn → newsletter)",
+      "priority": "medium",
+      "category": "upgrade",
+      "done": false
+    },
+    {
+      "id": 6,
+      "text": "Phase 2: Shared brain across Scout/Quill agents",
+      "priority": "medium",
+      "category": "upgrade",
+      "done": false
+    },
+    {
+      "id": 7,
+      "text": "Weekly memory synthesis (review daily files → update MEMORY.md)",
+      "priority": "medium",
       "category": "maintenance",
+      "done": false
+    },
+    {
+      "id": 8,
+      "text": "Find Glenn's contact info (need to relay Conafay materials situation)",
+      "priority": "high",
+      "category": "comms",
       "done": false
     }
   ],
-  "updated_at": "2026-02-18T14:30:00"
+  "updated_at": "2026-02-19T15:07:00"
 }
