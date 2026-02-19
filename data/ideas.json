@@ -38,5 +38,11 @@
       {"text": "Apply to Tufts New Ventures (Feb 22)", "done": false}
     ]
   },
-  "updated_at": "2026-02-18T15:15:00"
+  "seeds": [
+    {"id": 1, "emoji": "🌱", "title": "Agent-powered idea validator", "spark": "Ideabrowser does 40-agent startup validation. We could build this for investor/partner research — 'is this worth pursuing?' instead of 100 tabs.", "added": "2026-02-19"},
+    {"id": 2, "emoji": "🧮", "title": "The Clawculator", "spark": "Answer 5 questions about your work, get personalized agent recommendations + hours saved + API cost. Lead magnet for email capture. Could actually use this ourselves.", "added": "2026-02-19"},
+    {"id": 3, "emoji": "🔥", "title": "Agent Roast", "spark": "Submit your AGENTS.md, get a brutally honest AI review. Viral shareability + drives Training signups.", "added": "2026-02-19"},
+    {"id": 4, "emoji": "📋", "title": "Agent Templates Gallery", "spark": "Downloadable AGENTS.md + SOUL.md starter kits: 'The Fundraiser,' 'The Content Machine,' 'The Job Hunter.' Drop into OpenClaw and go.", "added": "2026-02-19"}
+  ],
+  "updated_at": "2026-02-19T15:00:00"
 }

@@ -624,6 +624,14 @@
                         <div id="ideas-done-list"></div>
                     </div>
                 </div>
+
+                <!-- SEEDS -->
+                <div class="card" style="margin-top: 1rem;">
+                    <div class="card-header">
+                        <span class="card-title">🌱 Seeds — Fun Ideas Worth Growing</span>
+                    </div>
+                    <div id="seeds-list"></div>
+                </div>
             </div>
             
             <!-- OPENCLAW IDEAS -->
@@ -1179,6 +1187,19 @@
                     <div style="font-size: 0.7rem; color: var(--text-muted);">${idea.completed || idea.added}</div>
                 </div>
             `).join('') || '<div class="empty">Nothing completed yet</div>';
+
+            // Seeds
+            const seeds = ideasData.seeds || [];
+            document.getElementById('seeds-list').innerHTML = seeds.length ? seeds.map(seed => `
+                <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+                    <div style="font-size: 1.5rem; line-height: 1;">${seed.emoji}</div>
+                    <div style="flex: 1;">
+                        <div style="font-size: 0.95rem; font-weight: 600; color: var(--text);">${seed.title}</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 3px; line-height: 1.4;">${seed.spark}</div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">Planted ${seed.added}</div>
+                    </div>
+                </div>
+            `).join('') : '<div class="empty">No seeds yet! Drop a fun idea anytime.</div>';
         }
         // Toggle functions for checkboxes
         function toggleTodo(who, idx, el) {
