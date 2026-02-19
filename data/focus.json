@@ -1,0 +1,58 @@
+{
+  "week": "Feb 17-23, 2026",
+  "kelly": {
+    "big_3": [
+      {"id": 1, "text": "Submit MABA application (Yaniv replied!)", "done": false, "priority": "high"},
+      {"id": 2, "text": "Patent engagement signed + $2,500 retainer to Mike", "done": false, "priority": "high"},
+      {"id": 3, "text": "Nail the Arye Lipman meeting (Thu Feb 19 @ 1pm)", "done": false, "priority": "high"}
+    ],
+    "deadlines": [
+      {"text": "Arye Lipman meeting", "date": "Feb 19", "time": "1pm PST", "urgent": true},
+      {"text": "Tufts New Ventures", "date": "Feb 22", "type": "competition"},
+      {"text": "StartEngine/Doryn meeting", "date": "Feb 25", "time": "12pm PST"},
+      {"text": "Rakesh Ramaswamy call", "date": "Week of Feb 23", "type": "meeting"},
+      {"text": "BCIC Biomedical Pitch", "date": "Feb 28", "type": "competition"}
+    ],
+    "setup_needed": [
+      {"text": "Run 'gemini' in terminal to authenticate", "done": false},
+      {"text": "Install Chrome/Brave for browser automation", "done": false}
+    ]
+  },
+  "kip": {
+    "active": [
+      {"text": "Monitor inbox for investor replies", "status": "ongoing"},
+      {"text": "Friday Review cron ready", "status": "done"},
+      {"text": "Email outreach tracker sync", "status": "pending"}
+    ],
+    "completed_today": [
+      "Deep inbox scan - found Arye meeting tomorrow",
+      "Drafted 5 follow-up emails",
+      "CRM cleanup (477 contacts)",
+      "Built Ideas tracking system",
+      "Found BCIC deadline (Feb 28)"
+    ]
+  },
+  "ideas_inbox": [
+    {"id": 1, "text": "Newsletter digest / inbox declutter", "added": "2026-02-18"},
+    {"id": 2, "text": "Meeting action item extraction (needs Fathom/Otter)", "added": "2026-02-18"},
+    {"id": 3, "text": "Encrypted Google Drive backups", "added": "2026-02-18"},
+    {"id": 4, "text": "Model routing logic (Sonnet vs Opus)", "added": "2026-02-18"},
+    {"id": 5, "text": "Bull Stories social media growth", "added": "2026-02-18"},
+    {"id": 6, "text": "Get Mac mini for Kip 24/7", "added": "2026-02-18"},
+    {"id": 7, "text": "Auto follow-up sequences for outreach", "added": "2026-02-18"},
+    {"id": 8, "text": "LinkedIn automation", "added": "2026-02-18"},
+    {"id": 9, "text": "Investor match scoring AI", "added": "2026-02-18"},
+    {"id": 10, "text": "Voice command interface", "added": "2026-02-18"}
+  ],
+  "recently_done": [
+    {"text": "Command Center rebuild", "date": "Feb 18"},
+    {"text": "Email → CRM auto-sync", "date": "Feb 18"},
+    {"text": "Two-way Notion sync", "date": "Feb 18"},
+    {"text": "Hamamatsu meeting", "date": "Feb 18"},
+    {"text": "480+ contacts in CRM", "date": "Feb 18"},
+    {"text": "Security Council cron", "date": "Feb 18"},
+    {"text": "Reply to Rakesh (Moffitt)", "date": "Feb 18"},
+    {"text": "StartEngine meeting scheduled", "date": "Feb 18"}
+  ],
+  "updated_at": "2026-02-18T16:30:00"
+}

@@ -393,9 +393,9 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                     <span>Knowledge</span>
                 </button>
-                <button class="nav-item" data-page="tasks">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                    <span>Tasks</span>
+                <button class="nav-item" data-page="focus">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                    <span>Focus</span>
                 </button>
                 <button class="nav-item" data-page="outreach">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -538,14 +538,34 @@
                 </div>
             </div>
             
-            <!-- TASKS -->
-            <div class="page" id="page-tasks">
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">📋 All Tasks</span>
+            <!-- FOCUS -->
+            <div class="page" id="page-focus">
+                <div class="grid-2">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(0,180,216,0.15), rgba(125,249,255,0.05));">
+                        <div class="card-header">
+                            <span class="card-title">🎯 Kelly's Big 3 This Week</span>
+                        </div>
+                        <div id="focus-big3"></div>
                     </div>
-                    <div id="tasks-list">
-                        <div class="loading">Loading tasks...</div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">📅 Upcoming Deadlines</span>
+                        </div>
+                        <div id="focus-deadlines"></div>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">🦉 Kip's Working On</span>
+                        </div>
+                        <div id="focus-kip"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">✅ Done Today</span>
+                        </div>
+                        <div id="focus-done"></div>
                     </div>
                 </div>
             </div>
@@ -664,6 +684,7 @@
         let openclawData = { ideas: [] };
         let todosData = { kelly: [], kip: [] };
         let ideasData = { inbox: [], in_progress: [], done: [], weekly_commits: {} };
+        let focusData = { kelly: {}, kip: {}, ideas_inbox: [], recently_done: [] };
         
         // Pagination
         let crmPage = 1;
@@ -702,9 +723,9 @@
                         crm: 'CRM',
                         memory: 'Memory',
                         knowledge: 'Knowledge Base',
-                        tasks: 'Tasks',
+                        focus: 'Focus',
                         outreach: 'Email Outreach',
-                        ideas: 'Ideas Tracker',
+                        ideas: 'Ideas Inbox',
                         openclaw: 'OpenClaw Capabilities'
                     };
                     document.getElementById('pageTitle').textContent = titles[page] || page;
@@ -732,7 +753,7 @@
             const baseUrl = window.location.href.includes('github.io') ? './data/' : './data/';
             
             try {
-                const [crm, memory, kb, tasks, outreach, openclaw, todos, ideas] = await Promise.all([
+                const [crm, memory, kb, tasks, outreach, openclaw, todos, ideas, focus] = await Promise.all([
                     fetch(baseUrl + 'crm.json').then(r => r.json()).catch(() => ({ contacts: [], stats: {} })),
                     fetch(baseUrl + 'memory.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'knowledge.json').then(r => r.json()).catch(() => ({ entries: [] })),
@@ -740,7 +761,8 @@
                     fetch(baseUrl + 'outreach.json').then(r => r.json()).catch(() => ({ emails: [], stats: {} })),
                     fetch(baseUrl + 'openclaw-ideas.json').then(r => r.json()).catch(() => ({ ideas: [] })),
                     fetch(baseUrl + 'todos.json').then(r => r.json()).catch(() => ({ kelly: [], kip: [] })),
-                    fetch(baseUrl + 'ideas.json').then(r => r.json()).catch(() => ({ inbox: [], done: [], weekly_commits: {} }))
+                    fetch(baseUrl + 'ideas.json').then(r => r.json()).catch(() => ({ inbox: [], done: [], weekly_commits: {} })),
+                    fetch(baseUrl + 'focus.json').then(r => r.json()).catch(() => ({ kelly: {}, kip: {}, ideas_inbox: [], recently_done: [] }))
                 ]);
                 
                 crmData = crm;
@@ -751,13 +773,14 @@
                 openclawData = openclaw;
                 todosData = todos;
                 ideasData = ideas;
+                focusData = focus;
                 
                 document.getElementById('crm-count').textContent = crmData.stats?.total || crmData.contacts?.length || 0;
                 
                 renderCRM();
                 renderMemory();
                 renderKnowledgeBase();
-                renderTasks();
+                renderFocus();
                 renderOutreach();
                 renderOpenClaw();
                 renderIdeas();
@@ -964,18 +987,52 @@
             `).join('') : '<div class="empty">No knowledge base entries. Add content with kb.py!</div>';
         }
         
-        function renderTasks() {
-            const tasks = tasksData.tasks || [];
-            document.getElementById('tasks-list').innerHTML = tasks.length ? tasks.map(t => `
+        function renderFocus() {
+            const kelly = focusData.kelly || {};
+            const kip = focusData.kip || {};
+            const recentlyDone = focusData.recently_done || [];
+            
+            // Big 3
+            const big3 = kelly.big_3 || [];
+            document.getElementById('focus-big3').innerHTML = big3.length ? big3.map((item, i) => `
                 <div class="task-item">
-                    <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
+                    <div class="task-checkbox ${item.done ? 'done' : ''}"></div>
                     <div style="flex: 1;">
-                        <div class="task-text">${t.text}</div>
-                        <div class="task-source">${t.source || ''}</div>
+                        <div class="task-text" style="font-weight: 500; ${item.done ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${item.text}</div>
                     </div>
-                    <span class="task-priority ${t.priority}">${t.priority}</span>
+                    <span class="priority-badge a">#${i + 1}</span>
                 </div>
-            `).join('') : '<div class="empty">No tasks found</div>';
+            `).join('') : '<div class="empty">Pick your Big 3 for the week!</div>';
+            
+            // Deadlines
+            const deadlines = kelly.deadlines || [];
+            document.getElementById('focus-deadlines').innerHTML = deadlines.length ? deadlines.map(d => `
+                <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                    <div>
+                        <div style="font-size: 0.9rem; ${d.urgent ? 'color: var(--danger); font-weight: 600;' : ''}">${d.urgent ? '🔴 ' : ''}${d.text}</div>
+                        ${d.time ? `<div style="font-size: 0.75rem; color: var(--text-muted);">${d.time}</div>` : ''}
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--accent-teal); white-space: nowrap;">${d.date}</div>
+                </div>
+            `).join('') : '<div class="empty">No upcoming deadlines</div>';
+            
+            // Kip's tasks
+            const kipActive = kip.active || [];
+            document.getElementById('focus-kip').innerHTML = kipActive.length ? kipActive.map(t => `
+                <div style="padding: 0.4rem 0; border-bottom: 1px solid var(--border);">
+                    <span style="font-size: 0.75rem; padding: 0.1rem 0.4rem; border-radius: 4px; margin-right: 0.5rem;
+                        ${t.status === 'done' ? 'background: rgba(40,167,69,0.2); color: var(--success);' : 
+                          t.status === 'ongoing' ? 'background: rgba(0,180,216,0.2); color: var(--accent-teal);' :
+                          'background: rgba(255,193,7,0.2); color: var(--warning);'}">${t.status}</span>
+                    <span style="font-size: 0.85rem;">${t.text}</span>
+                </div>
+            `).join('') : '<div class="empty">All caught up!</div>';
+            
+            // Done today
+            const completed = kip.completed_today || recentlyDone.map(d => d.text) || [];
+            document.getElementById('focus-done').innerHTML = completed.length ? completed.slice(0, 6).map(item => `
+                <div style="padding: 0.3rem 0; font-size: 0.85rem; color: var(--success);">✅ ${typeof item === 'string' ? item : item.text}</div>
+            `).join('') : '<div class="empty">Nothing yet today</div>';
         }
         
         function renderOutreach() {
