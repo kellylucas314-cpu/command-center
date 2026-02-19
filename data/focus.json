@@ -1,58 +1,42 @@
 {
-  "week": "Feb 17-23, 2026",
   "kelly": {
     "big_3": [
-      {"id": 1, "text": "Submit MABA application (Yaniv replied!)", "done": false, "priority": "high"},
-      {"id": 2, "text": "Patent engagement signed + $2,500 retainer to Mike", "done": false, "priority": "high"},
-      {"id": 3, "text": "Nail the Arye Lipman meeting (Thu Feb 19 @ 1pm)", "done": false, "priority": "high"}
+      {"text": "Submit MABA application (bioangels.net)", "done": false},
+      {"text": "Patent engagement signed + $2,500 retainer to Mike Schaldenbrand", "done": false},
+      {"text": "Nail Arye Lipman meeting (Thu 1pm)", "done": false}
     ],
     "deadlines": [
-      {"text": "Arye Lipman meeting", "date": "Feb 19", "time": "1pm PST", "urgent": true},
-      {"text": "Tufts New Ventures", "date": "Feb 22", "type": "competition"},
-      {"text": "StartEngine/Doryn meeting", "date": "Feb 25", "time": "12pm PST"},
-      {"text": "Rakesh Ramaswamy call", "date": "Week of Feb 23", "type": "meeting"},
-      {"text": "BCIC Biomedical Pitch", "date": "Feb 28", "type": "competition"}
+      {"text": "Arye Lipman meeting", "date": "Thu Feb 19", "time": "1:00pm PST", "urgent": true},
+      {"text": "Tufts New Ventures deadline ($250K+)", "date": "Sat Feb 22", "urgent": true},
+      {"text": "StartEngine/Doryn meeting", "date": "Tue Feb 25", "time": "12:00pm PST", "urgent": false},
+      {"text": "BCIC Biomedical Pitch deadline", "date": "Sat Feb 28", "urgent": false},
+      {"text": "Rakesh Ramaswamy call", "date": "Week of Feb 23", "urgent": false}
     ],
-    "setup_needed": [
-      {"text": "Run 'gemini' in terminal to authenticate", "done": false},
-      {"text": "Install Chrome/Brave for browser automation", "done": false}
-    ]
+    "setup_needed": []
   },
   "kip": {
     "active": [
-      {"text": "Monitor inbox for investor replies", "status": "ongoing"},
-      {"text": "Friday Review cron ready", "status": "done"},
-      {"text": "Email outreach tracker sync", "status": "pending"}
+      {"text": "Arye Lipman meeting prep (Scout researching)", "status": "ongoing"},
+      {"text": "Napoleon tweet queue (Quill drafting)", "status": "ongoing"},
+      {"text": "Daily Deal Finder built & scheduled", "status": "done"},
+      {"text": "Overnight Market Intel scheduled", "status": "done"},
+      {"text": "Shared brain across agents", "status": "done"}
     ],
     "completed_today": [
-      "Deep inbox scan - found Arye meeting tomorrow",
-      "Drafted 5 follow-up emails",
-      "CRM cleanup (477 contacts)",
-      "Built Ideas tracking system",
-      "Found BCIC deadline (Feb 28)"
+      "Browser automation unlocked (Chromium)",
+      "First @BonaparteVC tweet posted",
+      "Security/codeword system (verstappen)",
+      "Followed 5+ VC accounts on Twitter",
+      "Models upgraded: Sonnet 4.6 + Opus 4.6",
+      "OpenClaw updated to 2026.2.17",
+      "Focus tab built (replaced Tasks)",
+      "3 Scout research reports completed",
+      "Deal Finder + Market Intel crons created",
+      "Shared brain across agents built",
+      "20+ OpenClaw resources catalogued",
+      "Upgrade action plan created"
     ]
   },
-  "ideas_inbox": [
-    {"id": 1, "text": "Newsletter digest / inbox declutter", "added": "2026-02-18"},
-    {"id": 2, "text": "Meeting action item extraction (needs Fathom/Otter)", "added": "2026-02-18"},
-    {"id": 3, "text": "Encrypted Google Drive backups", "added": "2026-02-18"},
-    {"id": 4, "text": "Model routing logic (Sonnet vs Opus)", "added": "2026-02-18"},
-    {"id": 5, "text": "Bull Stories social media growth", "added": "2026-02-18"},
-    {"id": 6, "text": "Get Mac mini for Kip 24/7", "added": "2026-02-18"},
-    {"id": 7, "text": "Auto follow-up sequences for outreach", "added": "2026-02-18"},
-    {"id": 8, "text": "LinkedIn automation", "added": "2026-02-18"},
-    {"id": 9, "text": "Investor match scoring AI", "added": "2026-02-18"},
-    {"id": 10, "text": "Voice command interface", "added": "2026-02-18"}
-  ],
-  "recently_done": [
-    {"text": "Command Center rebuild", "date": "Feb 18"},
-    {"text": "Email → CRM auto-sync", "date": "Feb 18"},
-    {"text": "Two-way Notion sync", "date": "Feb 18"},
-    {"text": "Hamamatsu meeting", "date": "Feb 18"},
-    {"text": "480+ contacts in CRM", "date": "Feb 18"},
-    {"text": "Security Council cron", "date": "Feb 18"},
-    {"text": "Reply to Rakesh (Moffitt)", "date": "Feb 18"},
-    {"text": "StartEngine meeting scheduled", "date": "Feb 18"}
-  ],
-  "updated_at": "2026-02-18T16:30:00"
+  "recently_done": [],
+  "updated_at": "2026-02-18T22:15:00-08:00"
 }
