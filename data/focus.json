@@ -1,42 +1,34 @@
 {
   "kelly": {
     "big_3": [
+      {"text": "Nail Arye Lipman meeting (TODAY 1pm)", "done": false},
       {"text": "Submit MABA application (bioangels.net)", "done": false},
-      {"text": "Patent engagement signed + $2,500 retainer to Mike Schaldenbrand", "done": false},
-      {"text": "Nail Arye Lipman meeting (Thu 1pm)", "done": false}
+      {"text": "Patent engagement signed + $2,500 retainer to Mike Schaldenbrand", "done": false}
     ],
     "deadlines": [
-      {"text": "Arye Lipman meeting", "date": "Thu Feb 19", "time": "1:00pm PST", "urgent": true},
+      {"text": "Arye Lipman meeting", "date": "TODAY Thu Feb 19", "time": "1:00pm PST", "urgent": true},
       {"text": "Tufts New Ventures deadline ($250K+)", "date": "Sat Feb 22", "urgent": true},
+      {"text": "Rakesh Ramaswamy call (need to reply)", "date": "Week of Feb 23", "urgent": true},
       {"text": "StartEngine/Doryn meeting", "date": "Tue Feb 25", "time": "12:00pm PST", "urgent": false},
-      {"text": "BCIC Biomedical Pitch deadline", "date": "Sat Feb 28", "urgent": false},
-      {"text": "Rakesh Ramaswamy call", "date": "Week of Feb 23", "urgent": false}
+      {"text": "BCIC Biomedical Pitch deadline", "date": "Sat Feb 28", "urgent": false}
     ],
     "setup_needed": []
   },
   "kip": {
     "active": [
-      {"text": "Arye Lipman meeting prep (Scout researching)", "status": "ongoing"},
-      {"text": "Napoleon tweet queue (Quill drafting)", "status": "ongoing"},
-      {"text": "Daily Deal Finder built & scheduled", "status": "done"},
-      {"text": "Overnight Market Intel scheduled", "status": "done"},
-      {"text": "Shared brain across agents", "status": "done"}
+      {"text": "Arye Lipman meeting prep", "status": "ready"},
+      {"text": "Napoleon tweet queue (Quill drafted 7 tweets)", "status": "ready to post"}
     ],
-    "completed_today": [
-      "Browser automation unlocked (Chromium)",
-      "First @BonaparteVC tweet posted",
-      "Security/codeword system (verstappen)",
-      "Followed 5+ VC accounts on Twitter",
-      "Models upgraded: Sonnet 4.6 + Opus 4.6",
-      "OpenClaw updated to 2026.2.17",
-      "Focus tab built (replaced Tasks)",
-      "3 Scout research reports completed",
-      "Deal Finder + Market Intel crons created",
-      "Shared brain across agents built",
-      "20+ OpenClaw resources catalogued",
-      "Upgrade action plan created"
-    ]
+    "completed_today": []
   },
-  "recently_done": [],
-  "updated_at": "2026-02-18T22:15:00-08:00"
+  "recently_done": [
+    "Browser automation unlocked (Chromium)",
+    "First @BonaparteVC tweet posted",
+    "Security/codeword system (verstappen)",
+    "Models upgraded: Sonnet 4.6 + Opus 4.6",
+    "Email → CRM auto-sync (470+ contacts)",
+    "Knowledge base built",
+    "Deal Finder + Market Intel crons"
+  ],
+  "updated_at": "2026-02-19T07:32:00-08:00"
 }

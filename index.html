@@ -771,9 +771,9 @@
                 tasksData = tasks;
                 outreachData = outreach;
                 openclawData = openclaw;
-                todosData = todos;
-                ideasData = ideas;
-                focusData = focus;
+                todosData = JSON.parse(localStorage.getItem('cc-todos')) || todos;
+                ideasData = JSON.parse(localStorage.getItem('cc-ideas')) || ideas;
+                focusData = JSON.parse(localStorage.getItem('cc-focus')) || focus;
                 
                 document.getElementById('crm-count').textContent = crmData.stats?.total || crmData.contacts?.length || 0;
                 
@@ -842,8 +842,8 @@
             
             // Kelly's To-Dos
             const kellyTodos = (todosData.kelly || []).filter(t => !t.done).slice(0, 5);
-            document.getElementById('kelly-todos').innerHTML = kellyTodos.length ? kellyTodos.map(t => `
-                <div class="task-item">
+            document.getElementById('kelly-todos').innerHTML = kellyTodos.length ? kellyTodos.map((t, i) => `
+                <div class="task-item" style="cursor:pointer;" onclick="toggleTodo('kelly', ${todosData.kelly.indexOf(t)}, this)">
                     <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
                     <div style="flex: 1;">
                         <div class="task-text">${t.text}</div>
@@ -855,8 +855,8 @@
             
             // Kip's To-Dos
             const kipTodos = (todosData.kip || []).filter(t => !t.done).slice(0, 5);
-            document.getElementById('kip-todos').innerHTML = kipTodos.length ? kipTodos.map(t => `
-                <div class="task-item">
+            document.getElementById('kip-todos').innerHTML = kipTodos.length ? kipTodos.map((t, i) => `
+                <div class="task-item" style="cursor:pointer;" onclick="toggleTodo('kip', ${todosData.kip.indexOf(t)}, this)">
                     <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
                     <div style="flex: 1;">
                         <div class="task-text">${t.text}</div>
@@ -995,7 +995,7 @@
             // Big 3
             const big3 = kelly.big_3 || [];
             document.getElementById('focus-big3').innerHTML = big3.length ? big3.map((item, i) => `
-                <div class="task-item">
+                <div class="task-item" style="cursor:pointer;" onclick="toggleFocus('big_3', ${i}, this)">
                     <div class="task-checkbox ${item.done ? 'done' : ''}"></div>
                     <div style="flex: 1;">
                         <div class="task-text" style="font-weight: 500; ${item.done ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${item.text}</div>
@@ -1143,7 +1143,7 @@
             // Big 3
             const big3 = weekly.big_3 || [];
             document.getElementById('weekly-big-3').innerHTML = big3.length ? big3.map((item, i) => `
-                <div class="task-item">
+                <div class="task-item" style="cursor:pointer;" onclick="toggleIdeasBig3(${i}, this)">
                     <div class="task-checkbox ${item.done ? 'done' : ''}"></div>
                     <div style="flex: 1;">
                         <div class="task-text" style="${item.done ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${item.text}</div>
@@ -1180,6 +1180,65 @@
                 </div>
             `).join('') || '<div class="empty">Nothing completed yet</div>';
         }
+        // Toggle functions for checkboxes
+        function toggleTodo(who, idx, el) {
+            todosData[who][idx].done = !todosData[who][idx].done;
+            const cb = el.querySelector('.task-checkbox');
+            const txt = el.querySelector('.task-text');
+            cb.classList.toggle('done');
+            if (todosData[who][idx].done) {
+                txt.style.textDecoration = 'line-through';
+                txt.style.opacity = '0.6';
+                setTimeout(() => { el.style.transition = 'opacity 0.3s'; el.style.opacity = '0'; setTimeout(() => renderTodos(), 300); }, 500);
+            }
+            saveTodos();
+        }
+
+        function toggleFocus(key, idx, el) {
+            const kelly = focusData.kelly || {};
+            const arr = kelly[key] || [];
+            arr[idx].done = !arr[idx].done;
+            const cb = el.querySelector('.task-checkbox');
+            const txt = el.querySelector('.task-text');
+            cb.classList.toggle('done');
+            if (arr[idx].done) {
+                txt.style.textDecoration = 'line-through';
+                txt.style.opacity = '0.6';
+            } else {
+                txt.style.textDecoration = '';
+                txt.style.opacity = '';
+            }
+            saveFocus();
+        }
+
+        function toggleIdeasBig3(idx, el) {
+            const weekly = ideasData.weekly_commit || {};
+            const arr = weekly.big_3 || [];
+            arr[idx].done = !arr[idx].done;
+            const cb = el.querySelector('.task-checkbox');
+            const txt = el.querySelector('.task-text');
+            cb.classList.toggle('done');
+            if (arr[idx].done) {
+                txt.style.textDecoration = 'line-through';
+                txt.style.opacity = '0.6';
+            } else {
+                txt.style.textDecoration = '';
+                txt.style.opacity = '';
+            }
+            saveIdeas();
+        }
+
+        // Save functions (persist to localStorage for GitHub Pages, or POST for local mode)
+        function saveTodos() {
+            localStorage.setItem('cc-todos', JSON.stringify(todosData));
+        }
+        function saveFocus() {
+            localStorage.setItem('cc-focus', JSON.stringify(focusData));
+        }
+        function saveIdeas() {
+            localStorage.setItem('cc-ideas', JSON.stringify(ideasData));
+        }
+
     </script>
 </body>
 </html>
