@@ -1,34 +1,40 @@
 {
   "kelly": {
     "big_3": [
-      {"text": "Nail Arye Lipman meeting (TODAY 1pm)", "done": false},
-      {"text": "Submit MABA application (bioangels.net)", "done": false},
-      {"text": "Patent engagement signed + $2,500 retainer to Mike Schaldenbrand", "done": false}
+      {"text": "Tufts New Ventures — deadline TOMORROW Sun Feb 22 (record 2-min video + submit portal)", "done": false},
+      {"text": "Reply to Rakesh Ramaswamy — confirm cell detection number with Nirosha first", "done": false},
+      {"text": "Send Conafay reply to Joshua (deck ✅, technical details ❌ until patent filed)", "done": false}
     ],
     "deadlines": [
-      {"text": "Arye Lipman meeting", "date": "TODAY Thu Feb 19", "time": "1:00pm PST", "urgent": true},
-      {"text": "Tufts New Ventures deadline ($250K+)", "date": "Sat Feb 22", "urgent": true},
-      {"text": "Rakesh Ramaswamy call (need to reply)", "date": "Week of Feb 23", "urgent": true},
+      {"text": "Tufts New Ventures ($250K+)", "date": "TOMORROW Sun Feb 22", "urgent": true},
+      {"text": "Arye Lipman meeting", "date": "Mon Feb 23", "time": "TBD", "urgent": false},
+      {"text": "Rakesh Ramaswamy call", "date": "Week of Feb 23", "urgent": true},
       {"text": "StartEngine/Doryn meeting", "date": "Tue Feb 25", "time": "12:00pm PST", "urgent": false},
-      {"text": "BCIC Biomedical Pitch deadline", "date": "Sat Feb 28", "urgent": false}
+      {"text": "BCIC Biomedical Pitch (Google Form — quick!)", "date": "Sat Feb 28", "urgent": false}
     ],
-    "setup_needed": []
+    "setup_needed": [
+      "DataAnnotation biology assessment (Kelly doing on own device — no AI help)"
+    ]
   },
   "kip": {
     "active": [
-      {"text": "Arye Lipman meeting prep", "status": "ready"},
-      {"text": "Napoleon tweet queue (Quill drafted 7 tweets)", "status": "ready to post"}
+      {"text": "Napoleon tweet queue crons scheduled through Feb 25", "status": "running"}
     ],
-    "completed_today": []
+    "completed_today": [
+      "Napoleon Tweet #3 posted (9am on schedule)",
+      "Security system overhauled (GO verstappen codeword, SECURITY.md rewritten)",
+      "DataAnnotation account created (kellylucas314@gmail.com)",
+      "Job search updated: entry level only (coordinator/associate/specialist)",
+      "All 5 Napoleon tweets re-approved and crons set",
+      "Drafts ready: Rakesh, Tufts, BCIC, MABA, Deal Finder"
+    ]
   },
   "recently_done": [
+    "Red Bull Sales Analyst + Motorsports Manager apps submitted",
+    "AIDB Clawrchitect application + animated page built",
     "Browser automation unlocked (Chromium)",
-    "First @BonaparteVC tweet posted",
-    "Security/codeword system (verstappen)",
-    "Models upgraded: Sonnet 4.6 + Opus 4.6",
-    "Email → CRM auto-sync (470+ contacts)",
-    "Knowledge base built",
+    "Email → CRM auto-sync (480+ contacts)",
     "Deal Finder + Market Intel crons"
   ],
-  "updated_at": "2026-02-19T07:32:00-08:00"
+  "updated_at": "2026-02-20T23:00:00-08:00"
 }

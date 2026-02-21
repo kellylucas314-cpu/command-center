@@ -405,6 +405,10 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/><path d="M9 18h6"/></svg>
                     <span>Ideas</span>
                 </button>
+                <button class="nav-item" data-page="science">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6v6l3 9H6l3-9V3z"/><path d="M8 21h8"/></svg>
+                    <span>Science</span>
+                </button>
                 <button class="nav-item" data-page="openclaw">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                     <span>OpenClaw</span>
@@ -634,6 +638,183 @@
                 </div>
             </div>
             
+            <!-- SCIENCE -->
+            <div class="page" id="page-science">
+                <!-- Hero stat -->
+                <div class="card" style="background: linear-gradient(135deg, rgba(0,180,216,0.2), rgba(125,249,255,0.05)); border: 1px solid rgba(0,180,216,0.3); margin-bottom: 1.5rem; text-align: center; padding: 2rem;">
+                    <div style="font-family: 'Space Grotesk'; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem;">HelioFlux Detection Threshold</div>
+                    <div style="font-family: 'Space Grotesk'; font-size: 3rem; font-weight: 700; color: var(--accent-glow); line-height: 1;">5-10M cells</div>
+                    <div style="color: var(--accent-teal); margin-top: 0.5rem; font-size: 0.95rem;">100-200x earlier than traditional imaging</div>
+                    <div style="color: var(--text-muted); margin-top: 0.25rem; font-size: 0.8rem;">90% discriminant accuracy (Cancers, 2020)</div>
+                </div>
+
+                <!-- Competitive Comparison -->
+                <div class="card" style="margin-bottom: 1.5rem;">
+                    <div class="card-header">
+                        <span class="card-title">Detection Threshold Comparison</span>
+                    </div>
+                    <div style="padding: 0.5rem 0;">
+                        <!-- HelioFlux bar -->
+                        <div style="margin-bottom: 1.25rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+                                <span style="font-weight: 600; color: var(--accent-glow); font-size: 0.9rem;">HelioFlux (Biophotonics)</span>
+                                <span style="font-family: 'Space Grotesk'; font-weight: 700; color: var(--accent-glow); font-size: 1.1rem;">5-10M cells</span>
+                            </div>
+                            <div style="height: 28px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden; position: relative;">
+                                <div style="height: 100%; width: 1%; min-width: 24px; background: linear-gradient(90deg, #00B4D8, #7DF9FF); border-radius: 6px; box-shadow: 0 0 12px rgba(125,249,255,0.4);"></div>
+                            </div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">Non-invasive. No blood draw. No radiation. 90% accuracy.</div>
+                        </div>
+                        <!-- Liquid Biopsy bar -->
+                        <div style="margin-bottom: 1.25rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+                                <span style="font-weight: 600; color: var(--warning); font-size: 0.9rem;">Liquid Biopsy (Galleri/cfDNA)</span>
+                                <span style="font-family: 'Space Grotesk'; font-weight: 700; color: var(--warning); font-size: 1.1rem;">50-100M cells</span>
+                            </div>
+                            <div style="height: 28px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden;">
+                                <div style="height: 100%; width: 10%; background: var(--warning); border-radius: 6px; opacity: 0.7;"></div>
+                            </div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">$950/test. Only 17% sensitivity at Stage I. Requires blood draw.</div>
+                        </div>
+                        <!-- Traditional Imaging bar -->
+                        <div style="margin-bottom: 1.25rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+                                <span style="font-weight: 600; color: var(--danger); font-size: 0.9rem;">Traditional Imaging (MRI/CT)</span>
+                                <span style="font-family: 'Space Grotesk'; font-weight: 700; color: var(--danger); font-size: 1.1rem;">1B+ cells</span>
+                            </div>
+                            <div style="height: 28px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden;">
+                                <div style="height: 100%; width: 100%; background: var(--danger); border-radius: 6px; opacity: 0.5;"></div>
+                            </div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">Tumor must be 5-10mm. Ionizing radiation (CT). Expensive. Current standard of care.</div>
+                        </div>
+                        <!-- "Average" early detection -->
+                        <div style="margin-bottom: 0.5rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+                                <span style="font-weight: 600; color: var(--text-muted); font-size: 0.9rem;">"Early" Detection (Current Standard)</span>
+                                <span style="font-family: 'Space Grotesk'; font-weight: 700; color: var(--text-muted); font-size: 1.1rem;">~1B cells</span>
+                            </div>
+                            <div style="height: 28px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden;">
+                                <div style="height: 100%; width: 100%; background: var(--text-muted); border-radius: 6px; opacity: 0.3;"></div>
+                            </div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">Even "early" detection by today's methods still requires ~1 billion cells (1cm tumor, ~30 cell divisions).</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accuracy comparison -->
+                <div class="grid-2" style="margin-bottom: 1.5rem;">
+                    <div class="card" style="text-align: center; padding: 1.5rem;">
+                        <div style="font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700; color: var(--accent-glow);">90%</div>
+                        <div style="font-weight: 600; margin-top: 0.25rem;">HelioFlux Accuracy</div>
+                        <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">Discriminant accuracy differentiating malignant vs non-malignant cells using Spectral Power Density analysis</div>
+                        <div style="color: var(--accent-teal); font-size: 0.75rem; margin-top: 0.5rem;">Source: Cancers 12(4), 2020</div>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 1.5rem;">
+                        <div style="font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700; color: var(--danger);">17%</div>
+                        <div style="font-weight: 600; margin-top: 0.25rem;">Galleri Stage I Sensitivity</div>
+                        <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">Misses 83 out of 100 early-stage cancers. Overall sensitivity across all stages: 51.5% (coin flip)</div>
+                        <div style="color: var(--warning); font-size: 0.75rem; margin-top: 0.5rem;">Source: GRAIL clinical data, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Key Published Research -->
+                <div class="card" style="margin-bottom: 1.5rem;">
+                    <div class="card-header">
+                        <span class="card-title">Published Research</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: 8px; border-left: 3px solid var(--accent-teal);">
+                            <div style="font-weight: 600; font-size: 0.9rem;">Cancers, 2020 &mdash; Cancer Detection</div>
+                            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">"Ultraweak Photon Emissions as a Non-Invasive, Early-Malignancy Detection Tool"</div>
+                            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">13 cell lines tested. 90% discriminant accuracy. Tumors detectable 24h post-injection in mice.</div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                <span style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(0,180,216,0.15); color: var(--accent-teal); border-radius: 4px;">90% accuracy</span>
+                                <span style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(0,180,216,0.15); color: var(--accent-teal); border-radius: 4px;">13 cell lines</span>
+                                <span style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(0,180,216,0.15); color: var(--accent-teal); border-radius: 4px;">in vitro + in vivo</span>
+                                <span style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(0,180,216,0.15); color: var(--accent-teal); border-radius: 4px;">24h detection</span>
+                            </div>
+                        </div>
+                        <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: 8px; border-left: 3px solid var(--purple);">
+                            <div style="font-weight: 600; font-size: 0.9rem;">iScience (Cell Press), 2025 &mdash; Brain Monitoring</div>
+                            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">"Exploring ultraweak photon emissions as optical markers of brain activity"</div>
+                            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">20 human subjects. First photoencephalography demonstration. Cross-validated with EEG.</div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                <span style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(155,89,182,0.15); color: var(--purple); border-radius: 4px;">human validation</span>
+                                <span style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(155,89,182,0.15); color: var(--purple); border-radius: 4px;">Cell Press</span>
+                                <span style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(155,89,182,0.15); color: var(--purple); border-radius: 4px;">EEG cross-validated</span>
+                                <span style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(155,89,182,0.15); color: var(--purple); border-radius: 4px;">platform tech</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Reference Numbers -->
+                <div class="card" style="margin-bottom: 1.5rem;">
+                    <div class="card-header">
+                        <span class="card-title">Investor Quick-Reference Numbers</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;">
+                        <div style="background: var(--bg-secondary); border-radius: 8px; padding: 1rem; text-align: center;">
+                            <div style="font-family: 'Space Grotesk'; font-size: 1.5rem; font-weight: 700; color: var(--accent-glow);">5-10M</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem;">HelioFlux detection</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); border-radius: 8px; padding: 1rem; text-align: center;">
+                            <div style="font-family: 'Space Grotesk'; font-size: 1.5rem; font-weight: 700; color: var(--warning);">50-100M</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem;">Liquid biopsy</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); border-radius: 8px; padding: 1rem; text-align: center;">
+                            <div style="font-family: 'Space Grotesk'; font-size: 1.5rem; font-weight: 700; color: var(--danger);">1B+</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem;">Traditional imaging</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); border-radius: 8px; padding: 1rem; text-align: center;">
+                            <div style="font-family: 'Space Grotesk'; font-size: 1.5rem; font-weight: 700; color: var(--accent-teal);">90%</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem;">HelioFlux accuracy</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); border-radius: 8px; padding: 1rem; text-align: center;">
+                            <div style="font-family: 'Space Grotesk'; font-size: 1.5rem; font-weight: 700; color: var(--danger);">17%</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem;">Galleri Stage I</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); border-radius: 8px; padding: 1rem; text-align: center;">
+                            <div style="font-family: 'Space Grotesk'; font-size: 1.5rem; font-weight: 700; color: var(--text-muted);">51.5%</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem;">Galleri all stages</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platform Applications -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Platform Technology Applications</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
+                        <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: 8px;">
+                            <div style="font-size: 1.25rem; margin-bottom: 0.25rem;">&#x1F52C;</div>
+                            <div style="font-weight: 600; font-size: 0.85rem;">Cancer Detection</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">90% accuracy preclinical. 13 cell lines. In vitro + in vivo.</div>
+                            <div style="color: var(--success); font-size: 0.7rem; margin-top: 0.25rem;">VALIDATED (Cancers 2020)</div>
+                        </div>
+                        <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: 8px;">
+                            <div style="font-size: 1.25rem; margin-bottom: 0.25rem;">&#x1F9E0;</div>
+                            <div style="font-weight: 600; font-size: 0.85rem;">Brain State Monitoring</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">20 human subjects. Photoencephalography. EEG cross-validated.</div>
+                            <div style="color: var(--success); font-size: 0.7rem; margin-top: 0.25rem;">VALIDATED (iScience 2025)</div>
+                        </div>
+                        <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: 8px;">
+                            <div style="font-size: 1.25rem; margin-bottom: 0.25rem;">&#x1F48A;</div>
+                            <div style="font-weight: 600; font-size: 0.85rem;">Chemo Brain Detection</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">Neurotoxic insult monitoring. Paper explicitly validates application.</div>
+                            <div style="color: var(--warning); font-size: 0.7rem; margin-top: 0.25rem;">IN RESEARCH</div>
+                        </div>
+                        <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: 8px;">
+                            <div style="font-size: 1.25rem; margin-bottom: 0.25rem;">&#x1F9EC;</div>
+                            <div style="font-weight: 600; font-size: 0.85rem;">Cell Reprogramming</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">Biophysical signals to reprogram disease states. Phase 3 treatment vision.</div>
+                            <div style="color: var(--accent-teal); font-size: 0.7rem; margin-top: 0.25rem;">PLANNED</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- OPENCLAW IDEAS -->
             <div class="page" id="page-openclaw">
                 <div class="grid-4" style="margin-bottom: 1rem;" id="openclaw-stats">
@@ -734,6 +915,7 @@
                         focus: 'Focus',
                         outreach: 'Email Outreach',
                         ideas: 'Ideas Inbox',
+                        science: 'Science & Competitive Edge',
                         openclaw: 'OpenClaw Capabilities'
                     };
                     document.getElementById('pageTitle').textContent = titles[page] || page;
