@@ -19,7 +19,52 @@
       "summary": "Transcript:\nOpenClaw is the most important AI\nsoftware I have ever used. It has\nfundamentally changed how not only I\nwork, but I live. It has really\ninfiltrated every aspect of my life and\nallowed me to be hyper productive\neverywhere. And yes, I'm still running\nit on this little MacBook that sits\nright on my desk. Openclaw is an\nincredibly personal, incredibly capable\nAI assistant that you can run locally.\nAnd in this video, I'm going to show you\nall of the different use cases that I\nuse OpenC cloth for. I'm going to show\nyou exactly how they work. I'm going to\ngive you the prompts to recreate it\nyourself. I'm going to show you them in\naction. And I'm even going to show you\nhow I set up OpenClaw to be self\nevolving. It is wild. So, let's get into\nit. All right. So, first, what is\nOpenClaw? I've made multiple videos\nabout it, so I'm only going to go over\nthis briefly. If you want a more basic\nguide, check out my previous videos.\nOpenClaw is an open-source framework\nthat allows you to take the best AI\nmodels and builds an incredibly personal\nAI assistant that is capable of\naccomplishing almost any task that you\ncan do on a computer. And what makes it\nreally special is that it learns from\nyou. It evolves over time and you can\naccess it using the chat apps that you\nalready use. WhatsApp, Telegram, text\nmessaging, Slack, all of them. OpenClaw\nalso has a pretty awesome personality\nthat you can craft to be the exact\npersonal assistant that you want it to\nbe. And this is done through two main\nfiles, identity.md and soul.md. So\nhere's my identity.md file. And so this\nis a slight evolution on what comes by\ndefault, but you could basically make it\nanything you want. And then the soul is\nwhere you actually give it its true\npersonality. This is where you describe\nthings like how you wanted to answer\nyou, how concise, how verbose, how\npersonal, how formal. All of this is\ndefined right here. I even gave it a\nhumor style style rules, when to dial it\ndown. When it's talking to me, I",
       "tags": "[\"openclaw\", \"ai\", \"automation\"]",
       "created_at": "2026-02-18T11:29:00.123844"
+    },
+    {
+      "id": 3,
+      "type": "article",
+      "title": "Scientific American: Your Brain Is Glowing, and Scientists Can't Figure Out Why",
+      "url": "https://www.scientificamerican.com/article/your-brain-is-glowing-and-scientists-cant-figure-out-why/",
+      "summary": "June 2025. Covers Nirosha's iScience paper on detecting brain biophotons from outside the skull for the first time. Nirosha quoted: \"Photons are coming out of the head \u2014 full stop.\" External scientists called it \"potentially groundbreaking.\" By Conor Feehly.",
+      "tags": "[\"press\", \"nirosha\", \"biophotons\", \"scientific-american\", \"iscience\"]",
+      "created_at": "2026-02-21T12:35:00.000000"
+    },
+    {
+      "id": 4,
+      "type": "podcast",
+      "title": "Radiolab (NPR/WNYC): The Spark of Life \u2014 Are We Glowing?",
+      "url": "https://radiolab.org/podcast/the-spark-of-life",
+      "summary": "September 2025. Full episode featuring Nirosha Murugan on biophotons. From 1920s onion root experiments to detecting light from the human brain. Links to cancer diagnosis research. \"Plants give off light. Shrimp give off light. Literally everything alive emits light.\"",
+      "tags": "[\"press\", \"nirosha\", \"biophotons\", \"radiolab\", \"npr\", \"podcast\"]",
+      "created_at": "2026-02-21T12:35:00.000000"
+    },
+    {
+      "id": 5,
+      "type": "paper",
+      "title": "Paper: Biophotonic Markers of Malignancy (BBR 2018)",
+      "url": "https://doi.org/10.1016/j.bbrep.2017.12.001",
+      "summary": "Biochemistry and Biophysics Reports, 2018. Wavelength-specific biophoton filters (420nm, 620nm, 950nm) classify cancer vs non-cancer with 92% accuracy. 100% of cancer cases correctly identified. UV/IR ratio as malignancy marker.",
+      "tags": "[\"paper\", \"nirosha\", \"cancer-detection\", \"biophotons\", \"peer-reviewed\"]",
+      "created_at": "2026-02-21T12:35:00.000000"
+    },
+    {
+      "id": 6,
+      "type": "paper",
+      "title": "Paper: UPEs as Non-Invasive Early-Malignancy Detection (Cancers 2020)",
+      "url": "https://doi.org/10.3390/cancers12040930",
+      "summary": "Cancers 12(4), 2020. SPD analysis achieves 90% discriminant accuracy across 13 cell lines. Tumors detectable 24 hours post-injection in mice. In vitro + in vivo validation.",
+      "tags": "[\"paper\", \"nirosha\", \"cancer-detection\", \"biophotons\", \"peer-reviewed\"]",
+      "created_at": "2026-02-21T12:35:00.000000"
+    },
+    {
+      "id": 7,
+      "type": "paper",
+      "title": "Paper: Exploring UPEs as Optical Markers of Brain Activity (iScience 2025)",
+      "url": "https://www.cell.com/iscience/fulltext/S2589-0042(25)00279-2",
+      "summary": "iScience (Cell Press), 2025. First photoencephalography demonstration. 20 human subjects. Brain biophotons detected from outside the skull. Cross-validated with EEG. Covered by Scientific American and Radiolab.",
+      "tags": "[\"paper\", \"nirosha\", \"brain\", \"biophotons\", \"cell-press\", \"peer-reviewed\"]",
+      "created_at": "2026-02-21T12:35:00.000000"
     }
   ],
-  "exported_at": "2026-02-18T14:29:15.113187"
+  "exported_at": "2026-02-21T13:05:00.000000"
 }
