@@ -380,6 +380,11 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                     <span>Dashboard</span>
                 </button>
+                <button class="nav-item" data-page="loops" style="position:relative;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>Open Loops</span>
+                    <span class="nav-badge" id="loops-count" style="background:#ef4444;">-</span>
+                </button>
                 <button class="nav-item" data-page="crm">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     <span>CRM</span>
@@ -503,6 +508,29 @@
                 </div>
             </div>
             
+            <!-- OPEN LOOPS -->
+            <div class="page" id="page-loops">
+                <div style="margin-bottom:1.5rem;">
+                    <h2 style="font-size:1.4rem;font-weight:700;color:var(--text-primary);">Open Loops</h2>
+                    <p style="color:var(--text-muted);font-size:.875rem;margin-top:.3rem;">Every tab open in your head, in one place. Clear them one by one.</p>
+                </div>
+
+                <!-- Status filter -->
+                <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;" id="loops-filter-bar">
+                    <button onclick="filterLoops('all')" class="loop-filter active" data-f="all" style="padding:.35rem .85rem;border-radius:6px;border:1px solid var(--border);background:var(--accent-teal);color:#000;font-size:.8rem;cursor:pointer;font-weight:600;">All</button>
+                    <button onclick="filterLoops('needs-you')" class="loop-filter" data-f="needs-you" style="padding:.35rem .85rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:#ef4444;font-size:.8rem;cursor:pointer;border-color:#ef444444;">🔴 Needs You</button>
+                    <button onclick="filterLoops('waiting')" class="loop-filter" data-f="waiting" style="padding:.35rem .85rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:#fbbf24;font-size:.8rem;cursor:pointer;border-color:#fbbf2444;">🟡 Waiting on Them</button>
+                    <button onclick="filterLoops('upcoming')" class="loop-filter" data-f="upcoming" style="padding:.35rem .85rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--accent-teal);font-size:.8rem;cursor:pointer;">📅 Upcoming</button>
+                </div>
+
+                <!-- Loops sections rendered here -->
+                <div id="loops-critical"></div>
+                <div id="loops-high" style="margin-top:1.5rem;"></div>
+                <div id="loops-waiting" style="margin-top:1.5rem;"></div>
+                <div id="loops-upcoming" style="margin-top:1.5rem;"></div>
+                <div id="loops-medium" style="margin-top:1.5rem;"></div>
+            </div>
+
             <!-- CRM -->
             <div class="page" id="page-crm">
                 <div class="search-box">
@@ -1370,6 +1398,7 @@
         let winsData = [];
         let agendaData = { events: [], deadlines: [] };
         let radarData = [];
+        let loopsData = [];
         
         // Pagination
         let crmPage = 1;
@@ -1439,7 +1468,7 @@
             const baseUrl = window.location.href.includes('github.io') ? './data/' : './data/';
             
             try {
-                const [crm, memory, kb, tasks, outreach, openclaw, todos, ideas, focus, jobs, wins, agenda, radar] = await Promise.all([
+                const [crm, memory, kb, tasks, outreach, openclaw, todos, ideas, focus, jobs, wins, agenda, radar, loopsJson] = await Promise.all([
                     fetch(baseUrl + 'crm.json').then(r => r.json()).catch(() => ({ contacts: [], stats: {} })),
                     fetch(baseUrl + 'memory.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'knowledge.json').then(r => r.json()).catch(() => ({ entries: [] })),
@@ -1452,7 +1481,8 @@
                     fetch(baseUrl + 'jobs.json').then(r => r.json()).catch(() => []),
                     fetch(baseUrl + 'wins.json').then(r => r.json()).catch(() => []),
                     fetch(baseUrl + 'agenda.json').then(r => r.json()).catch(() => ({ events: [], deadlines: [] })),
-                    fetch(baseUrl + 'stale-investors.json').then(r => r.json()).catch(() => [])
+                    fetch(baseUrl + 'stale-investors.json').then(r => r.json()).catch(() => []),
+                    fetch(baseUrl + 'loops.json').then(r => r.json()).catch(() => ({ loops: [] }))
                 ]);
                 
                 crmData = crm;
@@ -1468,6 +1498,7 @@
                 winsData = JSON.parse(localStorage.getItem('cc-wins')) || wins;
                 agendaData = agenda;
                 radarData = radar;
+                loopsData = loopsJson.loops || [];
                 
                 document.getElementById('crm-count').textContent = crmData.stats?.total || crmData.contacts?.length || 0;
                 
@@ -1482,6 +1513,7 @@
                 renderAgenda();
                 renderWins();
                 renderRadar();
+                renderLoops();
             } catch (e) {
                 console.error('Failed to load data:', e);
             }
@@ -2176,6 +2208,110 @@
                     </div>
                 </div>`;
             }).join('') : '<div style="color:var(--text-muted);padding:2rem;text-align:center;">No stale contacts. Great job staying on top of it!</div>';
+        }
+
+        // ── OPEN LOOPS ───────────────────────────────────────────
+        function renderLoops(statusFilter) {
+            statusFilter = statusFilter || 'all';
+
+            const urgencyOrder = { critical: 0, high: 1, upcoming: 2, waiting: 3, medium: 4 };
+            const statusMeta = {
+                'needs-you': { label: 'Needs You', color: '#ef4444', bg: 'rgba(239,68,68,0.08)', border: 'rgba(239,68,68,0.35)', dot: '🔴' },
+                'waiting':   { label: 'Waiting on Them', color: '#fbbf24', bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.3)', dot: '🟡' },
+                'upcoming':  { label: 'Upcoming', color: '#00b4d8', bg: 'rgba(0,180,216,0.08)', border: 'rgba(0,180,216,0.3)', dot: '📅' },
+                'blocked':   { label: 'Blocked', color: '#94a3b8', bg: 'rgba(148,163,184,0.08)', border: 'rgba(148,163,184,0.25)', dot: '🚧' },
+            };
+            const catIcon = { investor:'💰', partner:'🤝', job:'💼', legal:'📋', grant:'🏆', meeting:'📍', admin:'⚙️' };
+            const urgIcon = { critical:'🔥', high:'⚡', upcoming:'📅', waiting:'⏳', medium:'·' };
+
+            const all = (loopsData || []).sort((a, b) =>
+                (urgencyOrder[a.urgency] ?? 9) - (urgencyOrder[b.urgency] ?? 9)
+            );
+
+            const filtered = statusFilter === 'all' ? all : all.filter(l => l.status === statusFilter);
+
+            // Update badge
+            const needsYouCount = all.filter(l => l.status === 'needs-you').length;
+            const badge = document.getElementById('loops-count');
+            if (badge) badge.textContent = needsYouCount;
+
+            // Group by urgency for "all" view, flat list for filtered
+            const loopCard = (loop) => {
+                const sm = statusMeta[loop.status] || statusMeta['waiting'];
+                const daysOpen = loop.opened ? Math.floor((Date.now() - new Date(loop.opened)) / 86400000) : null;
+                return `
+                <div style="background:${sm.bg};border:1px solid ${sm.border};border-left:4px solid ${sm.color};border-radius:0 12px 12px 0;padding:1.1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start;transition:opacity .2s;" id="loop-${loop.id}">
+                    <div style="font-size:1.4rem;flex-shrink:0;margin-top:.1rem;">${catIcon[loop.category] || '•'}</div>
+                    <div style="flex:1;min-width:0;">
+                        <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem;">
+                            <span style="font-weight:700;font-size:.95rem;color:var(--text-primary);">${loop.title}</span>
+                            <span style="font-size:.65rem;padding:.15rem .5rem;border-radius:4px;background:${sm.color}22;color:${sm.color};font-weight:600;white-space:nowrap;">${sm.dot} ${sm.label}</span>
+                        </div>
+                        <p style="font-size:.8rem;color:var(--text-muted);line-height:1.55;margin:0 0 .6rem;">${loop.context}</p>
+                        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">
+                            ${loop.action_note ? `<span style="font-size:.72rem;color:var(--text-muted);font-style:italic;">${loop.action_note}</span>` : ''}
+                            ${daysOpen !== null ? `<span style="font-size:.7rem;color:${daysOpen > 5 ? '#ef4444' : 'var(--text-muted)'};">${daysOpen}d open</span>` : ''}
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:.5rem;flex-shrink:0;align-items:flex-end;">
+                        ${loop.action_link
+                            ? `<a href="${loop.action_link}" target="_blank" style="padding:.35rem .85rem;border-radius:7px;background:${sm.color};color:#000;font-size:.75rem;font-weight:700;text-decoration:none;white-space:nowrap;">${loop.action_label||'Open →'}</a>`
+                            : `<button style="padding:.35rem .85rem;border-radius:7px;background:${sm.color};color:#000;font-size:.75rem;font-weight:700;border:none;cursor:pointer;white-space:nowrap;">${loop.action_label||'Act'}</button>`
+                        }
+                        <button onclick="dismissLoop(${loop.id})" style="font-size:.7rem;color:var(--text-muted);background:none;border:none;cursor:pointer;padding:.2rem;">✓ Done</button>
+                    </div>
+                </div>`;
+            };
+
+            if (statusFilter !== 'all') {
+                // Flat filtered list
+                const sections = ['critical','high','upcoming','waiting','medium'];
+                sections.forEach(u => {
+                    const el = document.getElementById('loops-' + u);
+                    if(el) el.innerHTML = '';
+                });
+                document.getElementById('loops-critical').innerHTML = filtered.length
+                    ? filtered.map(loopCard).join('')
+                    : '<div class="empty">Nothing here.</div>';
+                return;
+            }
+
+            // Grouped sections
+            const sections = [
+                { key: 'critical', label: '🔥 Critical — Act Today', urgencies: ['critical'] },
+                { key: 'high',     label: '⚡ Needs Attention Soon', urgencies: ['high'] },
+                { key: 'upcoming', label: '📅 Coming Up', urgencies: ['upcoming'] },
+                { key: 'waiting',  label: '⏳ Waiting on Them', urgencies: ['waiting'] },
+                { key: 'medium',   label: '· On the Radar', urgencies: ['medium'] },
+            ];
+
+            sections.forEach(sec => {
+                const items = filtered.filter(l => sec.urgencies.includes(l.urgency));
+                const el = document.getElementById('loops-' + sec.key);
+                if (!el) return;
+                if (!items.length) { el.innerHTML = ''; return; }
+                el.innerHTML = `
+                    <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:.6rem;font-weight:600;">${sec.label}</div>
+                    <div style="display:flex;flex-direction:column;gap:.6rem;">${items.map(loopCard).join('')}</div>
+                `;
+            });
+        }
+
+        function filterLoops(f) {
+            document.querySelectorAll('.loop-filter').forEach(b => {
+                const active = b.dataset.f === f;
+                b.style.background = active ? 'var(--accent-teal)' : 'transparent';
+                b.style.color = active ? '#000' : (b.dataset.f === 'needs-you' ? '#ef4444' : b.dataset.f === 'waiting' ? '#fbbf24' : 'var(--accent-teal)');
+                b.style.fontWeight = active ? '600' : '400';
+                b.classList.toggle('active', active);
+            });
+            renderLoops(f);
+        }
+
+        function dismissLoop(id) {
+            loopsData = loopsData.filter(l => l.id !== id);
+            const el = document.getElementById('loop-' + id);
+            if (el) { el.style.opacity = '0'; setTimeout(() => renderLoops(), 300); }
         }
 
     </script>

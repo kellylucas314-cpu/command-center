@@ -1,0 +1,189 @@
+{
+  "updated": "2026-02-24",
+  "loops": [
+
+    {
+      "id": 1,
+      "title": "Yaniv Sneor — MABA Application",
+      "context": "He replied Feb 17 asking you to submit at bioangels.net. Day 7 with no reply. This is the warmest investor lead you have.",
+      "category": "investor",
+      "urgency": "critical",
+      "status": "needs-you",
+      "opened": "2026-02-17",
+      "action_label": "Open Draft",
+      "action_link": "",
+      "action_note": "Draft at drafts/MABA-APPLICATION-PREP.md — needs GO verstappen"
+    },
+    {
+      "id": 2,
+      "title": "Y Combinator — Apply Now",
+      "context": "YC replied Feb 23: 'You should definitely apply, we're still accepting late applications!' Late window could close any day.",
+      "category": "investor",
+      "urgency": "critical",
+      "status": "needs-you",
+      "opened": "2026-02-23",
+      "action_label": "Apply at YC",
+      "action_link": "https://ycombinator.com/apply",
+      "action_note": "Nirosha needs to be co-applicant. Kip can draft the full app."
+    },
+    {
+      "id": 3,
+      "title": "Rakesh Ramaswamy — Reply Needed",
+      "context": "He asked for a call during the week of Feb 23. Still no reply sent. He's with Moffitt/CancerX — strategic contact.",
+      "category": "investor",
+      "urgency": "critical",
+      "status": "needs-you",
+      "opened": "2026-02-20",
+      "action_label": "Send Reply",
+      "action_link": "",
+      "action_note": "Draft at drafts/RAKESH-RAMASWAMY-REPLY-DRAFT.md — needs GO verstappen"
+    },
+    {
+      "id": 4,
+      "title": "Joshua Conafay — Reply to Materials Question",
+      "context": "Asked if HelioFlux materials are public-facing (wants to share with PhD/MD team). Patent not filed — need to gate technical details. Reply drafted.",
+      "category": "investor",
+      "urgency": "high",
+      "status": "needs-you",
+      "opened": "2026-02-21",
+      "action_label": "Send Reply",
+      "action_link": "",
+      "action_note": "Reply drafted — needs GO verstappen"
+    },
+
+    {
+      "id": 5,
+      "title": "Hamamatsu — Tomohiro Yoshida Follow-up",
+      "context": "Met Feb 18. New OPM module opportunity (femtotesla magnetometer), PMT lead time 6-8 weeks, PO not yet placed. No follow-up sent since the meeting.",
+      "category": "partner",
+      "urgency": "high",
+      "status": "needs-you",
+      "opened": "2026-02-18",
+      "action_label": "Draft Follow-up",
+      "action_link": "",
+      "action_note": "Email Tomohiro Yoshida at TYoshida@hamamatsu.com — ask Kip to draft"
+    },
+    {
+      "id": 6,
+      "title": "Patent — Engagement Agreement",
+      "context": "Mike Schaldenbrand (Strong Force IP) has engagement ready. Needs your signature + $2,500 retainer. Can't share technical details publicly until this is filed.",
+      "category": "legal",
+      "urgency": "high",
+      "status": "needs-you",
+      "opened": "2026-02-15",
+      "action_label": "Sign & Pay",
+      "action_link": "",
+      "action_note": "Contact Mike Schaldenbrand — engagement agreement sitting unsigned"
+    },
+    {
+      "id": 7,
+      "title": "BCIC Biomedical Pitch — Application",
+      "context": "Deadline Saturday Feb 28. Google Form, ~20 minutes. Quick application. Don't let this one slip.",
+      "category": "grant",
+      "urgency": "high",
+      "status": "needs-you",
+      "opened": "2026-02-23",
+      "action_label": "Open Form",
+      "action_link": "https://forms.gle/uZbefcLhdNXQC2Ek8",
+      "action_note": "Deadline Sat Feb 28"
+    },
+
+    {
+      "id": 8,
+      "title": "Arsalan Daudi — Meeting Tomorrow",
+      "context": "Eva Garland Consulting, non-dilutive funding specialist. Wed Feb 25 @ 10am. Ask specifically what NIH/NSF/DOD grants are available for early-stage cancer diagnostics right now.",
+      "category": "meeting",
+      "urgency": "upcoming",
+      "status": "upcoming",
+      "opened": "2026-02-24",
+      "action_label": "Prep",
+      "action_link": "",
+      "action_note": "Wed Feb 25 @ 10am PST — not yet in CRM"
+    },
+    {
+      "id": 9,
+      "title": "StartEngine / Doryn — Meeting Tomorrow",
+      "context": "Crowdfunding campaign strategy call. Wed Feb 25 @ 12pm. Frame as: 'strategic bridge to close Hamamatsu partnership and launch StartEngine campaign.'",
+      "category": "meeting",
+      "urgency": "upcoming",
+      "status": "upcoming",
+      "opened": "2026-02-24",
+      "action_label": "Prep",
+      "action_link": "",
+      "action_note": "Wed Feb 25 @ 12pm PST"
+    },
+
+    {
+      "id": 10,
+      "title": "Red Bull — Sales Analyst & Motorsports Manager",
+      "context": "Applied Feb 19. Wingfinder completed. No response yet. Both roles in Santa Monica.",
+      "category": "job",
+      "urgency": "waiting",
+      "status": "waiting",
+      "opened": "2026-02-19",
+      "action_label": "Track",
+      "action_link": "",
+      "action_note": "Applied 5 days ago — typical response time 1-2 weeks"
+    },
+    {
+      "id": 11,
+      "title": "AIDB Clawrchitect Application",
+      "context": "Sent custom animated application page Feb 19. jobs@aidailybrief.ai — no response yet.",
+      "category": "job",
+      "urgency": "waiting",
+      "status": "waiting",
+      "opened": "2026-02-19",
+      "action_label": "Check",
+      "action_link": "https://kellylucas314-cpu.github.io/aidb-application/",
+      "action_note": "Applied Feb 19 — 5 days no response"
+    },
+    {
+      "id": 12,
+      "title": "DataAnnotation — Biology Assessment",
+      "context": "Submitted assessment. Waiting for review email to unlock paid tasks.",
+      "category": "job",
+      "urgency": "waiting",
+      "status": "waiting",
+      "opened": "2026-02-20",
+      "action_label": "Check Email",
+      "action_link": "https://app.dataannotation.tech",
+      "action_note": "Assessment under review"
+    },
+    {
+      "id": 13,
+      "title": "Anthropic — Developer Education Lead",
+      "context": "Perfect fit: science communicator skillset, technical-to-accessible translation. Need to actually apply if not done yet.",
+      "category": "job",
+      "urgency": "high",
+      "status": "needs-you",
+      "opened": "2026-02-23",
+      "action_label": "Apply",
+      "action_link": "https://job-boards.greenhouse.io/anthropic/jobs/5126762008",
+      "action_note": "Has not been applied to yet — do this soon"
+    },
+    {
+      "id": 14,
+      "title": "Remotasks — Sign Up",
+      "context": "Scale AI platform, same as DataAnnotation but not location-restricted. Stack these once both active.",
+      "category": "job",
+      "urgency": "medium",
+      "status": "needs-you",
+      "opened": "2026-02-24",
+      "action_label": "Sign Up",
+      "action_link": "https://remotasks.com",
+      "action_note": "10 min signup"
+    },
+    {
+      "id": 15,
+      "title": "Respondent.io — Sign Up",
+      "context": "Expert research interviews, $50-200/session. Your founder + bio + MBA profile = premium tier. Set it up once, then it's passive.",
+      "category": "job",
+      "urgency": "medium",
+      "status": "needs-you",
+      "opened": "2026-02-24",
+      "action_label": "Sign Up",
+      "action_link": "https://respondent.io/become-a-participant",
+      "action_note": "10 min signup"
+    }
+  ]
+}
