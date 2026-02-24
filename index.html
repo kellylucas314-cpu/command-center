@@ -410,6 +410,11 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6v6l3 9H6l3-9V3z"/><path d="M8 21h8"/></svg>
                     <span>HelioFlux</span>
                 </button>
+                <button class="nav-item" data-page="meetings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span>Meetings</span>
+                    <span class="nav-badge" id="meetings-count" style="background:#f59e0b;">-</span>
+                </button>
             </div>
             <div style="margin-top:auto;padding-top:1rem;border-top:1px solid var(--border);">
                 <a href="spark/index.html" class="nav-item" style="text-decoration:none;display:flex;align-items:center;gap:0.6rem;color:var(--text-secondary);">
@@ -1364,6 +1369,17 @@
                 <div id="radar-list" style="display:flex;flex-direction:column;gap:.75rem;"></div>
             </div>
 
+            <!-- MEETINGS PAGE -->
+            <div class="page" id="page-meetings">
+                <div style="margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                    <div>
+                        <h2 style="font-size:1.4rem;font-weight:700;color:var(--text-primary)">Meetings</h2>
+                        <p style="color:var(--text-muted);font-size:.875rem;margin-top:.25rem;">Upcoming calls — prep notes, talking points, questions</p>
+                    </div>
+                </div>
+                <div id="meetings-list" style="display:flex;flex-direction:column;gap:1.25rem;"></div>
+            </div>
+
         </main>
     </div>
     
@@ -1392,6 +1408,7 @@
         let agendaData = { events: [], deadlines: [] };
         let radarData = [];
         let loopsData = [];
+        let meetingsData = [];
         
         // Pagination
         let crmPage = 1;
@@ -1478,7 +1495,7 @@
             const baseUrl = window.location.href.includes('github.io') ? './data/' : './data/';
             
             try {
-                const [crm, memory, kb, tasks, outreach, openclaw, todos, ideas, focus, jobs, wins, agenda, radar, loopsJson] = await Promise.all([
+                const [crm, memory, kb, tasks, outreach, openclaw, todos, ideas, focus, jobs, wins, agenda, radar, loopsJson, meetingsJson] = await Promise.all([
                     fetch(baseUrl + 'crm.json').then(r => r.json()).catch(() => ({ contacts: [], stats: {} })),
                     fetch(baseUrl + 'memory.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'knowledge.json').then(r => r.json()).catch(() => ({ entries: [] })),
@@ -1492,7 +1509,8 @@
                     fetch(baseUrl + 'wins.json').then(r => r.json()).catch(() => []),
                     fetch(baseUrl + 'agenda.json').then(r => r.json()).catch(() => ({ events: [], deadlines: [] })),
                     fetch(baseUrl + 'stale-investors.json').then(r => r.json()).catch(() => []),
-                    fetch(baseUrl + 'loops.json').then(r => r.json()).catch(() => ({ loops: [] }))
+                    fetch(baseUrl + 'loops.json').then(r => r.json()).catch(() => ({ loops: [] })),
+                    fetch(baseUrl + 'meetings.json').then(r => r.json()).catch(() => [])
                 ]);
                 
                 crmData = crm;
@@ -1509,8 +1527,12 @@
                 agendaData = agenda;
                 radarData = radar;
                 loopsData = loopsJson.loops || [];
+                meetingsData = meetingsJson || [];
                 
                 document.getElementById('crm-count').textContent = crmData.stats?.total || crmData.contacts?.length || 0;
+                const upcomingMeetings = meetingsData.filter(m => m.status === 'upcoming' || m.status === 'today').length;
+                document.getElementById('meetings-count').textContent = upcomingMeetings || '';
+                if (!upcomingMeetings) document.getElementById('meetings-count').style.display = 'none';
                 
                 renderCRM();
                 renderMemory();
@@ -1525,6 +1547,7 @@
                 renderWins();
                 renderRadar();
                 renderLoops();
+                renderMeetings();
             } catch (e) {
                 console.error('Failed to load data:', e);
             }
@@ -2413,6 +2436,124 @@
             loopsData = loopsData.filter(l => l.id !== id);
             const el = document.getElementById('loop-' + id);
             if (el) { el.style.opacity = '0'; setTimeout(() => renderLoops(), 300); }
+        }
+
+        function renderMeetings() {
+            const container = document.getElementById('meetings-list');
+            if (!container) return;
+            if (!meetingsData.length) {
+                container.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:3rem;">No meetings scheduled. Kip will add them here.</div>';
+                return;
+            }
+
+            const statusOrder = { today: 0, upcoming: 1, done: 2 };
+            const sorted = [...meetingsData].sort((a,b) => {
+                const sd = (statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9);
+                if (sd !== 0) return sd;
+                return (a.date + a.time).localeCompare(b.date + b.time);
+            });
+
+            const typeColors = {
+                investor: '#00b4d8',
+                grants: '#10b981',
+                fundraising: '#8b5cf6',
+                strategic: '#f59e0b',
+                other: '#6b7280'
+            };
+            const statusConfig = {
+                today:    { label: 'TODAY', bg: 'rgba(239,68,68,0.15)', color: '#ef4444', border: 'rgba(239,68,68,0.4)' },
+                upcoming: { label: 'UPCOMING', bg: 'rgba(251,191,36,0.1)', color: '#f59e0b', border: 'rgba(251,191,36,0.3)' },
+                done:     { label: 'DONE', bg: 'rgba(107,114,128,0.1)', color: '#6b7280', border: 'rgba(107,114,128,0.2)' }
+            };
+
+            container.innerHTML = sorted.map(m => {
+                const sc = statusConfig[m.status] || statusConfig.upcoming;
+                const tc = typeColors[m.type] || typeColors.other;
+                const dateObj = new Date(m.date + 'T12:00:00');
+                const dayStr = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+                const talkingPts = (m.talking_points || []).map(p =>
+                    `<li style="margin-bottom:.4rem;color:var(--text-primary);font-size:.85rem;">${p}</li>`
+                ).join('');
+
+                const questions = (m.questions_to_ask || []).map(q =>
+                    `<li style="margin-bottom:.4rem;color:var(--text-primary);font-size:.85rem;">${q}</li>`
+                ).join('');
+
+                const watchOut = (m.watch_out || []).map(w =>
+                    `<li style="margin-bottom:.4rem;color:#fbbf24;font-size:.85rem;">${w}</li>`
+                ).join('');
+
+                const linkHtml = m.meeting_link
+                    ? `<a href="${m.meeting_link}" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .75rem;background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.3);border-radius:6px;color:var(--accent-teal);font-size:.8rem;text-decoration:none;margin-top:.5rem;">Join Meeting →</a>`
+                    : (m.zoom_id ? `<span style="display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .75rem;background:rgba(0,180,216,0.08);border:1px solid rgba(0,180,216,0.2);border-radius:6px;color:var(--text-muted);font-size:.8rem;">Zoom ID: ${m.zoom_id}</span>` : '');
+
+                const noteHtml = m.notes
+                    ? `<div style="margin-top:1rem;padding:.75rem;background:rgba(255,255,255,0.03);border-left:3px solid ${tc};border-radius:0 6px 6px 0;font-size:.85rem;color:var(--text-primary);white-space:pre-wrap;">${m.notes}</div>`
+                    : '';
+
+                const outcomeHtml = m.outcome
+                    ? `<div style="margin-top:.75rem;padding:.75rem;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;font-size:.85rem;color:#10b981;"><strong>Outcome:</strong> ${m.outcome}</div>`
+                    : '';
+
+                return `
+                <div style="background:var(--bg-card);border:1px solid ${m.status === 'today' ? 'rgba(239,68,68,0.35)' : 'var(--border)'};border-radius:12px;padding:1.25rem;transition:all .2s;${m.status === 'done' ? 'opacity:.6;' : ''}">
+                    <!-- Header row -->
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.75rem;">
+                        <div style="flex:1;min-width:0;">
+                            <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.3rem;">
+                                <span style="font-size:.7rem;font-weight:700;letter-spacing:.06em;padding:.2rem .5rem;border-radius:4px;background:${sc.bg};color:${sc.color};border:1px solid ${sc.border};">${sc.label}</span>
+                                <span style="font-size:.7rem;font-weight:600;letter-spacing:.05em;padding:.2rem .5rem;border-radius:4px;background:rgba(255,255,255,0.05);color:${tc};border:1px solid ${tc}30;">${(m.type || 'meeting').toUpperCase()}</span>
+                            </div>
+                            <h3 style="font-size:1.05rem;font-weight:700;color:var(--text-primary);margin-bottom:.2rem;">${m.title}</h3>
+                            <div style="color:var(--text-muted);font-size:.82rem;">${dayStr} &middot; ${m.time} &middot; ${m.location}</div>
+                        </div>
+                        <div style="text-align:right;flex-shrink:0;">
+                            ${linkHtml}
+                        </div>
+                    </div>
+
+                    <!-- Why / Goal -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem;">
+                        <div style="padding:.75rem;background:rgba(255,255,255,0.02);border-radius:8px;">
+                            <div style="font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:.06em;margin-bottom:.4rem;">WHY HE'S MEETING YOU</div>
+                            <p style="font-size:.83rem;color:var(--text-primary);line-height:1.5;">${m.why || ''}</p>
+                        </div>
+                        <div style="padding:.75rem;background:rgba(0,180,216,0.04);border:1px solid rgba(0,180,216,0.1);border-radius:8px;">
+                            <div style="font-size:.7rem;font-weight:700;color:var(--accent-teal);letter-spacing:.06em;margin-bottom:.4rem;">YOUR GOAL</div>
+                            <p style="font-size:.83rem;color:var(--text-primary);line-height:1.5;">${m.goal || ''}</p>
+                        </div>
+                    </div>
+
+                    <!-- Accordion sections -->
+                    <details style="margin-bottom:.5rem;">
+                        <summary style="cursor:pointer;list-style:none;padding:.5rem .75rem;background:rgba(255,255,255,0.03);border-radius:6px;font-size:.82rem;font-weight:600;color:var(--text-primary);display:flex;align-items:center;justify-content:space-between;">
+                            <span>💬 Talking Points (${(m.talking_points||[]).length})</span>
+                            <span style="color:var(--text-muted);font-size:.75rem;">click to expand</span>
+                        </summary>
+                        <ul style="margin:.6rem 0 0 0;padding-left:1.2rem;list-style-type:disc;">${talkingPts}</ul>
+                    </details>
+
+                    <details style="margin-bottom:.5rem;">
+                        <summary style="cursor:pointer;list-style:none;padding:.5rem .75rem;background:rgba(255,255,255,0.03);border-radius:6px;font-size:.82rem;font-weight:600;color:var(--text-primary);display:flex;align-items:center;justify-content:space-between;">
+                            <span>❓ Questions to Ask (${(m.questions_to_ask||[]).length})</span>
+                            <span style="color:var(--text-muted);font-size:.75rem;">click to expand</span>
+                        </summary>
+                        <ul style="margin:.6rem 0 0 0;padding-left:1.2rem;list-style-type:disc;">${questions}</ul>
+                    </details>
+
+                    ${watchOut ? `<details style="margin-bottom:.5rem;">
+                        <summary style="cursor:pointer;list-style:none;padding:.5rem .75rem;background:rgba(251,191,36,0.05);border:1px solid rgba(251,191,36,0.2);border-radius:6px;font-size:.82rem;font-weight:600;color:#fbbf24;display:flex;align-items:center;justify-content:space-between;">
+                            <span>⚠️ Watch Out For</span>
+                            <span style="color:#fbbf2480;font-size:.75rem;">click to expand</span>
+                        </summary>
+                        <ul style="margin:.6rem 0 0 0;padding-left:1.2rem;list-style-type:disc;">${watchOut}</ul>
+                    </details>` : ''}
+
+                    ${noteHtml}
+                    ${outcomeHtml}
+                </div>`;
+            }).join('');
         }
 
     </script>

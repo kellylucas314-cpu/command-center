@@ -1,0 +1,154 @@
+[
+  {
+    "id": "arye-lipman-feb24",
+    "title": "Arye Lipman — Biosphere.io",
+    "date": "2026-02-24",
+    "time": "2:30 PM PST",
+    "location": "Google Meet",
+    "status": "today",
+    "type": "investor",
+    "contact": {
+      "name": "Arye Lipman",
+      "company": "Biosphere.io / XEIA Venture Partners",
+      "role": "Co-Founder & COO (fmr. GP, MarsBio)",
+      "linkedin": "https://linkedin.com/in/aryelipman"
+    },
+    "why": "Former VC (MarsBio, closed), now founder. Potential angel investor or network connector. Founders Fund / Foresight Institute network access.",
+    "goal": "Secure personal check ($25-50K) OR warm intros to 2-3 investors in his network.",
+    "talking_points": [
+      "Opening line: 'You're replacing 80-year-old steam technology. We're replacing 50-year-old tumor detection thresholds. Same instinct.'",
+      "Traditional detection requires ~1B cells. HelioFlux detects at 5-10M cells — 100-200x earlier.",
+      "Physics-based, not biomarker-based. He's a molecular biologist — he'll appreciate the novel approach.",
+      "3 peer-reviewed papers. 20 human subjects in latest iScience/Cell Press study.",
+      "Non-invasive platform — any cancer type, ~20M new cases/year globally."
+    ],
+    "questions_to_ask": [
+      "Are you exploring investments right now, or is this more exploratory?",
+      "What would you need to see to get excited about this?",
+      "Are there people in your network we should be talking to?",
+      "How do you think about early cancer detection in the longevity context?"
+    ],
+    "watch_out": [
+      "He'll ask about patents — be honest, provisional filing in progress.",
+      "MarsBio is CLOSED — he may be investing personally, not from a fund.",
+      "He's a real molecular biologist. Don't bluff on science questions — 'that's one for Nirosha' is fine."
+    ],
+    "notes": "",
+    "outcome": ""
+  },
+  {
+    "id": "arsalan-daudi-feb25",
+    "title": "Arsalan Daudi — Eva Garland Consulting",
+    "date": "2026-02-25",
+    "time": "10:00 AM PST",
+    "location": "Microsoft Teams",
+    "meeting_link": "https://calendly.com/events/de270404-2341-4bdb-bbe0-301db0ef2ca2/microsoft_teams",
+    "status": "upcoming",
+    "type": "grants",
+    "contact": {
+      "name": "Dr. Arsalan Daudi",
+      "company": "Eva Garland Consulting",
+      "role": "Scientific Consultant & Team Lead",
+      "linkedin": "https://linkedin.com/in/aadaudi/"
+    },
+    "why": "Non-dilutive funding specialist — helps biotech startups get government grants (NIH, NSF, NCI, DOD). His whole job is finding FREE money that doesn't cost equity.",
+    "goal": "Understand what grants HelioFlux qualifies for RIGHT NOW. Get a realistic timeline and cost estimate for working with Eva Garland.",
+    "talking_points": [
+      "Stage: 3 published papers, 20 human subjects in latest iScience study, seeking validation for human pilot trials.",
+      "Need: $300-500K bridge. Non-dilutive funding could cover the pilot trial costs without eating into equity.",
+      "Technology: Biophotonic cancer detection, non-invasive, platform technology (any cancer type).",
+      "Team: Dr. Nirosha Murugan — Canada Research Chair, $1.3M+ in prior research grants. Grant track record exists.",
+      "NVIDIA Inception member since Oct 2024 — some credibility anchors for grant applications."
+    ],
+    "questions_to_ask": [
+      "What federal grants are open right now for early-stage cancer diagnostics? SBIR/STTR reauthorized?",
+      "How long does it typically take from application to funding? What's realistic for Q2/Q3 2026?",
+      "What does Eva Garland charge — contingency, flat fee, or retainer?",
+      "Does Nirosha's Canadian affiliation complicate US federal grants?",
+      "What's the strongest program for a pre-revenue diagnostic device with published peer review?"
+    ],
+    "watch_out": [
+      "SBIR/STTR programs expired Oct 2025 — ask directly if they've been reauthorized and what's currently open.",
+      "Nirosha is in Canada — some US federal grants require US PI. Clarify upfront.",
+      "Don't commit to a retainer in the meeting — get numbers first, decide after."
+    ],
+    "notes": "",
+    "outcome": ""
+  },
+  {
+    "id": "startengine-doryn-feb25",
+    "title": "StartEngine — Doryn Fine",
+    "date": "2026-02-25",
+    "time": "12:00 PM PST",
+    "location": "Video Call",
+    "status": "upcoming",
+    "type": "fundraising",
+    "contact": {
+      "name": "Doryn Fine",
+      "company": "StartEngine",
+      "role": "Campaign Manager"
+    },
+    "why": "StartEngine equity crowdfunding platform. HelioFlux ran a prior campaign. This is a strategic conversation about launching a new campaign to raise capital from retail investors.",
+    "goal": "Understand timeline + requirements for launching a new StartEngine campaign. Get realistic raise estimate and what they need from HelioFlux.",
+    "talking_points": [
+      "Bridge round context: raising $300-500K, StartEngine could be one channel.",
+      "Prior campaign existed — ask what the track record looks like and how to build on it.",
+      "Human pilot trial milestone would be a strong campaign anchor — timing question.",
+      "C-AR annual report reminder received — ask if HelioFlux is currently obligated to file Form C-AR (Reg CF)."
+    ],
+    "questions_to_ask": [
+      "What would a new campaign realistically raise for a pre-revenue medical device company?",
+      "What's the minimum we need to have in place before launching — financials, deck, video?",
+      "What's the typical timeline from kickoff to live campaign?",
+      "Do you recommend waiting for a human pilot milestone to maximize raise?",
+      "Are we currently required to file a Form C-AR? What's the deadline?"
+    ],
+    "watch_out": [
+      "C-AR SEC filing question — Reg CF issuers must file Form C-AR annually. Deadline ~April 30, 2026. Verify before paying any third-party vendor.",
+      "Don't over-commit to a launch timeline — only launch when the story is strong.",
+      "Crowdfunding works best with momentum — ask what successful campaigns had in common."
+    ],
+    "notes": "",
+    "outcome": ""
+  },
+  {
+    "id": "rakesh-ramaswamy-feb26",
+    "title": "Rakesh Ramaswamy — Moffitt Cancer Center / CancerX",
+    "date": "2026-02-26",
+    "time": "7:30 AM PST / 10:30 AM ET",
+    "location": "Zoom",
+    "meeting_link": "https://zoom.us/j/96379449923",
+    "zoom_id": "963 7944 9923",
+    "status": "upcoming",
+    "type": "strategic",
+    "contact": {
+      "name": "Rakesh Ramaswamy",
+      "company": "Moffitt Cancer Center / CancerX",
+      "role": "Strategic Innovation"
+    },
+    "why": "Moffitt is one of the top cancer centers in the US. CancerX is the White House-backed cancer innovation initiative. This could be a clinical validation partnership, pilot site, or introduction to the broader oncology research network.",
+    "goal": "Understand what Rakesh/Moffitt/CancerX can offer. Position HelioFlux for a clinical validation partnership or pilot program.",
+    "talking_points": [
+      "HelioFlux detects cancer at 5-10M cells — 100-200x earlier than standard imaging. Non-invasive.",
+      "3 peer-reviewed papers, 20 human subjects in latest study (iScience/Cell Press, 2025).",
+      "Seeking: clinical validation site for human pilot trials. Moffitt would be ideal.",
+      "Platform technology — works across cancer types. Massive patient population access at Moffitt.",
+      "Hamamatsu partnership in progress (sensor hardware) — device is real, not just science."
+    ],
+    "questions_to_ask": [
+      "What does CancerX look for in early-stage detection technology?",
+      "What would a clinical validation partnership with Moffitt look like?",
+      "What's the process for getting a technology evaluated at your center?",
+      "Who else should we be talking to — FDA pathway advisors, clinical trial coordinators?",
+      "Is there grant funding available through CancerX/NIH for pilot validation studies?"
+    ],
+    "watch_out": [
+      "IP warning: Moffitt/academic medical centers sometimes want IP rights. Be clear that HelioFlux owns the technology.",
+      "Don't share technical specs until patent is filed — share deck and published papers only.",
+      "Add Glenn to this meeting if possible (reminder fires Feb 26 8am).",
+      "NOTE: Rakesh confirmed week of Feb 23 — reply still needed to him."
+    ],
+    "notes": "",
+    "outcome": ""
+  }
+]
