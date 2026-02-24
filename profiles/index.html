@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelioFlux Rolodex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0A1628;
+            --bg-card: #0F2137;
+            --bg-card-hover: #142A45;
+            --accent: #00B4D8;
+            --accent-glow: #7DF9FF;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8BA3C7;
+            --text-muted: #5A7494;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --border: #1E3A5F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo span {
+            font-size: 32px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
+        }
+
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .stat {
+            background: var(--bg-card);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .profile-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(0, 180, 216, 0.15);
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #1a3a5c 0%, #0F2137 100%);
+            padding: 25px;
+            position: relative;
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border: 3px solid var(--bg-card);
+        }
+
+        .profile-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .profile-title {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .profile-company {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 180, 216, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--accent);
+        }
+
+        .profile-body {
+            padding: 20px 25px;
+        }
+
+        .profile-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .tag.warm {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .tag.hot {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+
+        .profile-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .profile-location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .profile-connection {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+        }
+
+        .connection-known {
+            color: var(--success);
+        }
+
+        .connection-cold {
+            color: var(--text-muted);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal-overlay.active {
+            display: block;
+        }
+
+        .modal {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1a3a5c 0%, #0F2137 100%);
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-content {
+            padding: 30px;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-section p, .modal-section li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .modal-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-section li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-section li:last-child {
+            border-bottom: none;
+        }
+
+        .intro-path {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-priority {
+            font-size: 16px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 180, 216, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(0, 180, 216, 0.2);
+        }
+
+        .pitch-tip {
+            background: rgba(0, 180, 216, 0.05);
+            border-left: 3px solid var(--accent);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 10px;
+        }
+
+        .pitch-tip p {
+            color: var(--text-primary) !important;
+            font-style: italic;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state span {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .stats-bar {
+                flex-wrap: wrap;
+            }
+
+            .profiles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span>📇</span>
+                <h1>HelioFlux Rolodex</h1>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search profiles...">
+            </div>
+        </header>
+
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-value" id="totalProfiles">0</div>
+                <div class="stat-label">Total Profiles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="warmConnections">0</div>
+                <div class="stat-label">Warm Connections</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="vcProfiles">0</div>
+                <div class="stat-label">Investors/VCs</div>
+            </div>
+        </div>
+
+        <div class="profiles-grid" id="profilesGrid">
+            <!-- Profiles will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Modal for full profile view -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-header-content">
+                    <div class="profile-avatar" id="modalAvatar">DB</div>
+                    <div class="profile-name" id="modalName">Dave Bisceglia</div>
+                    <div class="profile-title" id="modalTitle">Venture Partner</div>
+                    <div class="profile-company" id="modalCompany">🏢 Founder Collective</div>
+                </div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-content" id="modalContent">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Profile data - this will be populated from markdown files
+        const profiles = [
+            {
+                id: 'dave-bisceglia',
+                name: 'Dave Bisceglia',
+                initials: 'DB',
+                title: 'Venture Partner',
+                company: 'Founder Collective',
+                location: 'Boston, MA',
+                tags: ['Seed VC', 'Consumer', 'Gaming'],
+                isWarm: true,
+                knownBy: 'Glenn',
+                type: 'vc',
+                thesis: '"Weird and wonderful" — overlooked opportunities, product excellence, clear GTM',
+                background: 'Operator-turned-VC: exited The Tap Lab to Warner Bros, scaled billion-dollar gaming franchises at Scopely',
+                healthcare: 'No personal cancer connection, but FC has 10+ healthcare portfolio companies (Omada Health, PillPack, Galatea Bio)',
+                introPaths: [
+                    { priority: '⭐⭐⭐', person: 'Glenn Lucas', reason: 'Knows him personally' },
+                    { priority: '⭐⭐', person: 'Ralph Shao', reason: 'Tap Lab co-founder, BU classmate' },
+                    { priority: '⭐⭐', person: 'Eric Paley', reason: 'FC co-founder' }
+                ],
+                contacts: [
+                    { type: 'LinkedIn', url: 'https://linkedin.com/in/davebisceglia', icon: '🔗' },
+                    { type: 'Twitter', url: 'https://x.com/davebisceglia', icon: '𝕏' },
+                    { type: 'Email (guess)', url: 'mailto:dave@foundercollective.com', icon: '📧' }
+                ],
+                pitchTip: 'Lead with product, not science. Frame as "weird and wonderful" — the opportunity other VCs are sleeping on. He\'s new to VC and hungry for deals.'
+            }
+        ];
+
+        function renderProfiles(filter = '') {
+            const grid = document.getElementById('profilesGrid');
+            const filtered = profiles.filter(p => 
+                p.name.toLowerCase().includes(filter.toLowerCase()) ||
+                p.company.toLowerCase().includes(filter.toLowerCase()) ||
+                p.tags.some(t => t.toLowerCase().includes(filter.toLowerCase()))
+            );
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <span>🔍</span>
+                        <p>No profiles found</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="profile-card" onclick="openModal('${p.id}')">
+                    <div class="profile-header">
+                        <div class="profile-avatar">${p.initials}</div>
+                        <div class="profile-name">${p.name}</div>
+                        <div class="profile-title">${p.title}</div>
+                        <div class="profile-company">🏢 ${p.company}</div>
+                    </div>
+                    <div class="profile-body">
+                        <div class="profile-tags">
+                            ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                            ${p.isWarm ? '<span class="tag warm">🤝 Warm</span>' : ''}
+                        </div>
+                        <div class="profile-meta">
+                            <div class="profile-location">📍 ${p.location}</div>
+                            <div class="profile-connection ${p.isWarm ? 'connection-known' : 'connection-cold'}">
+                                ${p.isWarm ? `✓ Known by ${p.knownBy}` : '○ Cold'}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats() {
+            document.getElementById('totalProfiles').textContent = profiles.length;
+            document.getElementById('warmConnections').textContent = profiles.filter(p => p.isWarm).length;
+            document.getElementById('vcProfiles').textContent = profiles.filter(p => p.type === 'vc').length;
+        }
+
+        function openModal(profileId) {
+            const profile = profiles.find(p => p.id === profileId);
+            if (!profile) return;
+
+            document.getElementById('modalAvatar').textContent = profile.initials;
+            document.getElementById('modalName').textContent = profile.name;
+            document.getElementById('modalTitle').textContent = profile.title;
+            document.getElementById('modalCompany').textContent = '🏢 ' + profile.company;
+
+            document.getElementById('modalContent').innerHTML = `
+                <div class="modal-section">
+                    <h3>🧠 Investment Thesis</h3>
+                    <p>${profile.thesis}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>💼 Background</h3>
+                    <p>${profile.background}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🏥 Healthcare Relevance</h3>
+                    <p>${profile.healthcare}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🤝 Warm Intro Paths</h3>
+                    <ul>
+                        ${profile.introPaths.map(i => `
+                            <li class="intro-path">
+                                <span class="intro-priority">${i.priority}</span>
+                                <strong>${i.person}</strong> — ${i.reason}
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3>📬 Contact</h3>
+                    <div class="contact-links">
+                        ${profile.contacts.map(c => `
+                            <a href="${c.url}" target="_blank" class="contact-link">
+                                ${c.icon} ${c.type}
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>💡 Pitch Strategy</h3>
+                    <div class="pitch-tip">
+                        <p>${profile.pitchTip}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            renderProfiles(e.target.value);
+        });
+
+        // Initial render
+        renderProfiles();
+        updateStats();
+    </script>
+</body>
+</html>
