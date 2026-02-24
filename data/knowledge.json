@@ -130,6 +130,20 @@
       "date": "2026-02-01",
       "summary": "Structured video course on agentic coding workflows with Claude Code. Updated February 2026. Good for learning systematically rather than picking things up ad hoc.",
       "tags": ["Claude Code", "learning", "course", "agentic", "video"]
+    },
+    {
+      "id": 14,
+      "title": "Greg Isenberg + @internetvin: How I Use Obsidian + Claude Code to Run My Life",
+      "url": "https://youtu.be/6MBq1paspVU",
+      "podcast_url": "https://podcasts.apple.com/mw/podcast/how-i-use-obsidian-claude-code-to-run-my-life/id1593424985?i=1000751070268",
+      "tweet_url": "https://x.com/gregisenberg/status/2026036464287412412",
+      "type": "youtube",
+      "category": "ai-tech",
+      "date": "2026-02-22",
+      "views": "428K (tweet)",
+      "source": "The Startup Ideas Podcast — Greg Isenberg (@gregisenberg) + Vin (@internetvin)",
+      "summary": "Vin demonstrates live how Claude Code reads an entire Obsidian vault of interlinked markdown files and surfaces patterns across years of personal notes — generating startup ideas, tracking how ideas evolved, and executing tasks from a single sentence. Greg's 10-rule framework: (1) write everything in markdown, (2) link notes to mirror how your brain thinks, (3) let Claude Code read the vault + relationships, (4) use reference files instead of re-explaining context, (5) build custom slash commands (/context, /trace, /connect, /ideas, /graduate), (6) human writes the vault — agents read + execute, (7) surface unconscious patterns, (8) delegate from inside notes, (9) treat writing as leverage, (10) markdown files are the oxygen of LLMs. Key insight: 'Once the vault exists, the agent stops being generic. It starts thinking in your voice.' HIGHLY relevant — Kelly already has this system with Kip + markdown workspace. Next step: explore Obsidian CLI integration and custom slash commands.",
+      "tags": ["Claude Code", "Obsidian", "personal-OS", "productivity", "markdown", "agents", "startup-ideas", "learning"]
     }
   ]
 }
