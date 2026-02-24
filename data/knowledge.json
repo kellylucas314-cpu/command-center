@@ -80,5 +80,56 @@
       "summary": "YC partners (Garry Tan, Harj Taggar, Jared Friedman) discuss the agent economy. OpenClaw explicitly named. Key insight: 'Make something agents want' as new YC motto. Non-technical CEOs automating businesses with OpenClaw. Agents as economic actors. Relevant: Kelly is a live case study for this episode.",
       "tags": ["YC", "agents", "OpenClaw", "economy", "AI", "Garry Tan"]
     }
+  ,
+    {
+      "id": 9,
+      "title": "Anthropic Official: Claude Code in Action (free course)",
+      "url": "https://anthropic.skilljar.com/claude-code-in-action",
+      "type": "course",
+      "category": "ai-tech",
+      "date": "2026-02-24",
+      "summary": "Anthropic's own training course. Covers Claude Code architecture, practical implementation, and advanced integrations. Free. This is the official source — start here for anything you're unsure about.",
+      "tags": ["Claude Code", "learning", "Anthropic", "course"]
+    },
+    {
+      "id": 10,
+      "title": "Claude 101: Claude Code for Non-Programmers (Every.to)",
+      "url": "https://claude101.every.to/",
+      "type": "course",
+      "category": "ai-tech",
+      "date": "2026-02-24",
+      "summary": "Step-by-step guide built specifically for non-programmers. 'In one day, you'll give it real tasks and ship something live.' Exactly Kelly's situation — visual learner, already rebuilt a full app in her first 2-hr session (Feb 11). Great for leveling up intentionally.",
+      "tags": ["Claude Code", "learning", "beginner", "non-programmer"]
+    },
+    {
+      "id": 11,
+      "title": "Sabrina.dev: The ULTIMATE Claude Code Tutorial (build an AI Marketing Officer)",
+      "url": "https://www.sabrina.dev/p/claude-code-full-course-for-beginners",
+      "type": "article",
+      "category": "ai-tech",
+      "date": "2026-02-17",
+      "summary": "Full course on building an AI Marketing Officer with Claude Code. Covers skills, quality gate hooks, brand voice, subagents, and permissions. Extremely relevant to Kelly's use case — building systems with Kip. Published Feb 2026.",
+      "tags": ["Claude Code", "learning", "subagents", "marketing", "agents"]
+    },
+    {
+      "id": 12,
+      "title": "CodeWithMukesh: Claude Code for Beginners — Complete 2026 Guide",
+      "url": "https://codewithmukesh.com/blog/claude-code-for-beginners/",
+      "type": "article",
+      "category": "ai-tech",
+      "date": "2026-01-20",
+      "summary": "15-minute beginner guide. Covers installation, CLAUDE.md setup (like our AGENTS.md), Plan Mode mastery, and comparison with Copilot/Cursor. Good quick reference for specific questions.",
+      "tags": ["Claude Code", "learning", "CLAUDE.md", "Plan Mode", "beginner"]
+    },
+    {
+      "id": 13,
+      "title": "Udemy: Claude Code Beginner Crash Course (Eden Marco, Feb 2026)",
+      "url": "https://www.udemy.com/course/claudecode/",
+      "type": "course",
+      "category": "ai-tech",
+      "date": "2026-02-01",
+      "summary": "Structured video course on agentic coding workflows with Claude Code. Updated February 2026. Good for learning systematically rather than picking things up ad hoc.",
+      "tags": ["Claude Code", "learning", "course", "agentic", "video"]
+    }
   ]
 }
