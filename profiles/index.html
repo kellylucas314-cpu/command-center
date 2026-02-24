@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HelioFlux Rolodex</title>
+    <title>HelioFlux Rolodex 📇</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,6 +12,10 @@
             --bg-card-hover: #142A45;
             --accent: #00B4D8;
             --accent-glow: #7DF9FF;
+            --accent-pink: #FF6B9D;
+            --accent-purple: #A855F7;
+            --accent-orange: #F97316;
+            --accent-green: #10B981;
             --text-primary: #FFFFFF;
             --text-secondary: #8BA3C7;
             --text-muted: #5A7494;
@@ -33,6 +37,9 @@
             color: var(--text-primary);
             min-height: 100vh;
             padding: 20px;
+            background-image: 
+                radial-gradient(ellipse at 10% 20%, rgba(0, 180, 216, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
         }
 
         .container {
@@ -57,15 +64,28 @@
 
         .logo h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            background: linear-gradient(135deg, var(--accent), var(--accent-pink), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gradient-shift 3s ease infinite;
+            background-size: 200% 200%;
         }
 
-        .logo span {
-            font-size: 32px;
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .logo-icon {
+            font-size: 40px;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .search-box {
@@ -75,10 +95,10 @@
 
         .search-box input {
             width: 100%;
-            padding: 12px 20px 12px 45px;
+            padding: 14px 20px 14px 50px;
             background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
+            border: 2px solid var(--border);
+            border-radius: 15px;
             color: var(--text-primary);
             font-size: 14px;
             transition: all 0.3s ease;
@@ -87,112 +107,236 @@
         .search-box input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
         }
 
         .search-box::before {
             content: "🔍";
             position: absolute;
-            left: 15px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .stats-bar {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             margin-bottom: 30px;
+            flex-wrap: wrap;
         }
 
         .stat {
-            background: var(--bg-card);
-            padding: 15px 25px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-card-hover));
+            padding: 20px 30px;
+            border-radius: 15px;
             border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-pink));
+        }
+
+        .stat:nth-child(2)::before {
+            background: linear-gradient(90deg, var(--accent-green), var(--accent));
+        }
+
+        .stat:nth-child(3)::before {
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+        }
+
+        .stat:nth-child(4)::before {
+            background: linear-gradient(90deg, var(--accent-orange), var(--warning));
         }
 
         .stat-value {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 24px;
+            font-size: 36px;
             font-weight: 700;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .stat-label {
             font-size: 12px;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            margin-top: 5px;
+        }
+
+        .stat-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            opacity: 0.3;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: white;
+            border-color: transparent;
+            transform: scale(1.05);
         }
 
         .profiles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
         }
 
         .profile-card {
             background: var(--bg-card);
-            border-radius: 15px;
+            border-radius: 20px;
             border: 1px solid var(--border);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+            position: relative;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-pink), var(--accent-purple));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .profile-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
             border-color: var(--accent);
-            box-shadow: 0 10px 40px rgba(0, 180, 216, 0.15);
+            box-shadow: 
+                0 20px 60px rgba(0, 180, 216, 0.2),
+                0 0 40px rgba(168, 85, 247, 0.1);
+        }
+
+        .profile-card:hover::before {
+            opacity: 1;
         }
 
         .profile-header {
             background: linear-gradient(135deg, #1a3a5c 0%, #0F2137 100%);
             padding: 25px;
             position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 180, 216, 0.1) 0%, transparent 70%);
         }
 
         .profile-avatar {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 15px;
-            border: 3px solid var(--bg-card);
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-avatar.vc {
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+        }
+
+        .profile-avatar.ceo {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-pink));
+        }
+
+        .profile-avatar.advisor {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent));
         }
 
         .profile-name {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-title {
             color: var(--text-secondary);
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-company {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(0, 180, 216, 0.1);
-            padding: 6px 12px;
-            border-radius: 20px;
+            background: rgba(0, 180, 216, 0.15);
+            padding: 8px 15px;
+            border-radius: 25px;
             font-size: 13px;
-            color: var(--accent);
+            color: var(--accent-glow);
+            position: relative;
+            z-index: 1;
         }
 
         .profile-body {
-            padding: 20px 25px;
+            padding: 25px;
+        }
+
+        .profile-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 13px;
+            padding: 12px 15px;
+            background: rgba(0, 180, 216, 0.05);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 15px;
         }
 
         .profile-tags {
@@ -204,20 +348,67 @@
 
         .tag {
             background: rgba(255, 255, 255, 0.05);
-            padding: 5px 12px;
-            border-radius: 15px;
+            padding: 6px 14px;
+            border-radius: 20px;
             font-size: 12px;
             color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--accent-glow);
         }
 
         .tag.warm {
-            background: rgba(16, 185, 129, 0.15);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 180, 216, 0.2));
             color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
         .tag.hot {
-            background: rgba(239, 68, 68, 0.15);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(249, 115, 22, 0.2));
             color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            animation: pulse 2s ease infinite;
+        }
+
+        .tag.cancer {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(255, 107, 157, 0.2));
+            color: var(--accent-pink);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .profile-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .highlight-label {
+            color: var(--text-muted);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-value {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-top: 3px;
         }
 
         .profile-meta {
@@ -241,13 +432,17 @@
             align-items: center;
             gap: 6px;
             font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 20px;
         }
 
         .connection-known {
+            background: rgba(16, 185, 129, 0.15);
             color: var(--success);
         }
 
         .connection-cold {
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text-muted);
         }
 
@@ -259,71 +454,109 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             overflow-y: auto;
             padding: 40px 20px;
+            backdrop-filter: blur(10px);
         }
 
         .modal-overlay.active {
             display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .modal {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: var(--bg-card);
-            border-radius: 20px;
+            border-radius: 25px;
             border: 1px solid var(--border);
             overflow: hidden;
+            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .modal-header {
             background: linear-gradient(135deg, #1a3a5c 0%, #0F2137 100%);
-            padding: 30px;
+            padding: 35px;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-header::after {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 180, 216, 0.15) 0%, transparent 70%);
         }
 
         .modal-close {
             background: rgba(255, 255, 255, 0.1);
             border: none;
             color: var(--text-primary);
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 24px;
             transition: all 0.3s ease;
+            z-index: 1;
         }
 
         .modal-close:hover {
             background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
         }
 
         .modal-content {
-            padding: 30px;
+            padding: 35px;
         }
 
         .modal-section {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .modal-section h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 16px;
-            color: var(--accent);
+            font-size: 18px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .modal-section h3 span {
+            font-size: 22px;
+        }
+
+        .section-title-text {
+            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .modal-section p, .modal-section li {
             color: var(--text-secondary);
             font-size: 14px;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .modal-section ul {
@@ -332,70 +565,149 @@
         }
 
         .modal-section li {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
         }
 
-        .modal-section li:last-child {
-            border-bottom: none;
+        .modal-section li:hover {
+            background: rgba(0, 180, 216, 0.1);
+            transform: translateX(5px);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent), var(--accent-purple), var(--accent-pink));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-card);
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-role {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+        }
+
+        .timeline-company {
+            color: var(--text-secondary);
+            font-size: 13px;
         }
 
         .intro-path {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .intro-priority {
-            font-size: 16px;
+            font-size: 20px;
+            min-width: 60px;
         }
 
         .contact-links {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .contact-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(0, 180, 216, 0.1);
-            padding: 10px 15px;
-            border-radius: 8px;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.1), rgba(168, 85, 247, 0.1));
+            padding: 12px 20px;
+            border-radius: 12px;
             color: var(--accent);
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
             transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
 
         .contact-link:hover {
-            background: rgba(0, 180, 216, 0.2);
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.2), rgba(168, 85, 247, 0.2));
+            border-color: var(--accent);
+            transform: translateY(-3px);
         }
 
         .pitch-tip {
-            background: rgba(0, 180, 216, 0.05);
-            border-left: 3px solid var(--accent);
-            padding: 15px;
-            border-radius: 0 8px 8px 0;
-            margin-top: 10px;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.08), rgba(168, 85, 247, 0.08));
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            margin-top: 15px;
         }
 
         .pitch-tip p {
             color: var(--text-primary) !important;
             font-style: italic;
+            font-size: 15px;
         }
 
         .empty-state {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             color: var(--text-muted);
         }
 
         .empty-state span {
-            font-size: 48px;
+            font-size: 64px;
             display: block;
             margin-bottom: 20px;
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(255, 107, 157, 0.1));
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+
+        .fun-fact-label {
+            font-size: 11px;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
 
         @media (max-width: 768px) {
@@ -415,6 +727,10 @@
             .profiles-grid {
                 grid-template-columns: 1fr;
             }
+
+            .profile-highlights {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -422,11 +738,11 @@
     <div class="container">
         <header>
             <div class="logo">
-                <span>📇</span>
+                <span class="logo-icon">📇</span>
                 <h1>HelioFlux Rolodex</h1>
             </div>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search profiles...">
+                <input type="text" id="searchInput" placeholder="Search by name, company, tags...">
             </div>
         </header>
 
@@ -434,15 +750,32 @@
             <div class="stat">
                 <div class="stat-value" id="totalProfiles">0</div>
                 <div class="stat-label">Total Profiles</div>
+                <span class="stat-icon">👥</span>
             </div>
             <div class="stat">
                 <div class="stat-value" id="warmConnections">0</div>
                 <div class="stat-label">Warm Connections</div>
+                <span class="stat-icon">🤝</span>
             </div>
             <div class="stat">
                 <div class="stat-value" id="vcProfiles">0</div>
                 <div class="stat-label">Investors/VCs</div>
+                <span class="stat-icon">💰</span>
             </div>
+            <div class="stat">
+                <div class="stat-value" id="cancerConnections">0</div>
+                <div class="stat-label">Cancer Connection</div>
+                <span class="stat-icon">🎗️</span>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">🌐 All</button>
+            <button class="filter-btn" data-filter="vc">💰 Investors</button>
+            <button class="filter-btn" data-filter="ceo">👔 CEO Candidates</button>
+            <button class="filter-btn" data-filter="advisor">🧠 Advisors</button>
+            <button class="filter-btn" data-filter="warm">🤝 Warm Only</button>
+            <button class="filter-btn" data-filter="cancer">🎗️ Cancer Connection</button>
         </div>
 
         <div class="profiles-grid" id="profilesGrid">
@@ -450,26 +783,24 @@
         </div>
     </div>
 
-    <!-- Modal for full profile view -->
+    <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-header-content">
                     <div class="profile-avatar" id="modalAvatar">DB</div>
-                    <div class="profile-name" id="modalName">Dave Bisceglia</div>
-                    <div class="profile-title" id="modalTitle">Venture Partner</div>
-                    <div class="profile-company" id="modalCompany">🏢 Founder Collective</div>
+                    <div class="profile-name" id="modalName">Name</div>
+                    <div class="profile-title" id="modalTitle">Title</div>
+                    <div class="profile-company" id="modalCompany">🏢 Company</div>
                 </div>
                 <button class="modal-close" onclick="closeModal()">×</button>
             </div>
             <div class="modal-content" id="modalContent">
-                <!-- Content loaded dynamically -->
             </div>
         </div>
     </div>
 
     <script>
-        // Profile data - this will be populated from markdown files
         const profiles = [
             {
                 id: 'dave-bisceglia',
@@ -478,40 +809,109 @@
                 title: 'Venture Partner',
                 company: 'Founder Collective',
                 location: 'Boston, MA',
-                tags: ['Seed VC', 'Consumer', 'Gaming'],
+                tags: ['Seed VC', 'Consumer', 'Gaming', 'PLG'],
                 isWarm: true,
                 knownBy: 'Glenn',
                 type: 'vc',
-                thesis: '"Weird and wonderful" — overlooked opportunities, product excellence, clear GTM',
-                background: 'Operator-turned-VC: exited The Tap Lab to Warner Bros, scaled billion-dollar gaming franchises at Scopely',
-                healthcare: 'No personal cancer connection, but FC has 10+ healthcare portfolio companies (Omada Health, PillPack, Galatea Bio)',
+                hasCancerConnection: false,
+                quote: '"Weird and wonderful" — the opportunities other VCs sleep on',
+                highlights: {
+                    stage: 'Seed',
+                    focus: 'Consumer/Gaming',
+                    joined: '2025',
+                    portfolio: '10+ healthcare cos'
+                },
+                thesis: 'Looks for "weird and wonderful" overlooked opportunities. Product excellence over science-first. Clear go-to-market from day 1. Operators who\'ve won on hard mode.',
+                background: 'Operator-turned-VC: Co-founded The Tap Lab (acquired by Warner Bros), scaled Game of Thrones: Conquest to billion-dollar franchise, VP at Scopely (Marvel Strike Force, Monopoly GO). Forbes 30 Under 30. Just joined FC in 2025 — hungry for deals.',
+                healthcare: 'No personal cancer connection, but Founder Collective has 10+ healthcare portfolio companies: Omada Health (NASDAQ), PillPack (acquired Amazon), Galatea Bio, Canopy, Infera, Ayble, HumanFirst, ianacare.',
+                timeline: [
+                    { date: '2025-Now', role: 'Venture Partner', company: 'Founder Collective' },
+                    { date: '2022-2025', role: 'VP Product & Studio', company: 'Scopely' },
+                    { date: '2015-2022', role: 'Led GoT: Conquest', company: 'WB Games' },
+                    { date: '2009-2015', role: 'Co-Founder & CEO', company: 'The Tap Lab' }
+                ],
                 introPaths: [
                     { priority: '⭐⭐⭐', person: 'Glenn Lucas', reason: 'Knows him personally' },
                     { priority: '⭐⭐', person: 'Ralph Shao', reason: 'Tap Lab co-founder, BU classmate' },
-                    { priority: '⭐⭐', person: 'Eric Paley', reason: 'FC co-founder' }
+                    { priority: '⭐⭐', person: 'Eric Paley', reason: 'FC co-founder (now MA govt)' },
+                    { priority: '⭐', person: 'Techstars Boston', reason: 'Tap Lab was in cohort' }
                 ],
                 contacts: [
                     { type: 'LinkedIn', url: 'https://linkedin.com/in/davebisceglia', icon: '🔗' },
-                    { type: 'Twitter', url: 'https://x.com/davebisceglia', icon: '𝕏' },
-                    { type: 'Email (guess)', url: 'mailto:dave@foundercollective.com', icon: '📧' }
+                    { type: 'Twitter', url: 'https://x.com/tapdave', icon: '𝕏' },
+                    { type: 'Email', url: 'mailto:dave@foundercollective.com', icon: '📧' }
                 ],
-                pitchTip: 'Lead with product, not science. Frame as "weird and wonderful" — the opportunity other VCs are sleeping on. He\'s new to VC and hungry for deals.'
+                pitchTip: 'Lead with product, not science. Frame HelioFlux as "weird and wonderful" — the cancer detection play other VCs are sleeping on. He\'s new to VC and hungry. Mention consumer-grade UX.',
+                funFact: 'First female ever to hold Global Head of Research role in Philips\' 134-year history!'
+            },
+            {
+                id: 'betsabeh-madani-hermann',
+                name: 'Betsabeh Madani-Hermann',
+                initials: 'BM',
+                title: 'Global Head of Research',
+                company: 'Philips',
+                location: 'Netherlands',
+                tags: ['Healthcare', 'Life Sciences', 'Medtech', 'AI', 'Board Member'],
+                isWarm: false,
+                knownBy: null,
+                type: 'ceo',
+                hasCancerConnection: true,
+                quote: '"Tech for impact, not hype" — real outcomes over buzzwords',
+                highlights: {
+                    stage: 'All stages',
+                    focus: 'Healthcare/Medtech',
+                    scale: '€7B → Startup',
+                    special: '🎗️ Personal cancer connection'
+                },
+                thesis: 'Tech for impact, not hype. Organizations at inflection points. Precision medicine beyond oncology. Data quality and diversity in AI. Knows when to stop — disciplined capital.',
+                background: 'First woman to be Global Head of Research at Philips (134-year history!). Previously: Global Head Strategy at Philips Connected Care (€7B, 6 businesses), Borealis Ventures (healthcare VC), VP Strategy at Equicare Health (oncology), Cerner corporate strategy. Immigrant story: Tehran → Vancouver at 16 → global executive.',
+                healthcare: '🎗️ DEEPLY PERSONAL: Lost grandmother to cancer. Studied tumor contouring in precision oncology. VP Strategy at Equicare Health (oncology care coordination). Advisor to Transcode Therapeutics (metastatic cancer RNA therapy). This is her mission.',
+                timeline: [
+                    { date: '2023-Now', role: 'Global Head of Research', company: 'Philips' },
+                    { date: 'Prior', role: 'Global Head Strategy & BD', company: 'Philips Connected Care' },
+                    { date: 'Prior', role: 'Investor/Partner', company: 'Borealis Ventures' },
+                    { date: 'Prior', role: 'VP Strategy', company: 'Equicare Health (Oncology)' },
+                    { date: 'Prior', role: 'Corporate Strategy', company: 'Cerner Corporation' }
+                ],
+                introPaths: [
+                    { priority: '⭐⭐⭐', person: 'Dartmouth/Tuck T\'13 network', reason: 'Very active alum, started Tuck Club Canada' },
+                    { priority: '⭐⭐', person: 'Philips alumni', reason: 'Connected Care or Research' },
+                    { priority: '⭐⭐', person: 'XPRIZE Brain Trust', reason: 'Shared membership' },
+                    { priority: '⭐', person: 'Transcode Therapeutics', reason: 'She\'s an advisor there' }
+                ],
+                contacts: [
+                    { type: 'LinkedIn', url: 'https://linkedin.com/in/betsabeh', icon: '🔗' },
+                    { type: 'Email (Philips)', url: 'mailto:betsabeh.madani-hermann@philips.com', icon: '📧' }
+                ],
+                pitchTip: 'Lead with precision medicine + intelligent systems language (her exact words). Position HelioFlux at an inflection point. The cancer angle is PERSONAL for her — grandmother, research, Equicare. Don\'t lead with tech hype — lead with patient outcomes.',
+                funFact: 'First woman to be Global Head of Research at Philips in 134 years! Emigrated from Tehran to Vancouver at age 16.'
             }
         ];
 
-        function renderProfiles(filter = '') {
+        function renderProfiles(filter = '', typeFilter = 'all') {
             const grid = document.getElementById('profilesGrid');
-            const filtered = profiles.filter(p => 
+            let filtered = profiles.filter(p => 
                 p.name.toLowerCase().includes(filter.toLowerCase()) ||
                 p.company.toLowerCase().includes(filter.toLowerCase()) ||
                 p.tags.some(t => t.toLowerCase().includes(filter.toLowerCase()))
             );
+
+            if (typeFilter !== 'all') {
+                if (typeFilter === 'warm') {
+                    filtered = filtered.filter(p => p.isWarm);
+                } else if (typeFilter === 'cancer') {
+                    filtered = filtered.filter(p => p.hasCancerConnection);
+                } else {
+                    filtered = filtered.filter(p => p.type === typeFilter);
+                }
+            }
 
             if (filtered.length === 0) {
                 grid.innerHTML = `
                     <div class="empty-state">
                         <span>🔍</span>
                         <p>No profiles found</p>
+                        <p style="font-size: 14px; margin-top: 10px;">Try a different search or filter</p>
                     </div>
                 `;
                 return;
@@ -520,15 +920,25 @@
             grid.innerHTML = filtered.map(p => `
                 <div class="profile-card" onclick="openModal('${p.id}')">
                     <div class="profile-header">
-                        <div class="profile-avatar">${p.initials}</div>
+                        <div class="profile-avatar ${p.type}">${p.initials}</div>
                         <div class="profile-name">${p.name}</div>
                         <div class="profile-title">${p.title}</div>
                         <div class="profile-company">🏢 ${p.company}</div>
                     </div>
                     <div class="profile-body">
+                        <div class="profile-quote">"${p.quote}"</div>
                         <div class="profile-tags">
-                            ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                            ${p.tags.slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('')}
                             ${p.isWarm ? '<span class="tag warm">🤝 Warm</span>' : ''}
+                            ${p.hasCancerConnection ? '<span class="tag cancer">🎗️ Cancer</span>' : ''}
+                        </div>
+                        <div class="profile-highlights">
+                            ${Object.entries(p.highlights).slice(0, 4).map(([k, v]) => `
+                                <div class="highlight">
+                                    <div class="highlight-label">${k}</div>
+                                    <div class="highlight-value">${v}</div>
+                                </div>
+                            `).join('')}
                         </div>
                         <div class="profile-meta">
                             <div class="profile-location">📍 ${p.location}</div>
@@ -545,6 +955,7 @@
             document.getElementById('totalProfiles').textContent = profiles.length;
             document.getElementById('warmConnections').textContent = profiles.filter(p => p.isWarm).length;
             document.getElementById('vcProfiles').textContent = profiles.filter(p => p.type === 'vc').length;
+            document.getElementById('cancerConnections').textContent = profiles.filter(p => p.hasCancerConnection).length;
         }
 
         function openModal(profileId) {
@@ -552,40 +963,59 @@
             if (!profile) return;
 
             document.getElementById('modalAvatar').textContent = profile.initials;
+            document.getElementById('modalAvatar').className = `profile-avatar ${profile.type}`;
             document.getElementById('modalName').textContent = profile.name;
             document.getElementById('modalTitle').textContent = profile.title;
             document.getElementById('modalCompany').textContent = '🏢 ' + profile.company;
 
             document.getElementById('modalContent').innerHTML = `
                 <div class="modal-section">
-                    <h3>🧠 Investment Thesis</h3>
+                    <h3><span>🧠</span> <span class="section-title-text">Investment Thesis</span></h3>
                     <p>${profile.thesis}</p>
                 </div>
 
                 <div class="modal-section">
-                    <h3>💼 Background</h3>
+                    <h3><span>💼</span> <span class="section-title-text">Career Journey</span></h3>
+                    <div class="timeline">
+                        ${profile.timeline.map(t => `
+                            <div class="timeline-item">
+                                <div class="timeline-date">${t.date}</div>
+                                <div class="timeline-role">${t.role}</div>
+                                <div class="timeline-company">${t.company}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3><span>📖</span> <span class="section-title-text">Background</span></h3>
                     <p>${profile.background}</p>
                 </div>
 
                 <div class="modal-section">
-                    <h3>🏥 Healthcare Relevance</h3>
+                    <h3><span>🏥</span> <span class="section-title-text">Healthcare / Cancer Relevance</span></h3>
                     <p>${profile.healthcare}</p>
                 </div>
 
                 <div class="modal-section">
-                    <h3>🤝 Warm Intro Paths</h3>
+                    <h3><span>🤝</span> <span class="section-title-text">Warm Intro Paths</span></h3>
                     <ul>
                         ${profile.introPaths.map(i => `
-                            <li class="intro-path">
-                                <span class="intro-priority">${i.priority}</span>
-                                <strong>${i.person}</strong> — ${i.reason}
+                            <li>
+                                <div class="intro-path">
+                                    <span class="intro-priority">${i.priority}</span>
+                                    <div>
+                                        <strong>${i.person}</strong><br>
+                                        <span style="color: var(--text-muted); font-size: 12px;">${i.reason}</span>
+                                    </div>
+                                </div>
                             </li>
                         `).join('')}
                     </ul>
                 </div>
 
                 <div class="modal-section">
-                    <h3>📬 Contact</h3>
+                    <h3><span>📬</span> <span class="section-title-text">Contact</span></h3>
                     <div class="contact-links">
                         ${profile.contacts.map(c => `
                             <a href="${c.url}" target="_blank" class="contact-link">
@@ -596,11 +1026,18 @@
                 </div>
 
                 <div class="modal-section">
-                    <h3>💡 Pitch Strategy</h3>
+                    <h3><span>💡</span> <span class="section-title-text">Pitch Strategy for HelioFlux</span></h3>
                     <div class="pitch-tip">
                         <p>${profile.pitchTip}</p>
                     </div>
                 </div>
+
+                ${profile.funFact ? `
+                    <div class="fun-fact">
+                        <div class="fun-fact-label">✨ Fun Fact</div>
+                        <p style="margin: 0; color: var(--text-primary);">${profile.funFact}</p>
+                    </div>
+                ` : ''}
             `;
 
             document.getElementById('modalOverlay').classList.add('active');
@@ -610,19 +1047,27 @@
             document.getElementById('modalOverlay').classList.remove('active');
         }
 
-        // Close modal on overlay click
+        // Event listeners
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        // Close modal on Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeModal();
         });
 
-        // Search functionality
         document.getElementById('searchInput').addEventListener('input', function(e) {
-            renderProfiles(e.target.value);
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            renderProfiles(e.target.value, activeFilter);
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const searchVal = document.getElementById('searchInput').value;
+                renderProfiles(searchVal, this.dataset.filter);
+            });
         });
 
         // Initial render
