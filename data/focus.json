@@ -1,14 +1,12 @@
 {
   "kelly": {
     "big_3": [
-      {"text": "Tufts New Ventures — deadline TOMORROW Sun Feb 22 (record 2-min video + submit portal)", "done": false},
-      {"text": "Reply to Rakesh Ramaswamy — confirm cell detection number with Nirosha first", "done": false},
-      {"text": "Send Conafay reply to Joshua (deck ✅, technical details ❌ until patent filed)", "done": false}
+      {"text": "Arye Lipman meeting — TOMORROW Tue Feb 24 @ 2:30pm PST (Google Meet)", "done": false},
+      {"text": "Reply to Yaniv Sneor (MABA) — Day 6 no reply, risk losing him", "done": false},
+      {"text": "Reply to Rakesh Ramaswamy (Moffitt/CancerX) — schedule call this week", "done": false}
     ],
     "deadlines": [
-      {"text": "Tufts New Ventures ($250K+)", "date": "TOMORROW Sun Feb 22", "urgent": true},
-      {"text": "Arye Lipman meeting", "date": "Mon Feb 23", "time": "TBD", "urgent": false},
-      {"text": "Rakesh Ramaswamy call", "date": "Week of Feb 23", "urgent": true},
+      {"text": "Arye Lipman meeting", "date": "Tue Feb 24", "time": "2:30pm PST", "urgent": true},
       {"text": "StartEngine/Doryn meeting", "date": "Tue Feb 25", "time": "12:00pm PST", "urgent": false},
       {"text": "BCIC Biomedical Pitch (Google Form — quick!)", "date": "Sat Feb 28", "urgent": false}
     ],
@@ -18,23 +16,16 @@
   },
   "kip": {
     "active": [
-      {"text": "Napoleon tweet queue crons scheduled through Feb 25", "status": "running"}
+      {"text": "Napoleon tweet queue crons through Feb 25", "status": "running"}
     ],
-    "completed_today": [
-      "Napoleon Tweet #3 posted (9am on schedule)",
-      "Security system overhauled (GO verstappen codeword, SECURITY.md rewritten)",
-      "DataAnnotation account created (kellylucas314@gmail.com)",
-      "Job search updated: entry level only (coordinator/associate/specialist)",
-      "All 5 Napoleon tweets re-approved and crons set",
-      "Drafts ready: Rakesh, Tufts, BCIC, MABA, Deal Finder"
-    ]
+    "completed_today": []
   },
   "recently_done": [
-    "Red Bull Sales Analyst + Motorsports Manager apps submitted",
-    "AIDB Clawrchitect application + animated page built",
-    "Browser automation unlocked (Chromium)",
-    "Email → CRM auto-sync (480+ contacts)",
-    "Deal Finder + Market Intel crons"
+    "Press assets added to Command Center (SciAm + Radiolab)",
+    "Cell count confirmed: 5-10M cells correct",
+    "Arye Lipman prep doc updated (meeting now Tue Feb 24 2:30pm)",
+    "Red Bull + AIDB job applications submitted",
+    "Security overhauled (GO verstappen)"
   ],
-  "updated_at": "2026-02-20T23:00:00-08:00"
+  "updated_at": "2026-02-23T23:00:00-08:00"
 }

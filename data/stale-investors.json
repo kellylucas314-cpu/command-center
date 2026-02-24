@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Techstars Baltimore",
+    "company": "Techstars",
+    "email": "",
+    "status": "In Conversation",
+    "priority": "A",
+    "days_since_contact": 214,
+    "last_contact": "2025-07-25",
+    "notes": "Applied to Spring cohort. Submitted application with contacts spreadsheet. Follo"
+  },
+  {
+    "name": "Portia",
+    "company": "",
+    "email": "",
+    "status": "Warm Lead",
+    "priority": "A",
+    "days_since_contact": 172,
+    "last_contact": "2025-09-05",
+    "notes": "Business person with major capital access. Husband is at Gensler (largest archit"
+  },
+  {
+    "name": "TEG/Ignite Health",
+    "company": "Ignite Health (formerly TEG Wellness)",
+    "email": "",
+    "status": "Active Negotiation",
+    "priority": "A",
+    "days_since_contact": 104,
+    "last_contact": "2025-11-12",
+    "notes": "Strategic partnership for brain health pilot. Bridge funding discussions. Access"
+  },
+  {
+    "name": "Joseph Chandler (Joe)",
+    "company": "TEG/Rima",
+    "email": "",
+    "status": "Active Negotiation",
+    "priority": "A",
+    "days_since_contact": 104,
+    "last_contact": "2025-11-12",
+    "notes": "Key partner at TEG. Participated in brain pilot strategy discussion Nov 12, 2025"
+  },
+  {
+    "name": "Rima Health",
+    "company": "Rima Health",
+    "email": "",
+    "status": "Active Negotiation",
+    "priority": "A",
+    "days_since_contact": 104,
+    "last_contact": "2025-11-12",
+    "notes": "Data infrastructure partner for JV. Enables data lake + modeling + partner acces"
+  },
+  {
+    "name": "Lenny Cagno",
+    "company": "TEG/Ignite Health",
+    "email": "",
+    "status": "Active Negotiation",
+    "priority": "A",
+    "days_since_contact": 104,
+    "last_contact": "2025-11-12",
+    "notes": "Key TEG partner. Participated in Columbia meeting Oct 29, 2025. Discussed clinic"
+  },
+  {
+    "name": "Strong Force IP",
+    "company": "Strong Force IP",
+    "email": "",
+    "status": "Active Negotiation",
+    "priority": "A",
+    "days_since_contact": 32,
+    "last_contact": "2026-01-23",
+    "notes": "Leading IP venture firm. Creating comprehensive patent portfolio for HelioFlux. "
+  },
+  {
+    "name": "Robert Warren",
+    "company": "Hamamatsu Photonics - Corporate Ventures",
+    "email": "RWarren@hamamatsu.com",
+    "status": "In Conversation",
+    "priority": "A",
+    "days_since_contact": 18,
+    "last_contact": "2026-02-06",
+    "notes": "Feb 6 2026 meeting: Biomedical optics background, former near-infrared spectrosc"
+  },
+  {
+    "name": "YC Startup School",
+    "company": "Y Combinator",
+    "email": "",
+    "status": "In Conversation",
+    "priority": "B",
+    "days_since_contact": 173,
+    "last_contact": "2025-09-04",
+    "notes": "Applied via YC Startup School. Application help documented Sept 2025."
+  },
+  {
+    "name": "Llewellyn",
+    "company": "",
+    "email": "",
+    "status": "In Conversation",
+    "priority": "B",
+    "days_since_contact": 172,
+    "last_contact": "2025-09-05",
+    "notes": "Gave detailed deck feedback in August 2025. Meeting feedback documented. Valuabl"
+  },
+  {
+    "name": "Andy Marshall",
+    "company": "Columbia",
+    "email": "",
+    "status": "In Conversation",
+    "priority": "B",
+    "days_since_contact": 118,
+    "last_contact": "2025-10-29",
+    "notes": "Part of Columbia meeting Oct 29, 2025. Discussed technology, clinical trials, an"
+  },
+  {
+    "name": "Conafay Group",
+    "company": "Conafay Group",
+    "email": "",
+    "status": "Warm Lead",
+    "priority": "B",
+    "days_since_contact": 29,
+    "last_contact": "2026-01-26",
+    "notes": "Meeting Jan 26 2026 | Materials sent Jan 30 2026 | Outcome unknown | Last Contac"
+  }
+]
