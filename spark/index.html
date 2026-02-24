@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spark — Things Worth Keeping</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0c0e;
+      --bg-card: #141418;
+      --bg-featured: #16141a;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201, 168, 76, 0.15);
+      --gold-border: rgba(201, 168, 76, 0.25);
+      --text: #e8e4dc;
+      --text-dim: #8a8580;
+      --text-mid: #b0aa9f;
+      --white: #f5f2ec;
+      --tag-vision: rgba(100, 160, 200, 0.15);
+      --tag-vision-text: #7ab8e0;
+      --tag-leadership: rgba(180, 120, 200, 0.15);
+      --tag-leadership-text: #c084e0;
+      --tag-science: rgba(80, 200, 160, 0.15);
+      --tag-science-text: #50c8a0;
+      --tag-building: rgba(220, 140, 80, 0.15);
+      --tag-building-text: #e0956a;
+      --tag-life: rgba(200, 100, 120, 0.15);
+      --tag-life-text: #e07090;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(12,12,14,0.95), transparent);
+    }
+
+    .nav-wordmark {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text-mid); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 160px 48px 80px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 7vw, 72px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-dim);
+      font-weight: 300;
+      max-width: 480px;
+    }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      max-width: 900px;
+      margin: 0 auto 64px;
+      padding: 0 48px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent;
+      color: var(--text-dim);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text-mid);
+    }
+    .filter-btn.active {
+      background: var(--gold-dim);
+      border-color: var(--gold-border);
+      color: var(--gold);
+    }
+
+    /* ── FEATURED QUOTE ── */
+    .featured-wrap {
+      max-width: 900px;
+      margin: 0 auto 64px;
+      padding: 0 48px;
+    }
+
+    .featured-card {
+      position: relative;
+      background: var(--bg-featured);
+      border: 1px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 64px 72px;
+      overflow: hidden;
+    }
+
+    .featured-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .featured-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold-border);
+    }
+
+    .featured-mark {
+      position: absolute;
+      top: 24px;
+      right: 40px;
+      font-family: 'Playfair Display', serif;
+      font-size: 200px;
+      line-height: 1;
+      color: rgba(201, 168, 76, 0.06);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .featured-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      line-height: 1.65;
+      color: var(--white);
+      font-style: italic;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .featured-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .attribution {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .attribution-dash {
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .attribution-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .source-link {
+      font-size: 12px;
+      color: var(--text-dim);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .source-link:hover { color: var(--text-mid); }
+    .source-link svg { width: 12px; height: 12px; }
+
+    /* ── QUOTE GRID ── */
+    .grid-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px 120px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    .quote-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 40px 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+    .quote-card:hover {
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-mark {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      line-height: 1;
+      color: rgba(255,255,255,0.04);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+    .card-tag.Vision    { background: var(--tag-vision); color: var(--tag-vision-text); }
+    .card-tag.Leadership{ background: var(--tag-leadership); color: var(--tag-leadership-text); }
+    .card-tag.Science   { background: var(--tag-science); color: var(--tag-science-text); }
+    .card-tag.Building  { background: var(--tag-building); color: var(--tag-building-text); }
+    .card-tag.Life      { background: var(--tag-life); color: var(--tag-life-text); }
+
+    .card-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-attribution {
+      font-size: 13px;
+      color: var(--text-dim);
+      font-style: normal;
+    }
+    .card-attribution strong {
+      color: var(--text-mid);
+      font-weight: 500;
+    }
+
+    .card-link {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .card-link:hover { color: var(--gold); }
+    .card-link svg { width: 14px; height: 14px; }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 64px 0;
+      color: var(--text-dim);
+      font-size: 15px;
+    }
+
+    /* ── ANIMATION DELAYS ── */
+    .quote-card:nth-child(1) { animation-delay: 0.05s; }
+    .quote-card:nth-child(2) { animation-delay: 0.1s; }
+    .quote-card:nth-child(3) { animation-delay: 0.15s; }
+    .quote-card:nth-child(4) { animation-delay: 0.2s; }
+    .quote-card:nth-child(5) { animation-delay: 0.25s; }
+    .quote-card:nth-child(6) { animation-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav, .hero, .filter-bar, .featured-wrap, .grid-wrap { padding-left: 24px; padding-right: 24px; }
+      .featured-card { padding: 40px 32px; }
+      .grid-wrap { grid-template-columns: 1fr; }
+      .featured-mark { font-size: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-wordmark" href="#">Spark</a>
+    <a class="nav-back" href="../index.html">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M10 12L6 8l4-4"/>
+      </svg>
+      Dashboard
+    </a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-eyebrow">Kelly Lucas</div>
+    <h1 class="hero-title">Things worth<br/>keeping.</h1>
+    <p class="hero-sub">Quotes, ideas, and signals that cut through the noise. A collection that grows.</p>
+  </section>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="Vision">Vision</button>
+    <button class="filter-btn" data-filter="Leadership">Leadership</button>
+    <button class="filter-btn" data-filter="Science">Science</button>
+    <button class="filter-btn" data-filter="Building">Building</button>
+    <button class="filter-btn" data-filter="Life">Life</button>
+  </div>
+
+  <!-- Featured Quote (pinned, always shows) -->
+  <div class="featured-wrap" id="featuredWrap">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- Quote Grid -->
+  <div class="grid-wrap" id="quoteGrid">
+    <!-- Populated by JS -->
+  </div>
+
+  <script>
+    let allQuotes = [];
+    let activeFilter = 'all';
+
+    async function loadQuotes() {
+      try {
+        const res = await fetch('quotes.json?' + Date.now());
+        allQuotes = await res.json();
+        render();
+      } catch(e) {
+        console.error('Could not load quotes.json', e);
+      }
+    }
+
+    function render() {
+      const featured = allQuotes.find(q => q.featured);
+      const rest = allQuotes.filter(q => !q.featured);
+
+      // Featured card
+      const fw = document.getElementById('featuredWrap');
+      if (featured && (activeFilter === 'all' || activeFilter === featured.category)) {
+        fw.style.display = 'block';
+        fw.innerHTML = `
+          <div class="featured-card">
+            <div class="featured-mark">"</div>
+            <div class="featured-label">Featured</div>
+            <p class="featured-text">${featured.text}</p>
+            <div class="featured-footer">
+              <div class="attribution">
+                <div class="attribution-dash"></div>
+                <span class="attribution-name">${featured.attribution}</span>
+              </div>
+              ${featured.source ? `<a class="source-link" href="${featured.source}" target="_blank" rel="noopener">
+                Source
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M6 4H4a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1v-2M9 3h4m0 0v4m0-4L8 10"/>
+                </svg>
+              </a>` : ''}
+            </div>
+          </div>`;
+      } else {
+        fw.style.display = 'none';
+      }
+
+      // Grid
+      const grid = document.getElementById('quoteGrid');
+      const filtered = activeFilter === 'all'
+        ? rest
+        : rest.filter(q => q.category === activeFilter);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="empty-state">No entries in this category yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(q => `
+        <div class="quote-card">
+          <div class="card-mark">"</div>
+          <span class="card-tag ${q.category}">${q.category}</span>
+          <p class="card-text">${q.text}</p>
+          <div class="card-footer">
+            <span class="card-attribution"><strong>${q.attribution}</strong></span>
+            ${q.source ? `<a class="card-link" href="${q.source}" target="_blank" rel="noopener" title="Source">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M6 4H4a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1v-2M9 3h4m0 0v4m0-4L8 10"/>
+              </svg>
+            </a>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter buttons
+    document.getElementById('filterBar').addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      render();
+    });
+
+    loadQuotes();
+  </script>
+</body>
+</html>

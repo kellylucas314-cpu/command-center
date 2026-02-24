@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "text": "There needs to be someone who is sort of the keeper and reiterator of the vision, because there's just a ton of work to do and a lot of times... it really helps if there's someone there saying, 'Well, we're one step closer.'",
+    "attribution": "Steve Jobs",
+    "source": "https://wisdomquotes.com/steve-jobs-quotes/",
+    "category": "Vision",
+    "featured": true,
+    "added": "2026-02-24"
+  },
+  {
+    "id": 2,
+    "text": "If you are working on something exciting that you really care about, you don't have to be pushed. The vision pulls you.",
+    "attribution": "Steve Jobs",
+    "source": "https://wisdomquotes.com/steve-jobs-quotes/",
+    "category": "Vision",
+    "featured": false,
+    "added": "2026-02-24"
+  },
+  {
+    "id": 3,
+    "text": "The greatest people are self-managing... What they need is a common vision. And that's what leadership is: having a vision; being able to articulate that so the people around you can understand it.",
+    "attribution": "Steve Jobs",
+    "source": "https://wisdomquotes.com/steve-jobs-quotes/",
+    "category": "Leadership",
+    "featured": false,
+    "added": "2026-02-24"
+  }
+]
