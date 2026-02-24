@@ -142,6 +142,11 @@
             margin-bottom: 0.75rem;
         }
         .card-title { font-weight: 600; font-size: 0.9rem; }
+        /* Collapse empty dynamic content areas */
+        .card-body-dynamic:empty { display: none; }
+        .card-body-dynamic:empty ~ .card-header { display: none; }
+        .grid-2:not(:has([id]:not(:empty))) { display: none; }
+        .card:has(> .card-header + div:empty) { display: none; }
         
         /* Grid */
         .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
