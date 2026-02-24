@@ -65,15 +65,27 @@
     },
     {
       "id": 6,
-      "title": "Patent — Engagement Agreement",
-      "context": "Mike Schaldenbrand (Strong Force IP) has engagement ready. Needs your signature + $2,500 retainer. Can't share technical details publicly until this is filed.",
+      "title": "🚨 Patent — Sign Engagement Agreement TODAY",
+      "context": "Mike Schaldenbrand (Strong Force IP) has the agreement ready. Needs signature + $2,500 retainer. Until this is filed: cannot share technical details with Conafay's PhD/MD team, cannot go public with full tech, YC app is more exposed. Every day unsigned is a risk.",
       "category": "legal",
-      "urgency": "high",
+      "urgency": "critical",
       "status": "needs-you",
       "opened": "2026-02-15",
-      "action_label": "Sign & Pay",
+      "action_label": "Email Mike",
+      "action_link": "mailto:mike@strongforceip.com",
+      "action_note": "mike@strongforceip.com — Strong Force IP, Detroit. $2,500 retainer to start."
+    },
+    {
+      "id": 16,
+      "title": "Take down old HelioFlux website",
+      "context": "Old site is live and potentially showing outdated info or conflicting with the new interactive patient journey. Needs to be taken offline or redirected.",
+      "category": "admin",
+      "urgency": "medium",
+      "status": "needs-you",
+      "opened": "2026-02-24",
+      "action_label": "Handle",
       "action_link": "",
-      "action_note": "Contact Mike Schaldenbrand — engagement agreement sitting unsigned"
+      "action_note": "Who controls the domain/hosting? Redirect to helioflux-interactive or take offline."
     },
     {
       "id": 7,
