@@ -640,6 +640,14 @@
             
             <!-- IDEAS TRACKER -->
             <div class="page" id="page-ideas">
+
+                <!-- Quick capture -->
+                <div style="display:flex;gap:.6rem;margin-bottom:1.25rem;">
+                    <input id="quick-idea-input" placeholder="💡 Capture an idea... (press Enter)" style="flex:1;padding:.65rem 1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text-primary);font-size:.9rem;outline:none;" onkeydown="if(event.key==='Enter')quickCaptureIdea()" onfocus="this.style.borderColor='rgba(0,180,216,0.5)'" onblur="this.style.borderColor='var(--border)'">
+                    <button onclick="quickCaptureIdea()" style="padding:.65rem 1.25rem;background:var(--accent-teal);color:#000;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:.875rem;">Capture</button>
+                </div>
+
+                <!-- This week's Big 3 -->
                 <div class="card" style="background: linear-gradient(135deg, rgba(0,180,216,0.1), rgba(125,249,255,0.05)); margin-bottom: 1rem;">
                     <div class="card-header">
                         <span class="card-title">🎯 This Week's Big 3</span>
@@ -665,11 +673,12 @@
                 </div>
 
                 <!-- SEEDS -->
-                <div class="card" style="margin-top: 1rem;">
-                    <div class="card-header">
-                        <span class="card-title">🌱 Seeds — Fun Ideas Worth Growing</span>
+                <div style="margin-top:1.5rem;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+                        <h3 style="font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent-teal);margin:0;">🌱 Seeds — Ideas Worth Growing</h3>
+                        <span id="seeds-count" style="font-size:.75rem;color:var(--text-muted);"></span>
                     </div>
-                    <div id="seeds-list"></div>
+                    <div id="seeds-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;"></div>
                 </div>
             </div>
             
@@ -1896,18 +1905,21 @@
                 </div>
             `).join('') || '<div class="empty">Nothing completed yet</div>';
 
-            // Seeds
+            // Seeds — card grid
             const seeds = ideasData.seeds || [];
+            if(document.getElementById('seeds-count')) document.getElementById('seeds-count').textContent = `${seeds.length} ideas`;
             document.getElementById('seeds-list').innerHTML = seeds.length ? seeds.map(seed => `
-                <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
-                    <div style="font-size: 1.5rem; line-height: 1;">${seed.emoji}</div>
-                    <div style="flex: 1;">
-                        <div style="font-size: 0.95rem; font-weight: 600; color: var(--text);">${seed.title}</div>
-                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 3px; line-height: 1.4;">${seed.spark}</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">Planted ${seed.added}</div>
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;gap:.75rem;transition:border-color .2s,transform .2s;cursor:default;" onmouseover="this.style.borderColor='rgba(0,180,216,0.4)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+                    <div style="display:flex;align-items:flex-start;gap:.75rem;">
+                        <span style="font-size:1.75rem;line-height:1;flex-shrink:0;">${seed.emoji}</span>
+                        <div>
+                            <div style="font-size:.95rem;font-weight:700;color:var(--text-primary);line-height:1.3;">${seed.title}</div>
+                            <div style="font-size:.7rem;color:var(--text-muted);margin-top:.2rem;">Planted ${seed.added}</div>
+                        </div>
                     </div>
+                    <p style="font-size:.8rem;color:var(--text-muted);line-height:1.55;margin:0;">${seed.spark}</p>
                 </div>
-            `).join('') : '<div class="empty">No seeds yet! Drop a fun idea anytime.</div>';
+            `).join('') : '<div class="empty" style="grid-column:1/-1;">No seeds yet! Tell Kip an idea anytime.</div>';
         }
         // Toggle functions for checkboxes
         function toggleTodo(who, idx, el) {
@@ -1963,6 +1975,25 @@
         function saveIdeas() { localStorage.setItem('cc-ideas', JSON.stringify(ideasData)); }
         function saveJobs() { localStorage.setItem('cc-jobs', JSON.stringify(jobsData)); }
         function saveWins() { localStorage.setItem('cc-wins', JSON.stringify(winsData)); }
+
+        function quickCaptureIdea() {
+            const input = document.getElementById('quick-idea-input');
+            const text = input.value.trim();
+            if (!text) return;
+            const newIdea = {
+                id: Date.now(),
+                text,
+                added: new Date().toISOString().slice(0, 10),
+                status: 'inbox'
+            };
+            ideasData.inbox = ideasData.inbox || [];
+            ideasData.inbox.unshift(newIdea);
+            saveIdeas();
+            input.value = '';
+            input.style.borderColor = 'rgba(0,180,216,0.6)';
+            setTimeout(() => { input.style.borderColor = 'var(--border)'; }, 800);
+            renderIdeas();
+        }
 
         // ── JOBS ──────────────────────────────────────────────
         const STATUS_META = {

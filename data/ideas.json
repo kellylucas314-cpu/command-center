@@ -1,51 +1,141 @@
 {
   "inbox": [
     {"id": 1, "text": "Newsletter digest / inbox declutter", "added": "2026-02-18", "status": "inbox"},
-    {"id": 2, "text": "Meeting action item extraction (needs Fathom/Otter)", "added": "2026-02-18", "status": "inbox"},
+    {"id": 2, "text": "Meeting action item extraction (needs Fathom/Otter API)", "added": "2026-02-18", "status": "inbox"},
     {"id": 3, "text": "Encrypted Google Drive backups", "added": "2026-02-18", "status": "inbox"},
-    {"id": 4, "text": "Model routing logic (Sonnet vs Opus)", "added": "2026-02-18", "status": "inbox"},
-    {"id": 5, "text": "Bull Stories social media growth", "added": "2026-02-18", "status": "inbox"},
-    {"id": 6, "text": "Get Mac mini for Kip 24/7", "added": "2026-02-18", "status": "inbox"},
-    {"id": 7, "text": "Auto follow-up sequences for outreach", "added": "2026-02-18", "status": "inbox"},
-    {"id": 8, "text": "LinkedIn automation", "added": "2026-02-18", "status": "inbox"},
-    {"id": 9, "text": "Investor match scoring AI", "added": "2026-02-18", "status": "inbox"},
-    {"id": 10, "text": "Voice command interface", "added": "2026-02-18", "status": "inbox"}
+    {"id": 4, "text": "Model routing logic — Sonnet vs Opus auto-selector based on task complexity", "added": "2026-02-18", "status": "inbox"},
+    {"id": 5, "text": "Bull Stories social media growth system — schedule posts, track views", "added": "2026-02-18", "status": "inbox"},
+    {"id": 6, "text": "Get Mac mini for Kip 24/7 — dedicated hardware, no WSL limits", "added": "2026-02-18", "status": "inbox"},
+    {"id": 7, "text": "Auto follow-up email sequences for investor outreach", "added": "2026-02-18", "status": "inbox"},
+    {"id": 8, "text": "LinkedIn automation — connect + message warm leads at scale", "added": "2026-02-18", "status": "inbox"},
+    {"id": 9, "text": "Investor match scoring AI — rank CRM contacts by fit score daily", "added": "2026-02-18", "status": "inbox"},
+    {"id": 10, "text": "Voice command interface — talk to Kip like a walkie-talkie", "added": "2026-02-18", "status": "inbox"},
+    {"id": 11, "text": "Command Center daily random idea jog — Kip sends a past idea every afternoon as a brain spark", "added": "2026-02-24", "status": "inbox"},
+    {"id": 12, "text": "YC application — apply while late apps still open", "added": "2026-02-24", "status": "inbox"},
+    {"id": 13, "text": "Respondent.io signup — expert interviews $50-200/session, passive income for founder profile", "added": "2026-02-24", "status": "inbox"},
+    {"id": 14, "text": "Remotasks signup — stack with DataAnnotation", "added": "2026-02-24", "status": "inbox"}
   ],
   "in_progress": [
-    {"id": 11, "text": "Email outreach tracker", "added": "2026-02-18", "status": "in_progress"},
-    {"id": 12, "text": "Browser automation (needs Chrome)", "added": "2026-02-18", "status": "blocked"}
+    {"id": 20, "text": "Email outreach tracker", "added": "2026-02-18", "status": "in_progress"},
+    {"id": 21, "text": "Browser automation (needs Chrome + Browser Relay)", "added": "2026-02-18", "status": "blocked"}
   ],
   "done": [
-    {"id": 13, "text": "Command Center rebuild", "added": "2026-02-18", "completed": "2026-02-18"},
-    {"id": 14, "text": "Email → CRM auto-sync", "added": "2026-02-18", "completed": "2026-02-18"},
-    {"id": 15, "text": "Knowledge Base", "added": "2026-02-18", "completed": "2026-02-18"},
-    {"id": 16, "text": "Security Council cron", "added": "2026-02-18", "completed": "2026-02-18"},
-    {"id": 17, "text": "Business Advisory Council cron", "added": "2026-02-18", "completed": "2026-02-18"},
-    {"id": 18, "text": "Vector search for CRM", "added": "2026-02-18", "completed": "2026-02-18"},
-    {"id": 19, "text": "Two-way Notion sync", "added": "2026-02-18", "completed": "2026-02-18"},
-    {"id": 20, "text": "OpenClaw Ideas tab", "added": "2026-02-18", "completed": "2026-02-18"},
-    {"id": 21, "text": "Kelly/Kip to-do sections", "added": "2026-02-18", "completed": "2026-02-18"}
+    {"id": 30, "text": "Command Center rebuild — full dashboard with all tabs", "added": "2026-02-11", "completed": "2026-02-24"},
+    {"id": 31, "text": "Email → CRM auto-sync (email_sync.py, runs every 30min)", "added": "2026-02-11", "completed": "2026-02-18"},
+    {"id": 32, "text": "Knowledge Base (kb.py + knowledge.json, categories, card UI)", "added": "2026-02-18", "completed": "2026-02-24"},
+    {"id": 33, "text": "Security Council cron (2am nightly audit + injection scan)", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 34, "text": "Business Advisory Council (Mon 7am strategic review)", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 35, "text": "Vector search for CRM (crm/vector_search.py)", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 36, "text": "Two-way Notion sync (crm/notion_sync.py, hourly)", "added": "2026-02-18", "completed": "2026-02-18"},
+    {"id": 37, "text": "Multi-agent team (Scout + Quill spawnable sub-agents)", "added": "2026-02-11", "completed": "2026-02-11"},
+    {"id": 38, "text": "OpenAI image gen (gpt-image-1, surprise images for Kelly)", "added": "2026-02-20", "completed": "2026-02-20"},
+    {"id": 39, "text": "F1 Bingo multiplayer (URL-share, custom pools, 2026 regs)", "added": "2026-02-22", "completed": "2026-02-22"},
+    {"id": 40, "text": "Napoleon @BonaparteVC parody Twitter account — 5 tweets live, growing", "added": "2026-02-07", "completed": "2026-02-19"},
+    {"id": 41, "text": "AIDB Clawrchitect animated application page", "added": "2026-02-19", "completed": "2026-02-19"},
+    {"id": 42, "text": "kip-story website (shareable story of Kelly + Kip)", "added": "2026-02-20", "completed": "2026-02-20"},
+    {"id": 43, "text": "Jobs tab in Command Center", "added": "2026-02-24", "completed": "2026-02-24"},
+    {"id": 44, "text": "Agenda tab in Command Center", "added": "2026-02-24", "completed": "2026-02-24"},
+    {"id": 45, "text": "Wins board in Command Center", "added": "2026-02-24", "completed": "2026-02-24"},
+    {"id": 46, "text": "Investor Radar tab in Command Center", "added": "2026-02-24", "completed": "2026-02-24"}
   ],
   "weekly_commits": {
-    "week": "Feb 17-23, 2026",
+    "week": "Feb 24-28, 2026",
     "big_3": [
-      {"text": "Submit MABA application", "done": false},
-      {"text": "Patent engagement signed + retainer sent", "done": false},
-      {"text": "Nail the Arye Lipman meeting (Thu Feb 19)", "done": false}
+      {"text": "Apply to YC Spring 2026 (late apps open NOW)", "done": false},
+      {"text": "Send Yaniv Sneor MABA application (Day 7 overdue)", "done": false},
+      {"text": "Nail Arye Lipman meeting (Feb 24 @ 2:30pm)", "done": false}
     ],
     "bonus": [
-      {"text": "Apply to BCIC Biomedical Pitch (Feb 28)", "done": false},
-      {"text": "Apply to Tufts New Ventures (Feb 22)", "done": false}
+      {"text": "BCIC application by Sat Feb 28 (20 min Google Form)", "done": false},
+      {"text": "Sign up Respondent.io + Remotasks", "done": false},
+      {"text": "Send Rakesh Ramaswamy reply", "done": false}
     ]
   },
   "seeds": [
-    {"id": 1, "emoji": "🌱", "title": "Agent-powered idea validator", "spark": "Ideabrowser does 40-agent startup validation. We could build this for investor/partner research — 'is this worth pursuing?' instead of 100 tabs.", "added": "2026-02-19"},
-    {"id": 2, "emoji": "🧮", "title": "The Clawculator", "spark": "Answer 5 questions about your work, get personalized agent recommendations + hours saved + API cost. Lead magnet for email capture. Could actually use this ourselves.", "added": "2026-02-19"},
-    {"id": 3, "emoji": "🔥", "title": "Agent Roast", "spark": "Submit your AGENTS.md, get a brutally honest AI review. Viral shareability + drives Training signups.", "added": "2026-02-19"},
-    {"id": 4, "emoji": "📋", "title": "Agent Templates Gallery", "spark": "Downloadable AGENTS.md + SOUL.md starter kits: 'The Fundraiser,' 'The Content Machine,' 'The Job Hunter.' Drop into OpenClaw and go.", "added": "2026-02-19"},
-    {"id": 5, "emoji": "🎛️", "title": "Agent Mission Control panel", "spark": "NLW built this for his 10-agent team — shows each agent's up/down status + cost. Add a 'Kip's Team' panel to Command Center: Scout + Quill status, last run, errors, cost.", "added": "2026-02-19"},
-    {"id": 6, "emoji": "📡", "title": "HelioFlux Reddit monitor", "spark": "Jonathan's Reddit agent but for HelioFlux — watch r/biotech, r/investing, r/MachineLearning for biophotonics, UPE, early cancer detection. Daily Telegram briefing on what the internet says about your space.", "added": "2026-02-19"},
-    {"id": 7, "emoji": "🧠", "title": "Knowledge graph memory (Alhazen-style)", "spark": "Gully Burns built TypeDB memory with relationships: Collections → Things → Artifacts → Fragments → Notes. Our flat .md files work but can't query relationships. Someday: upgrade to a proper graph so 'who mentioned HelioFlux + is a VC + in LA' is one query.", "added": "2026-02-19"}
+    {
+      "id": 1,
+      "emoji": "🤖",
+      "title": "Agent-powered idea validator",
+      "spark": "Ideabrowser built 40-agent startup validation: search volume, YouTube comments, competition, execution plan, timing — all scored. We could build this for HelioFlux investor research: 'is this person worth pursuing?' as one-click deep dive instead of 100 open tabs.",
+      "added": "2026-02-19"
+    },
+    {
+      "id": 2,
+      "emoji": "🧮",
+      "title": "The Clawculator",
+      "spark": "Answer 5 questions about your work, get personalized agent recommendations + hours saved estimate + monthly API cost. Lead magnet for email capture. Already pitched this to AIDB as the Clawrchitect application concept.",
+      "added": "2026-02-19"
+    },
+    {
+      "id": 3,
+      "emoji": "🔥",
+      "title": "Agent Roast",
+      "spark": "Submit your AGENTS.md, get a brutally honest AI review of your setup — what's missing, what's overcomplicated, what's brilliant. Viral shareability. Could be a Twitter/LinkedIn campaign for Napoleon or Kelly's personal brand.",
+      "added": "2026-02-19"
+    },
+    {
+      "id": 4,
+      "emoji": "📋",
+      "title": "Agent Templates Gallery",
+      "spark": "Downloadable AGENTS.md + SOUL.md starter kits for different use cases: 'The Fundraiser,' 'The Content Machine,' 'The Job Hunter,' 'The Researcher.' Drop into OpenClaw and go in 10 minutes. Huge demand from non-technical founders.",
+      "added": "2026-02-19"
+    },
+    {
+      "id": 5,
+      "emoji": "🎛️",
+      "title": "Agent Mission Control panel",
+      "spark": "NLW built this for his 10-agent team — shows each agent's up/down status, last run, cost, errors. Add a 'Kip's Team' panel to Command Center: Scout + Quill status, cron health, API spend. Real ops visibility.",
+      "added": "2026-02-19"
+    },
+    {
+      "id": 6,
+      "emoji": "📡",
+      "title": "HelioFlux Reddit monitor",
+      "spark": "Watch r/biotech, r/investing, r/MachineLearning, r/cancer for biophotonics, UPE, early cancer detection mentions. Daily Telegram briefing on what the internet is saying about your space. Spot investor conversations before they go cold.",
+      "added": "2026-02-19"
+    },
+    {
+      "id": 7,
+      "emoji": "🧠",
+      "title": "Knowledge graph memory (Alhazen-style)",
+      "spark": "Gully Burns built TypeDB memory with relationships: Collections → Things → Artifacts → Fragments → Notes. Our flat .md files work but can't query relationships. Someday: upgrade to a graph so 'who mentioned HelioFlux + is a VC + in LA' is one query.",
+      "added": "2026-02-19"
+    },
+    {
+      "id": 8,
+      "emoji": "🎵",
+      "title": "Music as a recharge system",
+      "spark": "Kelly produces music. It prevents burnout. But it competes with work time. What if there was a scheduled 'creativity block' built into the week — not optional, literally calendared — that made the rest of the week more productive? Treat it like sleep.",
+      "added": "2026-02-20"
+    },
+    {
+      "id": 9,
+      "emoji": "🩺",
+      "title": "HelioFlux consumer app concept",
+      "spark": "Not for now, but: what if there was a $99/year subscription where you get annual biophotonic cancer screening at a partner clinic? Direct-to-consumer cancer peace of mind. The AncestryDNA of cancer detection. Phase 4 maybe.",
+      "added": "2026-02-20"
+    },
+    {
+      "id": 10,
+      "emoji": "🤝",
+      "title": "Founder dating app (for co-founder matching)",
+      "spark": "YC, Entrepreneur First, CoFoundersLab exist but all feel like LinkedIn. What if it was more like Hinge — swipe on missions, not job titles. Match on complementary skills + working styles + risk tolerance. One-week 'trial project' before committing.",
+      "added": "2026-02-21"
+    },
+    {
+      "id": 11,
+      "emoji": "📰",
+      "title": "HelioFlux newsletter for supporters",
+      "spark": "Monthly or quarterly update sent to everyone in CRM — investors, advisors, supporters, press. Builds parasocial relationship. They feel in the journey. When you raise, they already know you. Substack or Beehiiv. 480 contacts in CRM = 480 potential subscribers.",
+      "added": "2026-02-22"
+    },
+    {
+      "id": 12,
+      "emoji": "🏎️",
+      "title": "F1 x HelioFlux partnership angle",
+      "spark": "F1 teams are obsessed with peak performance data, injury prevention, driver health monitoring. Biophotonic sensing could have applications for real-time athlete health monitoring. Red Bull Racing has a health/performance science team. Niche but memorable pitch angle.",
+      "added": "2026-02-22"
+    }
   ],
-  "updated_at": "2026-02-19T15:30:00"
+  "updated_at": "2026-02-24T01:37:00"
 }
