@@ -554,10 +554,25 @@
             
             <!-- KNOWLEDGE BASE -->
             <div class="page" id="page-knowledge">
-                <div class="search-box">
+                <div style="margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+                    <div>
+                        <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-primary)">Knowledge Base</h2>
+                        <p style="font-size:.8rem;color:var(--text-muted);margin-top:.2rem;">Articles, videos, papers, and resources. Tell Kip "save this: [URL]" to add anything.</p>
+                    </div>
+                    <span id="kb-count" style="font-size:.8rem;color:var(--text-muted);"></span>
+                </div>
+                <div class="search-box" style="margin-bottom:.75rem;">
                     <input type="text" class="search-input" id="kb-search" placeholder="Search knowledge base...">
                 </div>
-                <div id="kb-list">
+                <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem;">
+                    <button onclick="filterKB('all')" class="kb-filter active" data-cat="all" style="padding:.3rem .7rem;border-radius:6px;border:1px solid var(--border);background:var(--accent-teal);color:#000;font-size:.75rem;cursor:pointer;font-weight:600;">All</button>
+                    <button onclick="filterKB('ai-tech')" class="kb-filter" data-cat="ai-tech" style="padding:.3rem .7rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.75rem;cursor:pointer;">AI / Tech</button>
+                    <button onclick="filterKB('helioflux')" class="kb-filter" data-cat="helioflux" style="padding:.3rem .7rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.75rem;cursor:pointer;">HelioFlux</button>
+                    <button onclick="filterKB('f1')" class="kb-filter" data-cat="f1" style="padding:.3rem .7rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.75rem;cursor:pointer;">F1</button>
+                    <button onclick="filterKB('jobs')" class="kb-filter" data-cat="jobs" style="padding:.3rem .7rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.75rem;cursor:pointer;">Jobs</button>
+                    <button onclick="filterKB('personal')" class="kb-filter" data-cat="personal" style="padding:.3rem .7rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.75rem;cursor:pointer;">Personal</button>
+                </div>
+                <div id="kb-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;">
                     <div class="loading">Loading knowledge base...</div>
                 </div>
             </div>
@@ -1642,23 +1657,50 @@
         
         function renderKnowledgeBase() {
             const search = document.getElementById('kb-search').value.toLowerCase();
-            const filtered = (kbData.entries || []).filter(k =>
-                !search ||
-                (k.title || '').toLowerCase().includes(search) ||
-                (k.summary || '').toLowerCase().includes(search) ||
-                (k.url || '').toLowerCase().includes(search)
-            );
-            
+            const catFilter = document.querySelector('.kb-filter.active')?.dataset?.cat || 'all';
+            const filtered = (kbData.entries || []).filter(k => {
+                const matchSearch = !search ||
+                    (k.title || '').toLowerCase().includes(search) ||
+                    (k.summary || '').toLowerCase().includes(search) ||
+                    (k.tags || []).some(t => t.toLowerCase().includes(search));
+                const matchCat = catFilter === 'all' || k.category === catFilter;
+                return matchSearch && matchCat;
+            }).sort((a,b) => (b.date||'').localeCompare(a.date||''));
+
+            const typeIcon = {youtube:'▶', article:'📄', paper:'🔬', podcast:'🎙️', link:'🔗', video:'🎬'};
+            const typeColor = {youtube:'#ff4444', article:'#00b4d8', paper:'#14b8a6', podcast:'#a78bfa', link:'#94a3b8', video:'#f97316'};
+            const catLabel = {helioflux:'HelioFlux','ai-tech':'AI/Tech',f1:'F1',jobs:'Jobs',personal:'Personal'};
+
+            document.getElementById('kb-count').textContent = `${filtered.length} of ${(kbData.entries||[]).length} entries`;
             document.getElementById('kb-list').innerHTML = filtered.length ? filtered.map(k => `
-                <div class="kb-item">
-                    <div class="kb-title">
-                        <span class="kb-type">${k.type || 'link'}</span>
-                        ${k.title || 'Untitled'}
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.1rem;display:flex;flex-direction:column;gap:.6rem;transition:border-color .2s;cursor:pointer;" onclick="${k.url ? `window.open('${k.url}','_blank')` : ''}" onmouseover="this.style.borderColor='rgba(0,180,216,0.4)'" onmouseout="this.style.borderColor='var(--border)'">
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;">
+                        <div style="display:flex;align-items:center;gap:.5rem;flex:1;min-width:0;">
+                            <span style="font-size:1.1rem;flex-shrink:0;">${typeIcon[k.type]||'🔗'}</span>
+                            <span style="font-weight:600;font-size:.875rem;color:var(--text-primary);line-height:1.4;">${k.title||'Untitled'}</span>
+                        </div>
                     </div>
-                    ${k.summary ? `<div class="kb-summary">${k.summary.slice(0, 200)}${k.summary.length > 200 ? '...' : ''}</div>` : ''}
-                    ${k.url ? `<div class="kb-url"><a href="${k.url}" target="_blank">${k.url}</a></div>` : ''}
+                    ${k.summary ? `<p style="font-size:.78rem;color:var(--text-muted);line-height:1.5;margin:0;">${k.summary.slice(0,180)}${k.summary.length>180?'…':''}</p>` : ''}
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.25rem;">
+                        <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+                            <span style="font-size:.65rem;padding:.15rem .5rem;border-radius:4px;background:rgba(0,180,216,0.1);color:var(--accent-teal);border:1px solid rgba(0,180,216,0.2);">${k.type||'link'}</span>
+                            ${k.category ? `<span style="font-size:.65rem;padding:.15rem .5rem;border-radius:4px;background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid var(--border);">${catLabel[k.category]||k.category}</span>` : ''}
+                        </div>
+                        <span style="font-size:.7rem;color:var(--text-muted);">${k.date||''}</span>
+                    </div>
                 </div>
-            `).join('') : '<div class="empty">No knowledge base entries. Add content with kb.py!</div>';
+            `).join('') : '<div class="empty" style="grid-column:1/-1;">No entries match. Tell Kip "save this: [URL]" to add anything!</div>';
+        }
+
+        function filterKB(cat) {
+            document.querySelectorAll('.kb-filter').forEach(b => {
+                const isActive = b.dataset.cat === cat;
+                b.classList.toggle('active', isActive);
+                b.style.background = isActive ? 'var(--accent-teal)' : 'transparent';
+                b.style.color = isActive ? '#000' : 'var(--text-secondary)';
+                b.style.fontWeight = isActive ? '600' : '400';
+            });
+            renderKnowledgeBase();
         }
         
         function renderFocus() {
