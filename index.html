@@ -670,43 +670,39 @@
             <div class="page" id="page-ideas">
 
                 <!-- Quick capture -->
-                <div style="display:flex;gap:.6rem;margin-bottom:1.25rem;">
-                    <input id="quick-idea-input" placeholder="💡 Capture an idea... (press Enter)" style="flex:1;padding:.65rem 1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text-primary);font-size:.9rem;outline:none;" onkeydown="if(event.key==='Enter')quickCaptureIdea()" onfocus="this.style.borderColor='rgba(0,180,216,0.5)'" onblur="this.style.borderColor='var(--border)'">
-                    <button onclick="quickCaptureIdea()" style="padding:.65rem 1.25rem;background:var(--accent-teal);color:#000;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:.875rem;">Capture</button>
+                <div style="display:flex;gap:.6rem;margin-bottom:1.5rem;">
+                    <input id="quick-idea-input" placeholder="💡 What's the idea? (press Enter to plant it)" style="flex:1;padding:.7rem 1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text-primary);font-size:.9rem;outline:none;" onkeydown="if(event.key==='Enter')quickCaptureIdea()" onfocus="this.style.borderColor='rgba(0,180,216,0.5)'" onblur="this.style.borderColor='var(--border)'">
+                    <button onclick="quickCaptureIdea()" style="padding:.7rem 1.25rem;background:var(--accent-teal);color:#000;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:.875rem;">Plant 🌱</button>
                 </div>
 
                 <!-- This week's Big 3 -->
-                <div class="card" style="background: linear-gradient(135deg, rgba(0,180,216,0.1), rgba(125,249,255,0.05)); margin-bottom: 1rem;">
+                <div class="card" style="background: linear-gradient(135deg, rgba(0,180,216,0.1), rgba(125,249,255,0.05)); margin-bottom: 1.5rem;">
                     <div class="card-header">
                         <span class="card-title">🎯 This Week's Big 3</span>
                         <span style="color: var(--text-muted); font-size: 0.8rem;" id="ideas-week"></span>
                     </div>
                     <div id="weekly-big-3"></div>
                 </div>
-                
-                <div class="grid-2">
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="card-title">💡 Ideas Inbox</span>
-                            <span class="nav-badge" id="inbox-count">0</span>
-                        </div>
-                        <div id="ideas-inbox-list"></div>
+
+                <!-- Stage filters -->
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem;">
+                    <div style="display:flex;gap:.4rem;flex-wrap:wrap;" id="stage-filter-bar">
+                        <button onclick="filterSeeds('all')" class="stage-filter active" data-s="all" style="padding:.3rem .75rem;border-radius:6px;border:1px solid var(--border);background:var(--accent-teal);color:#000;font-size:.75rem;cursor:pointer;font-weight:600;">All</button>
+                        <button onclick="filterSeeds('idea')" class="stage-filter" data-s="idea" style="padding:.3rem .75rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.75rem;cursor:pointer;">💡 Idea</button>
+                        <button onclick="filterSeeds('seed')" class="stage-filter" data-s="seed" style="padding:.3rem .75rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.75rem;cursor:pointer;">🌱 Seed</button>
+                        <button onclick="filterSeeds('sprouting')" class="stage-filter" data-s="sprouting" style="padding:.3rem .75rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.75rem;cursor:pointer;">🌿 Sprouting</button>
+                        <button onclick="filterSeeds('growing')" class="stage-filter" data-s="growing" style="padding:.3rem .75rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.75rem;cursor:pointer;">🌳 Growing</button>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="card-title">✅ Recently Done</span>
-                        </div>
-                        <div id="ideas-done-list"></div>
-                    </div>
+                    <span id="seeds-count" style="font-size:.75rem;color:var(--text-muted);"></span>
                 </div>
 
-                <!-- SEEDS -->
-                <div style="margin-top:1.5rem;">
-                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
-                        <h3 style="font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent-teal);margin:0;">🌱 Seeds — Ideas Worth Growing</h3>
-                        <span id="seeds-count" style="font-size:.75rem;color:var(--text-muted);"></span>
-                    </div>
-                    <div id="seeds-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;"></div>
+                <!-- Seed garden -->
+                <div id="seeds-garden" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:2rem;"></div>
+
+                <!-- Done blooms -->
+                <div style="margin-top:1rem;">
+                    <h3 style="font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:.75rem;">✅ Bloomed — Ideas that became real</h3>
+                    <div id="ideas-done-list" style="display:flex;flex-wrap:wrap;gap:.5rem;"></div>
                 </div>
             </div>
             
@@ -1889,69 +1885,103 @@
             `).join('') : '<div class="empty">No ideas match your search</div>';
         }
         
-        function renderIdeas() {
+        const STAGE_META = {
+            idea:      { label: 'Idea',      color: '#a78bfa', border: 'rgba(167,139,250,0.35)', glow: 'rgba(167,139,250,0.12)', plant: `<svg width="32" height="36" viewBox="0 0 32 36"><ellipse cx="16" cy="33" rx="8" ry="2.5" fill="rgba(167,139,250,0.2)"/><circle cx="16" cy="18" r="7" fill="none" stroke="rgba(167,139,250,0.5)" stroke-width="1.5" stroke-dasharray="3 2"/><text x="16" y="22" text-anchor="middle" font-size="13">💡</text></svg>` },
+            seed:      { label: 'Seed',      color: '#86efac', border: 'rgba(134,239,172,0.4)', glow: 'rgba(134,239,172,0.1)', plant: `<svg width="32" height="36" viewBox="0 0 32 36"><ellipse cx="16" cy="34" rx="6" ry="2" fill="rgba(134,239,172,0.25)"/><line x1="16" y1="34" x2="16" y2="22" stroke="#86efac" stroke-width="1.5"/><ellipse cx="16" cy="20" rx="5" ry="4" fill="rgba(134,239,172,0.3)" stroke="#86efac" stroke-width="1"/><ellipse cx="16" cy="20" rx="3" ry="2.5" fill="rgba(134,239,172,0.5)"/></svg>` },
+            sprouting: { label: 'Sprouting', color: '#4ade80', border: 'rgba(74,222,128,0.45)', glow: 'rgba(74,222,128,0.12)', plant: `<svg width="32" height="36" viewBox="0 0 32 36"><ellipse cx="16" cy="34.5" rx="7" ry="2" fill="rgba(74,222,128,0.2)"/><line x1="16" y1="35" x2="16" y2="14" stroke="#4ade80" stroke-width="1.5"/><path d="M16 22 Q10 16 8 10" stroke="#4ade80" stroke-width="1.5" fill="none"/><ellipse cx="11" cy="13" rx="5" ry="3.5" fill="rgba(74,222,128,0.4)" stroke="#4ade80" stroke-width="1" transform="rotate(-20,11,13)"/><path d="M16 18 Q22 12 24 6" stroke="#4ade80" stroke-width="1.5" fill="none"/><ellipse cx="21" cy="9" rx="5" ry="3.5" fill="rgba(74,222,128,0.4)" stroke="#4ade80" stroke-width="1" transform="rotate(20,21,9)"/></svg>` },
+            growing:   { label: 'Growing',   color: '#00b4d8', border: 'rgba(0,180,216,0.45)', glow: 'rgba(0,180,216,0.12)', plant: `<svg width="32" height="36" viewBox="0 0 32 36"><ellipse cx="16" cy="35" rx="8" ry="2" fill="rgba(0,180,216,0.2)"/><line x1="16" y1="35" x2="16" y2="8" stroke="#00b4d8" stroke-width="1.5"/><path d="M16 28 Q8 22 5 14" stroke="#00b4d8" stroke-width="1.5" fill="none"/><ellipse cx="9" cy="17" rx="6" ry="4" fill="rgba(0,180,216,0.35)" stroke="#00b4d8" stroke-width="1" transform="rotate(-25,9,17)"/><path d="M16 22 Q24 16 27 8" stroke="#00b4d8" stroke-width="1.5" fill="none"/><ellipse cx="23" cy="11" rx="6" ry="4" fill="rgba(0,180,216,0.35)" stroke="#00b4d8" stroke-width="1" transform="rotate(25,23,11)"/><circle cx="16" cy="7" r="4" fill="rgba(0,180,216,0.5)" stroke="#00b4d8" stroke-width="1"/><circle cx="16" cy="7" r="2" fill="#7df9ff"/></svg>` },
+        };
+        const CAT_COLORS = {
+            helioflux:'#14b8a6', productivity:'#a78bfa', infrastructure:'#94a3b8',
+            product:'#f97316', income:'#22c55e', personal:'#ec4899',
+            'bull-stories':'#f59e0b'
+        };
+
+        function renderIdeas(stageFilter) {
+            stageFilter = stageFilter || document.querySelector('.stage-filter.active')?.dataset?.s || 'all';
             const weekly = ideasData.weekly_commits || {};
-            const inbox = ideasData.inbox || [];
+            const allSeeds = ideasData.seeds || [];
             const done = ideasData.done || [];
-            
-            // Week label
+
+            // Week / Big 3
             document.getElementById('ideas-week').textContent = weekly.week || '';
-            
-            // Big 3
             const big3 = weekly.big_3 || [];
             document.getElementById('weekly-big-3').innerHTML = big3.length ? big3.map((item, i) => `
                 <div class="task-item" style="cursor:pointer;" onclick="toggleIdeasBig3(${i}, this)">
                     <div class="task-checkbox ${item.done ? 'done' : ''}"></div>
-                    <div style="flex: 1;">
-                        <div class="task-text" style="${item.done ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${item.text}</div>
-                    </div>
+                    <div style="flex:1;"><div class="task-text" style="${item.done ? 'text-decoration:line-through;opacity:.6;' : ''}">${item.text}</div></div>
                     <span class="priority-badge a">${i + 1}</span>
                 </div>
             `).join('') + (weekly.bonus?.length ? `
-                <div style="margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--border);">
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">Bonus if time:</div>
-                    ${weekly.bonus.map(b => `
-                        <div style="font-size: 0.85rem; color: var(--text-muted); padding: 0.25rem 0;">
-                            ${b.done ? '✅' : '○'} ${b.text}
-                        </div>
-                    `).join('')}
-                </div>
-            ` : '') : '<div class="empty">No commitments set. Pick your Big 3!</div>';
-            
-            // Inbox count
-            document.getElementById('inbox-count').textContent = inbox.length;
-            
-            // Ideas inbox
-            document.getElementById('ideas-inbox-list').innerHTML = inbox.length ? inbox.map(idea => `
-                <div style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
-                    <div style="font-size: 0.9rem;">💡 ${idea.text}</div>
-                    <div style="font-size: 0.7rem; color: var(--text-muted);">Added ${idea.added}</div>
-                </div>
-            `).join('') : '<div class="empty">Inbox empty! Text Kip: "idea: [thing]"</div>';
-            
-            // Done list
-            document.getElementById('ideas-done-list').innerHTML = done.slice(0, 8).map(idea => `
-                <div style="padding: 0.4rem 0; border-bottom: 1px solid var(--border);">
-                    <div style="font-size: 0.85rem; color: var(--success);">✅ ${idea.text}</div>
-                    <div style="font-size: 0.7rem; color: var(--text-muted);">${idea.completed || idea.added}</div>
-                </div>
-            `).join('') || '<div class="empty">Nothing completed yet</div>';
+                <div style="margin-top:.75rem;padding-top:.5rem;border-top:1px solid var(--border);">
+                    <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:.4rem;">Bonus if time:</div>
+                    ${weekly.bonus.map(b => `<div style="font-size:.82rem;color:var(--text-muted);padding:.2rem 0;">${b.done ? '✅' : '○'} ${b.text}</div>`).join('')}
+                </div>` : '') : '<div class="empty">No commitments set for this week.</div>';
 
-            // Seeds — card grid
-            const seeds = ideasData.seeds || [];
-            if(document.getElementById('seeds-count')) document.getElementById('seeds-count').textContent = `${seeds.length} ideas`;
-            document.getElementById('seeds-list').innerHTML = seeds.length ? seeds.map(seed => `
-                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;gap:.75rem;transition:border-color .2s,transform .2s;cursor:default;" onmouseover="this.style.borderColor='rgba(0,180,216,0.4)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-                    <div style="display:flex;align-items:flex-start;gap:.75rem;">
-                        <span style="font-size:1.75rem;line-height:1;flex-shrink:0;">${seed.emoji}</span>
-                        <div>
-                            <div style="font-size:.95rem;font-weight:700;color:var(--text-primary);line-height:1.3;">${seed.title}</div>
-                            <div style="font-size:.7rem;color:var(--text-muted);margin-top:.2rem;">Planted ${seed.added}</div>
+            // Filter seeds
+            const filtered = stageFilter === 'all' ? allSeeds : allSeeds.filter(s => s.stage === stageFilter);
+            document.getElementById('seeds-count').textContent = `${filtered.length} of ${allSeeds.length} ideas`;
+
+            // Seed cards
+            document.getElementById('seeds-garden').innerHTML = filtered.length ? filtered.map(seed => {
+                const sm = STAGE_META[seed.stage] || STAGE_META.idea;
+                const cc = CAT_COLORS[seed.category] || '#94a3b8';
+                return `
+                <div style="background:linear-gradient(160deg, var(--bg-card) 60%, ${sm.glow} 100%);border:1px solid ${sm.border};border-radius:14px;padding:1.25rem;display:flex;flex-direction:column;gap:.75rem;transition:transform .2s,box-shadow .2s;cursor:default;position:relative;overflow:hidden;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px ${sm.glow}'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+                    <!-- category stripe -->
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${cc};border-radius:14px 14px 0 0;opacity:.8;"></div>
+                    <!-- top row: plant + emoji + stage -->
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-top:.2rem;">
+                        <div style="display:flex;align-items:center;gap:.6rem;">
+                            ${sm.plant}
+                            <div>
+                                <div style="font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:${sm.color};font-weight:700;margin-bottom:.15rem;">${sm.label}</div>
+                                <div style="font-size:1.5rem;line-height:1;">${seed.emoji || '🌱'}</div>
+                            </div>
+                        </div>
+                        <span style="font-size:.6rem;padding:.2rem .5rem;border-radius:4px;background:${cc}22;color:${cc};font-weight:600;white-space:nowrap;">${seed.category || ''}</span>
+                    </div>
+                    <!-- title -->
+                    <div style="font-weight:700;font-size:.95rem;color:var(--text-primary);line-height:1.3;">${seed.title}</div>
+                    <!-- spark -->
+                    ${seed.spark ? `<p style="font-size:.78rem;color:var(--text-muted);line-height:1.55;margin:0;flex:1;">${seed.spark}</p>` : ''}
+                    <!-- footer -->
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.5rem;border-top:1px solid var(--border);">
+                        <span style="font-size:.65rem;color:var(--text-muted);">Planted ${seed.added}</span>
+                        <div style="display:flex;gap:.35rem;">
+                            ${seed.stage !== 'growing' ? `<button onclick="nurtureSeed(${seed.id})" style="font-size:.65rem;padding:.2rem .5rem;border-radius:5px;background:${sm.color}22;color:${sm.color};border:1px solid ${sm.border};cursor:pointer;">Nurture →</button>` : ''}
                         </div>
                     </div>
-                    <p style="font-size:.8rem;color:var(--text-muted);line-height:1.55;margin:0;">${seed.spark}</p>
+                </div>`;
+            }).join('') : `<div class="empty" style="grid-column:1/-1;">No ideas at this stage yet.</div>`;
+
+            // Done blooms
+            document.getElementById('ideas-done-list').innerHTML = done.map(d => `
+                <div style="padding:.3rem .65rem;border-radius:20px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);font-size:.75rem;color:#4ade80;display:flex;align-items:center;gap:.35rem;">
+                    <span>${d.emoji || '✅'}</span><span>${d.title}</span>
                 </div>
-            `).join('') : '<div class="empty" style="grid-column:1/-1;">No seeds yet! Tell Kip an idea anytime.</div>';
+            `).join('') || '<div class="empty">Nothing yet!</div>';
+        }
+
+        function filterSeeds(stage) {
+            document.querySelectorAll('.stage-filter').forEach(b => {
+                const active = b.dataset.s === stage;
+                b.classList.toggle('active', active);
+                b.style.background = active ? 'var(--accent-teal)' : 'transparent';
+                b.style.color = active ? '#000' : 'var(--text-secondary)';
+                b.style.fontWeight = active ? '600' : '400';
+            });
+            renderIdeas(stage);
+        }
+
+        function nurtureSeed(id) {
+            const order = ['idea','seed','sprouting','growing'];
+            const seed = (ideasData.seeds || []).find(s => s.id === id);
+            if (!seed) return;
+            const idx = order.indexOf(seed.stage);
+            if (idx < order.length - 1) seed.stage = order[idx + 1];
+            saveIdeas();
+            renderIdeas();
         }
         // Toggle functions for checkboxes
         function toggleTodo(who, idx, el) {
@@ -2012,17 +2042,20 @@
             const input = document.getElementById('quick-idea-input');
             const text = input.value.trim();
             if (!text) return;
-            const newIdea = {
+            const newSeed = {
                 id: Date.now(),
-                text,
-                added: new Date().toISOString().slice(0, 10),
-                status: 'inbox'
+                emoji: '💡',
+                title: text,
+                spark: '',
+                stage: 'idea',
+                added: new Date().toISOString().slice(0,10),
+                category: 'uncategorized'
             };
-            ideasData.inbox = ideasData.inbox || [];
-            ideasData.inbox.unshift(newIdea);
+            ideasData.seeds = ideasData.seeds || [];
+            ideasData.seeds.unshift(newSeed);
             saveIdeas();
             input.value = '';
-            input.style.borderColor = 'rgba(0,180,216,0.6)';
+            input.style.borderColor = 'rgba(134,239,172,0.6)';
             setTimeout(() => { input.style.borderColor = 'var(--border)'; }, 800);
             renderIdeas();
         }
