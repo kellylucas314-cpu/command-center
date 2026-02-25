@@ -1,6 +1,13 @@
 {
   "kelly": [
     {
+      "id": 109,
+      "text": "Gig platform signups \u2014 Respondent.io, Remotasks, Alignerr, Appen (90 min, notes/GIG-PLATFORM-SIGNUP-GUIDE.md)",
+      "priority": "\ud83d\udd34 urgent",
+      "category": "income",
+      "done": false
+    },
+    {
       "id": 1,
       "text": "Follow up Yaniv Sneor (MABA) \u2014 Day 6+, draft ready, hits awkward zone soon",
       "priority": "\ud83d\udd34 urgent",
