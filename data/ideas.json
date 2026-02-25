@@ -269,6 +269,15 @@
       "stage": "seed",
       "added": "2026-02-24",
       "category": "intelligence"
+    },
+    {
+      "id": 31,
+      "emoji": "\ud83d\udc8a",
+      "title": "Biologic Commercial Matching Game",
+      "spark": "Those insane TV drug ads with the 45-second side-effect disclaimers \u2014 match the drug name to the condition it treats (or the side effects). Running gag: 'may cause death' is always an option. Could be genuinely funny AND educational. Side-by-side with the HelioFlux pitch: 'Or we could just detect it earlier.'",
+      "stage": "idea",
+      "added": "2026-02-24",
+      "category": "creative"
     }
   ],
   "done": [

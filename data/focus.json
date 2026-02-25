@@ -1,42 +1,46 @@
 {
   "kelly": {
     "big_3": [
-      {"text": "Arye Lipman meeting — TODAY Tue Feb 24 @ 2:30pm PST", "done": false},
-      {"text": "Reply to Mike Schaldenbrand (patent attorney) — sign $2,500 retainer", "done": false},
-      {"text": "YC Application — GREEN LIGHT, apply ASAP with Nirosha", "done": false}
+      {"text": "YC Application — apply ASAP at ycombinator.com/apply (need Nirosha on account + 1-min video)", "done": false},
+      {"text": "Reply to Stephen Richardson (EverGlade) — manages BARDA/ARPA-H awards, wants 30-min call", "done": false},
+      {"text": "Send TEAM-STRUCTURE-CEO-SEARCH.md to Arye as follow-up + request CEO candidates list", "done": false}
     ],
     "deadlines": [
-      {"text": "Arye Lipman meeting", "date": "Tue Feb 24", "time": "2:30pm PST", "urgent": true},
-      {"text": "StartEngine/Doryn meeting", "date": "Wed Feb 25", "time": "12:00pm PST", "urgent": false},
-      {"text": "BCIC Biomedical Pitch (Google Form — quick!)", "date": "Sat Feb 28", "urgent": false}
+      {"text": "Thu Feb 26 7:30am PT: Rakesh Ramaswamy (Moffitt) call — Zoom ready", "urgent": true},
+      {"text": "Wed Feb 25 10am: Arsalan Daudi meeting", "urgent": false},
+      {"text": "Wed Feb 25 12pm: StartEngine/Doryn meeting", "urgent": false},
+      {"text": "BCIC Biomedical Pitch (Google Form)", "date": "Sat Feb 28", "urgent": false}
     ],
     "setup_needed": [
-      "DataAnnotation biology assessment (Kelly doing on own device — no AI help)"
-    ]
-  },
-  "glenn": {
-    "action_items": [
-      {"text": "Reply to Mike Schaldenbrand (patent attorney) — sign $2,500 retainer", "urgent": true},
-      {"text": "Get Nirosha to reply to Tomohiro Yoshida (Hamamatsu OPM)", "urgent": true},
-      {"text": "Arye Lipman meeting prep — TODAY 2:30pm PST", "urgent": true},
-      {"text": "Submit MABA application with deck", "urgent": false}
+      "Nirosha: confirm OPM/treatment interest → then reply to Tomohiro Yoshida",
+      "DataAnnotation biology assessment (Kelly doing on own device)"
     ]
   },
   "kip": {
     "active": [
-      {"text": "Napoleon tweet queue crons through Feb 25", "status": "running"}
+      {"text": "Napoleon Tweet #7 fires Wed Feb 25 @ 11am", "status": "scheduled"},
+      {"text": "Twitter growth research report (napoleon/TWITTER-GROWTH-RESEARCH.md)", "status": "in progress"},
+      {"text": "StumbleUpon project seed data ready (157+ URLs)", "status": "parked"}
     ],
     "completed_today": [
-      "Morning briefing sent to Glenn (audio + written)",
-      "Date/time check added to AGENTS.md and HEARTBEAT.md"
+      "Arye Lipman meeting DONE — major outcomes (CEO search, QBI reintro, Jim match)",
+      "HelioFlux Rolodex built (Dave Bisceglia + Betsabeh Madani-Hermann profiles)",
+      "TEAM-STRUCTURE-CEO-SEARCH.md created",
+      "Date/time check protocol added to AGENTS.md + HEARTBEAT.md",
+      "PLAUD transcript processor built",
+      "Disaster recovery + nightly backup cron built",
+      "Meetings tab added to Command Center",
+      "Napoleon replies posted (Burry thread 334K views, standalone)",
+      "Hamamatsu OPM reply draft ready (pending Nirosha review)",
+      "PINNED.md created"
     ]
   },
   "recently_done": [
+    "YC application green light received",
     "Press assets added to Command Center (SciAm + Radiolab)",
     "Cell count confirmed: 5-10M cells correct",
-    "Arye Lipman prep doc updated (meeting now Tue Feb 24 2:30pm)",
-    "Red Bull + AIDB job applications submitted",
-    "Security overhauled (GO verstappen)"
+    "Security overhauled (GO verstappen)",
+    "Email → CRM auto-sync (480+ contacts)"
   ],
-  "updated_at": "2026-02-24T08:25:00-08:00"
+  "updated_at": "2026-02-24T23:00:00-08:00"
 }
