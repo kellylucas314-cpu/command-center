@@ -1,0 +1,79 @@
+{
+  "description": "Questions Kelly is living with — things she's curious about, wants to figure out, or just can't stop thinking about. Newton called these 'Quaestiones.' Da Vinci filled notebooks with them. This is yours.",
+  "questions": [
+    {
+      "id": 1,
+      "question": "How can I actually incorporate Claude Code into my daily workflow — not just for big projects, but as a thinking tool?",
+      "category": "tech",
+      "tags": ["claude-code", "ai", "workflow"],
+      "added": "2026-02-24",
+      "status": "open",
+      "notes": "Greg Isenberg video — the Obsidian vault approach. Kip + workspace IS the vault. What would a Claude Code session look like every morning?"
+    },
+    {
+      "id": 2,
+      "question": "What is biophotonics actually telling us about consciousness? Are UPEs related to how the brain 'knows' things?",
+      "category": "science",
+      "tags": ["biophotonics", "consciousness", "neuroscience", "helioflux"],
+      "added": "2026-02-24",
+      "status": "open",
+      "notes": "Nirosha's iScience paper touched on this. The brain glowing paper in SciAm. Michael Levin's work on bioelectric fields. Is HelioFlux just the beginning of something much bigger?"
+    },
+    {
+      "id": 3,
+      "question": "What would it look like to design a company entirely around ADHD — not 'accommodating' it, but building the whole structure around how ADHD brains actually work?",
+      "category": "life",
+      "tags": ["adhd", "systems", "company-design"],
+      "added": "2026-02-24",
+      "status": "open",
+      "notes": "The balloon metaphor — room full of balloons, keeping them all above the ground. What if the whole company was designed for that kind of mind?"
+    },
+    {
+      "id": 4,
+      "question": "What is the minimum viable version of HelioFlux that could actually get into a clinic this year?",
+      "category": "helioflux",
+      "tags": ["strategy", "product", "clinic"],
+      "added": "2026-02-24",
+      "status": "open",
+      "notes": "Not the full vision — the wedge. Skin cancer detection in a Beverly Hills derm office. What does that actually look like? What's the simplest version that generates real data?"
+    },
+    {
+      "id": 5,
+      "question": "Why do some people find ambiguity energizing and others find it paralyzing — and can you train the energizing response?",
+      "category": "life",
+      "tags": ["psychology", "resilience", "founder-mode"],
+      "added": "2026-02-24",
+      "status": "open",
+      "notes": "Arye said the right CEO finds hard-to-fundraise, hard-to-recruit spaces 'interesting, not exhausting.' That's a real distinction. What's the mechanism?"
+    },
+    {
+      "id": 6,
+      "question": "Is there a version of HelioFlux that works for animals — and could that be the faster path to clinical validation?",
+      "category": "helioflux",
+      "tags": ["strategy", "veterinary", "pilot"],
+      "added": "2026-02-24",
+      "status": "open",
+      "notes": "FidoCure, ImpriMed — the pet oncology space moves faster than human clinical trials. Nirosha did animal work in Paper 2. Worth asking her."
+    },
+    {
+      "id": 7,
+      "question": "What does a genuinely good day look like for me — not a productive day, a good one?",
+      "category": "life",
+      "tags": ["self-knowledge", "wellbeing"],
+      "added": "2026-02-24",
+      "status": "open",
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "question": "What would Newton or da Vinci be working on if they were alive now?",
+      "category": "curiosity",
+      "tags": ["history", "science", "inspiration"],
+      "added": "2026-02-24",
+      "status": "open",
+      "notes": "Newton did optics, calculus, gravity, alchemy, biblical prophecy — all at once. Da Vinci: anatomy, engineering, art, geology. The polymath thing wasn't a bug. Is that what HelioFlux is — quantum biology, oncology, photonics, AI, all at once?"
+    }
+  ],
+  "categories": ["tech", "science", "helioflux", "life", "curiosity", "business"],
+  "status_options": ["open", "exploring", "answered"]
+}

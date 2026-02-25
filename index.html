@@ -421,6 +421,11 @@
                     <span class="nav-badge" id="meetings-count" style="background:#f59e0b;">-</span>
                 </button>
             </div>
+                <button class="nav-item" data-page="questions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <span>Questions</span>
+                </button>
+            </div>
             <div style="margin-top:auto;padding-top:1rem;border-top:1px solid var(--border);">
                 <a href="spark/index.html" class="nav-item" style="text-decoration:none;display:flex;align-items:center;gap:0.6rem;color:var(--text-secondary);">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -1384,6 +1389,46 @@
                 <div id="meetings-list" style="display:flex;flex-direction:column;gap:1.25rem;"></div>
             </div>
 
+            <!-- QUESTIONS PAGE -->
+            <div class="page" id="page-questions">
+                <div style="margin-bottom:1.5rem;">
+                    <h2 style="font-size:1.4rem;font-weight:700;color:var(--text-primary);">The Notebook</h2>
+                    <p style="color:var(--text-muted);font-size:.875rem;margin-top:.25rem;">Questions you're living with. Things you want to figure out. Newton called these <em>Quaestiones</em>. Da Vinci filled notebooks with them.</p>
+                </div>
+
+                <!-- Add Question Form -->
+                <div style="background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.2);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;">
+                    <div style="display:flex;gap:0.75rem;align-items:flex-start;flex-wrap:wrap;">
+                        <textarea id="new-question-text" placeholder="What are you wondering about?" rows="2"
+                            style="flex:1;min-width:200px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:0.75rem;color:var(--text-primary);font-family:inherit;font-size:0.9rem;resize:vertical;"></textarea>
+                        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+                            <select id="new-question-category" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:0.5rem 0.75rem;color:var(--text-primary);font-size:0.85rem;">
+                                <option value="curiosity">Curiosity</option>
+                                <option value="tech">Tech</option>
+                                <option value="science">Science</option>
+                                <option value="helioflux">HelioFlux</option>
+                                <option value="life">Life</option>
+                                <option value="business">Business</option>
+                            </select>
+                            <button onclick="addQuestion()" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);color:#fbbf24;border-radius:8px;padding:0.5rem 1rem;cursor:pointer;font-size:0.85rem;font-weight:600;">+ Add Question</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Bar -->
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.25rem;" id="q-filters">
+                    <button class="q-filter active" data-cat="all" onclick="filterQuestions('all')" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);color:#fbbf24;border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.8rem;font-weight:600;">All</button>
+                    <button class="q-filter" data-cat="tech" onclick="filterQuestions('tech')" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.8rem;">Tech</button>
+                    <button class="q-filter" data-cat="science" onclick="filterQuestions('science')" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.8rem;">Science</button>
+                    <button class="q-filter" data-cat="helioflux" onclick="filterQuestions('helioflux')" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.8rem;">HelioFlux</button>
+                    <button class="q-filter" data-cat="life" onclick="filterQuestions('life')" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.8rem;">Life</button>
+                    <button class="q-filter" data-cat="curiosity" onclick="filterQuestions('curiosity')" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.8rem;">Curiosity</button>
+                    <button class="q-filter" data-cat="business" onclick="filterQuestions('business')" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.8rem;">Business</button>
+                </div>
+
+                <div id="questions-list" style="display:flex;flex-direction:column;gap:1rem;"></div>
+            </div>
+
         </main>
     </div>
     
@@ -1413,6 +1458,7 @@
         let radarData = [];
         let loopsData = [];
         let meetingsData = [];
+        let questionsData = [];
         
         // Pagination
         let crmPage = 1;
@@ -1463,6 +1509,8 @@
                         agenda: 'Agenda',
                         wins: 'Wins',
                         radar: 'Investor Radar',
+                        questions: 'The Notebook',
+                        meetings: 'Meetings',
                     };
                     document.getElementById('pageTitle').textContent = titles[page] || page;
                     // Populate HelioFlux combined tab on demand
@@ -1499,7 +1547,7 @@
             const baseUrl = window.location.href.includes('github.io') ? './data/' : './data/';
             
             try {
-                const [crm, memory, kb, tasks, outreach, openclaw, todos, ideas, focus, jobs, wins, agenda, radar, loopsJson, meetingsJson] = await Promise.all([
+                const [crm, memory, kb, tasks, outreach, openclaw, todos, ideas, focus, jobs, wins, agenda, radar, loopsJson, meetingsJson, questionsJson] = await Promise.all([
                     fetch(baseUrl + 'crm.json').then(r => r.json()).catch(() => ({ contacts: [], stats: {} })),
                     fetch(baseUrl + 'memory.json').then(r => r.json()).catch(() => ({ entries: [] })),
                     fetch(baseUrl + 'knowledge.json').then(r => r.json()).catch(() => ({ entries: [] })),
@@ -1514,7 +1562,8 @@
                     fetch(baseUrl + 'agenda.json').then(r => r.json()).catch(() => ({ events: [], deadlines: [] })),
                     fetch(baseUrl + 'stale-investors.json').then(r => r.json()).catch(() => []),
                     fetch(baseUrl + 'loops.json').then(r => r.json()).catch(() => ({ loops: [] })),
-                    fetch(baseUrl + 'meetings.json').then(r => r.json()).catch(() => [])
+                    fetch(baseUrl + 'meetings.json').then(r => r.json()).catch(() => []),
+                    fetch(baseUrl + 'questions.json').then(r => r.json()).catch(() => ({ questions: [] }))
                 ]);
                 
                 crmData = crm;
@@ -1532,6 +1581,7 @@
                 radarData = radar;
                 loopsData = loopsJson.loops || [];
                 meetingsData = meetingsJson || [];
+                questionsData = JSON.parse(localStorage.getItem('cc-questions')) || questionsJson.questions || [];
                 
                 document.getElementById('crm-count').textContent = crmData.stats?.total || crmData.contacts?.length || 0;
                 const upcomingMeetings = meetingsData.filter(m => m.status === 'upcoming' || m.status === 'today').length;
@@ -1552,6 +1602,7 @@
                 renderRadar();
                 renderLoops();
                 renderMeetings();
+                renderQuestions();
             } catch (e) {
                 console.error('Failed to load data:', e);
             }
@@ -2558,6 +2609,91 @@
                     ${outcomeHtml}
                 </div>`;
             }).join('');
+        }
+
+        let currentQFilter = 'all';
+
+        function renderQuestions(filter) {
+            if (filter !== undefined) currentQFilter = filter;
+            const container = document.getElementById('questions-list');
+            if (!container) return;
+
+            const catColors = {
+                tech: '#00b4d8',
+                science: '#10b981',
+                helioflux: '#8b5cf6',
+                life: '#f472b6',
+                curiosity: '#f59e0b',
+                business: '#6b7280'
+            };
+
+            const filtered = currentQFilter === 'all'
+                ? questionsData
+                : questionsData.filter(q => q.category === currentQFilter);
+
+            if (!filtered.length) {
+                container.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:3rem;">No questions yet in this category. What are you wondering about?</div>';
+                return;
+            }
+
+            container.innerHTML = filtered.map((q, i) => {
+                const color = catColors[q.category] || '#fbbf24';
+                const notes = q.notes ? `<div style="margin-top:0.75rem;padding:0.75rem;background:rgba(255,255,255,0.03);border-radius:6px;color:var(--text-muted);font-size:0.82rem;line-height:1.6;font-style:italic;">${q.notes}</div>` : '';
+                const tags = q.tags ? q.tags.map(t => `<span style="background:rgba(255,255,255,0.06);border-radius:12px;padding:0.15rem 0.5rem;font-size:0.72rem;color:var(--text-muted);">#${t}</span>`).join(' ') : '';
+
+                return `<div style="background:rgba(251,191,36,0.04);border:1px solid rgba(251,191,36,0.12);border-left:3px solid ${color};border-radius:10px;padding:1.25rem;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(251,191,36,0.3)'" onmouseout="this.style.borderColor='rgba(251,191,36,0.12)'">
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;">
+                        <div style="flex:1;">
+                            <div style="font-size:1rem;font-weight:600;color:var(--text-primary);line-height:1.5;margin-bottom:0.5rem;">${q.question}</div>
+                            <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+                                <span style="background:${color}22;color:${color};border-radius:12px;padding:0.15rem 0.6rem;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">${q.category}</span>
+                                ${tags}
+                                <span style="color:var(--text-muted);font-size:0.75rem;margin-left:0.25rem;">${q.added || ''}</span>
+                            </div>
+                            ${notes}
+                        </div>
+                        <button onclick="deleteQuestion(${q.id})" title="Remove" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;font-size:1.1rem;padding:0.25rem;flex-shrink:0;" onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">×</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function filterQuestions(cat) {
+            currentQFilter = cat;
+            document.querySelectorAll('.q-filter').forEach(btn => {
+                const isActive = btn.dataset.cat === cat;
+                btn.style.background = isActive ? 'rgba(251,191,36,0.15)' : 'rgba(255,255,255,0.04)';
+                btn.style.color = isActive ? '#fbbf24' : 'var(--text-muted)';
+                btn.style.borderColor = isActive ? 'rgba(251,191,36,0.3)' : 'rgba(255,255,255,0.1)';
+            });
+            renderQuestions();
+        }
+
+        function addQuestion() {
+            const text = document.getElementById('new-question-text').value.trim();
+            const cat = document.getElementById('new-question-category').value;
+            if (!text) return;
+
+            const newQ = {
+                id: Date.now(),
+                question: text,
+                category: cat,
+                tags: [],
+                added: new Date().toISOString().split('T')[0],
+                status: 'open',
+                notes: ''
+            };
+
+            questionsData.unshift(newQ);
+            localStorage.setItem('cc-questions', JSON.stringify(questionsData));
+            document.getElementById('new-question-text').value = '';
+            renderQuestions();
+        }
+
+        function deleteQuestion(id) {
+            questionsData = questionsData.filter(q => q.id !== id);
+            localStorage.setItem('cc-questions', JSON.stringify(questionsData));
+            renderQuestions();
         }
 
     </script>
