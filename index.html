@@ -509,19 +509,48 @@
                     </div>
                 </div>
                 
-                <div class="grid-2">
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="card-title">📋 Kelly's To-Dos</span>
+                <!-- BIG INTERACTIVE TO-DO LIST -->
+                <div style="margin-bottom:1.5rem;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem;">
+                        <div>
+                            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text-primary);">What needs to happen</div>
+                            <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem;" id="todo-stats"></div>
                         </div>
-                        <div id="kelly-todos"></div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="card-title">🦉 Kip's To-Dos</span>
+                        <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+                            <button onclick="filterTodos('all')" class="todo-filter-btn active" data-f="all" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--text-primary);border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.78rem;font-weight:600;">All</button>
+                            <button onclick="filterTodos('urgent')" class="todo-filter-btn" data-f="urgent" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#ef4444;border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.78rem;font-weight:600;">🔴 Urgent</button>
+                            <button onclick="filterTodos('fundraising')" class="todo-filter-btn" data-f="fundraising" style="background:rgba(0,180,216,0.08);border:1px solid rgba(0,180,216,0.2);color:#00b4d8;border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.78rem;">💰 Fundraising</button>
+                            <button onclick="filterTodos('income')" class="todo-filter-btn" data-f="income" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);color:#10b981;border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.78rem;">💵 Income</button>
+                            <button onclick="filterTodos('meetings')" class="todo-filter-btn" data-f="meetings" style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);color:#fbbf24;border-radius:20px;padding:0.3rem 0.9rem;cursor:pointer;font-size:0.78rem;">📅 Meetings</button>
                         </div>
-                        <div id="kip-todos"></div>
                     </div>
+
+                    <!-- Add new item -->
+                    <div style="display:flex;gap:0.6rem;margin-bottom:1rem;align-items:stretch;">
+                        <input id="new-todo-text" type="text" placeholder="+ Add something..." onkeydown="if(event.key==='Enter')addTodoItem()"
+                            style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.7rem 1rem;color:var(--text-primary);font-size:0.9rem;font-family:inherit;outline:none;"
+                            onfocus="this.style.borderColor='rgba(0,180,216,0.4)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
+                        <select id="new-todo-priority" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0 0.75rem;color:var(--text-primary);font-size:0.85rem;cursor:pointer;">
+                            <option value="🔴 urgent">🔴 Urgent</option>
+                            <option value="🟡 today">🟡 Today</option>
+                            <option value="🟠 this week" selected>🟠 This week</option>
+                            <option value="🟢 soon">🟢 Soon</option>
+                        </select>
+                        <select id="new-todo-cat" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0 0.75rem;color:var(--text-primary);font-size:0.85rem;cursor:pointer;">
+                            <option value="fundraising">💰 Fundraising</option>
+                            <option value="income">💵 Income</option>
+                            <option value="meetings">📅 Meetings</option>
+                            <option value="helioflux">🔬 HelioFlux</option>
+                            <option value="jobs">👔 Jobs</option>
+                            <option value="legal">⚖️ Legal</option>
+                            <option value="tools">🛠 Tools</option>
+                            <option value="other">📌 Other</option>
+                        </select>
+                        <button onclick="addTodoItem()" style="background:var(--accent-teal);border:none;color:#0A2540;border-radius:10px;padding:0 1.25rem;cursor:pointer;font-weight:700;font-size:0.9rem;white-space:nowrap;">Add</button>
+                    </div>
+
+                    <!-- Todo list -->
+                    <div id="todo-board" style="display:flex;flex-direction:column;gap:0.5rem;"></div>
                 </div>
                 
                 <div class="card">
@@ -1634,6 +1663,7 @@
                 renderLoops();
                 renderMeetings();
                 renderQuestions();
+                renderTodos();
             } catch (e) {
                 console.error('Failed to load data:', e);
             }
@@ -1690,31 +1720,7 @@
                 </div>
             `).join('') : '<div class="empty">No priority A contacts</div>';
             
-            // Kelly's To-Dos
-            const kellyTodos = (todosData.kelly || []).filter(t => !t.done).slice(0, 5);
-            document.getElementById('kelly-todos').innerHTML = kellyTodos.length ? kellyTodos.map((t, i) => `
-                <div class="task-item" style="cursor:pointer;" onclick="toggleTodo('kelly', ${todosData.kelly.indexOf(t)}, this)">
-                    <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
-                    <div style="flex: 1;">
-                        <div class="task-text">${t.text}</div>
-                        <div class="task-source">${t.category || ''}</div>
-                    </div>
-                    <span class="task-priority ${t.priority}">${t.priority}</span>
-                </div>
-            `).join('') : '<div class="empty">All done! 🎉</div>';
-            
-            // Kip's To-Dos
-            const kipTodos = (todosData.kip || []).filter(t => !t.done).slice(0, 5);
-            document.getElementById('kip-todos').innerHTML = kipTodos.length ? kipTodos.map((t, i) => `
-                <div class="task-item" style="cursor:pointer;" onclick="toggleTodo('kip', ${todosData.kip.indexOf(t)}, this)">
-                    <div class="task-checkbox ${t.done ? 'done' : ''}"></div>
-                    <div style="flex: 1;">
-                        <div class="task-text">${t.text}</div>
-                        <div class="task-source">${t.category || ''}</div>
-                    </div>
-                    <span class="task-priority ${t.priority}">${t.priority}</span>
-                </div>
-            `).join('') : '<div class="empty">All done! 🦉</div>';
+            renderTodos();
             
             // Recent memory
             const recentMemory = (memoryData.entries || []).slice(0, 3);
@@ -2641,6 +2647,110 @@
                 </div>`;
             }).join('');
         }
+
+        // ─── BIG TO-DO BOARD ───────────────────────────────────────────
+        let currentTodoFilter = 'all';
+
+        const catMeta = {
+            fundraising: { label: '💰 Fundraising', color: '#00b4d8' },
+            income:      { label: '💵 Income',       color: '#10b981' },
+            meetings:    { label: '📅 Meetings',     color: '#fbbf24' },
+            helioflux:   { label: '🔬 HelioFlux',    color: '#8b5cf6' },
+            jobs:        { label: '👔 Jobs',          color: '#f472b6' },
+            legal:       { label: '⚖️ Legal',         color: '#ef4444' },
+            tools:       { label: '🛠 Tools',         color: '#6b7280' },
+            competitions:{ label: '🏆 Competitions', color: '#f59e0b' },
+            other:       { label: '📌 Other',         color: '#94a3b8' }
+        };
+
+        const priorityOrder = { '🔴 urgent': 0, '🟡 today': 1, '🟠 this week': 2, '🟢 soon': 3 };
+
+        function renderTodos() {
+            const board = document.getElementById('todo-board');
+            if (!board) return;
+
+            const all = (todosData.kelly || []);
+            const open = all.filter(t => !t.done);
+            const done = all.filter(t => t.done);
+
+            // Stats
+            const statsEl = document.getElementById('todo-stats');
+            if (statsEl) statsEl.textContent = `${open.length} open · ${done.length} done`;
+
+            let items = open;
+            if (currentTodoFilter !== 'all') {
+                if (currentTodoFilter === 'urgent') {
+                    items = items.filter(t => t.priority === '🔴 urgent' || t.priority === '🟡 today');
+                } else {
+                    items = items.filter(t => t.category === currentTodoFilter);
+                }
+            }
+
+            items = [...items].sort((a,b) => (priorityOrder[a.priority] ?? 9) - (priorityOrder[b.priority] ?? 9));
+
+            if (!items.length) {
+                board.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--text-muted);font-size:0.9rem;">${currentTodoFilter !== 'all' ? 'Nothing here!' : 'All clear! Add something above. ✨'}</div>`;
+                return;
+            }
+
+            board.innerHTML = items.map(t => {
+                const idx = todosData.kelly.indexOf(t);
+                const cm = catMeta[t.category] || catMeta.other;
+                const priColors = { '🔴 urgent': '#ef4444', '🟡 today': '#fbbf24', '🟠 this week': '#f97316', '🟢 soon': '#10b981' };
+                const priColor = priColors[t.priority] || '#94a3b8';
+                return `
+                <div style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-left:3px solid ${priColor};border-radius:10px;cursor:pointer;transition:all 0.15s;"
+                     onmouseover="this.style.background='rgba(255,255,255,0.055)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'"
+                     onclick="checkOffTodo(${idx}, this)">
+                    <div style="width:20px;height:20px;border-radius:50%;border:2px solid ${priColor};flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s;"></div>
+                    <div style="flex:1;min-width:0;">
+                        <div style="font-size:0.9rem;color:var(--text-primary);line-height:1.4;">${t.text}</div>
+                    </div>
+                    <span style="background:${cm.color}18;color:${cm.color};border-radius:12px;padding:0.15rem 0.55rem;font-size:0.7rem;font-weight:600;white-space:nowrap;flex-shrink:0;">${cm.label}</span>
+                    <button onclick="event.stopPropagation();deleteTodoItem(${idx})" style="background:none;border:none;color:rgba(255,255,255,0.15);cursor:pointer;font-size:1rem;padding:0.1rem 0.25rem;flex-shrink:0;" onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='rgba(255,255,255,0.15)'">×</button>
+                </div>`;
+            }).join('');
+        }
+
+        function checkOffTodo(idx, row) {
+            todosData.kelly[idx].done = true;
+            saveTodos();
+            // Animate check
+            const circle = row.querySelector('div[style*="border-radius:50%"]');
+            if (circle) { circle.style.background = '#10b981'; circle.innerHTML = '✓'; circle.style.color = '#fff'; circle.style.fontSize = '0.75rem'; }
+            row.style.opacity = '0.4';
+            row.style.textDecoration = 'line-through';
+            setTimeout(() => renderTodos(), 900);
+        }
+
+        function deleteTodoItem(idx) {
+            todosData.kelly.splice(idx, 1);
+            saveTodos();
+            renderTodos();
+        }
+
+        function addTodoItem() {
+            const text = document.getElementById('new-todo-text').value.trim();
+            if (!text) return;
+            const priority = document.getElementById('new-todo-priority').value;
+            const category = document.getElementById('new-todo-cat').value;
+            const newItem = { id: Date.now(), text, priority, category, done: false };
+            todosData.kelly.unshift(newItem);
+            saveTodos();
+            document.getElementById('new-todo-text').value = '';
+            renderTodos();
+        }
+
+        function filterTodos(f) {
+            currentTodoFilter = f;
+            document.querySelectorAll('.todo-filter-btn').forEach(btn => {
+                const active = btn.dataset.f === f;
+                btn.style.opacity = active ? '1' : '0.55';
+                btn.style.fontWeight = active ? '700' : '400';
+            });
+            renderTodos();
+        }
+        // ──────────────────────────────────────────────────────────────────
 
         // March countdown
         function updateMarchCountdown() {

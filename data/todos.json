@@ -1,133 +1,21 @@
 {
   "kelly": [
-    {
-      "id": 10,
-      "text": "\ud83d\udd34 Feb 28: BCIC Biomedical Pitch deadline (10 DAYS!)",
-      "priority": "high",
-      "category": "competitions",
-      "done": false
-    },
-    {
-      "id": 9,
-      "text": "\ud83d\udd34 Feb 22: Tufts New Ventures deadline (4 DAYS!)",
-      "priority": "high",
-      "category": "competitions",
-      "done": false
-    },
-    {
-      "id": 8,
-      "text": "\ud83d\udd34 MONDAY Feb 23: Arye Lipman meeting @ 1pm PST (Google Meet)",
-      "priority": "high",
-      "category": "meetings",
-      "done": false
-    },
-    {
-      "id": 1,
-      "text": "Run 'gemini' in terminal to authenticate with Google",
-      "priority": "medium",
-      "category": "setup",
-      "done": false
-    },
-    {
-      "id": 2,
-      "text": "Install Chrome or Brave for browser automation",
-      "priority": "medium",
-      "category": "setup",
-      "done": false
-    },
-    {
-      "id": 3,
-      "text": "Submit MABA application - download form from bioangels.net, fill in, attach deck",
-      "priority": "high",
-      "category": "fundraising",
-      "done": false
-    },
-    {
-      "id": 4,
-      "text": "Sign patent engagement agreement + send $2,500 retainer to Mike Scholdenbrand",
-      "priority": "high",
-      "category": "legal",
-      "done": false
-    },
-    {
-      "id": 5,
-      "text": "Confirm Rakesh Ramaswamy call time (week of Feb 23)",
-      "priority": "high",
-      "category": "meetings",
-      "done": false
-    },
-    {
-      "id": 6,
-      "text": "StartEngine meeting with Doryn - Wed Feb 25 @ 12pm PST \u2705 SCHEDULED",
-      "priority": "high",
-      "category": "fundraising",
-      "done": false
-    },
-    {
-      "id": 7,
-      "text": "Review Conafay 5-year roadmap with Nirosha",
-      "priority": "medium",
-      "category": "strategy",
-      "done": false
-    }
+    {"id": 1, "text": "Follow up Yaniv Sneor (MABA) — Day 6+, draft ready, hits awkward zone soon", "priority": "🔴 urgent", "category": "fundraising", "done": false},
+    {"id": 2, "text": "Send Conafay reply to Joshua — draft is ready, just needs GO", "priority": "🔴 urgent", "category": "fundraising", "done": false},
+    {"id": 3, "text": "Sign patent retainer — $2,500 to mike@strongforceip.com. Blocks everything.", "priority": "🔴 urgent", "category": "legal", "done": false},
+    {"id": 4, "text": "BCIC application — Sat Feb 28 deadline, 20 min Google Form (forms.gle/uZbefcLhdNXQC2Ek8)", "priority": "🔴 urgent", "category": "competitions", "done": false},
+    {"id": 5, "text": "Wed 10am — Arsalan Daudi (Eva Garland, non-dilutive grants)", "priority": "🟡 today", "category": "meetings", "done": false},
+    {"id": 6, "text": "Wed 12pm — StartEngine / Doryn (crowdfunding campaign, C-AR question)", "priority": "🟡 today", "category": "meetings", "done": false},
+    {"id": 7, "text": "Thu 7:30am PT — Rakesh Ramaswamy (Moffitt/CancerX) — Zoom 963 7944 9923", "priority": "🟡 today", "category": "meetings", "done": false},
+    {"id": 8, "text": "Send CEO dream profile + thank-you email to Arye (doc ready at helioflux/TEAM-STRUCTURE-CEO-SEARCH.md)", "priority": "🟠 this week", "category": "fundraising", "done": false},
+    {"id": 9, "text": "Send Hamamatsu tech questions to Nirosha — she needs to answer before we can reply to Alan Pham", "priority": "🟠 this week", "category": "helioflux", "done": false},
+    {"id": 10, "text": "YC Application — Nirosha needs to create YC account + join as co-founder. Late window closing any day.", "priority": "🟠 this week", "category": "fundraising", "done": false},
+    {"id": 11, "text": "Dave Asprey outreach — he met Nirosha in 2023, had a call transcript. Warm-ish.", "priority": "🟠 this week", "category": "fundraising", "done": false},
+    {"id": 12, "text": "Set up Obsidian pointing at ~/.openclaw/workspace", "priority": "🟢 soon", "category": "tools", "done": false},
+    {"id": 13, "text": "Remotasks signup — remotasks.com (same as DataAnnotation, no location restriction)", "priority": "🟢 soon", "category": "income", "done": false},
+    {"id": 14, "text": "Respondent.io signup — expert interviews, $50-200/session, 10 min to sign up", "priority": "🟢 soon", "category": "income", "done": false},
+    {"id": 15, "text": "Apply to more entry-level jobs — coordinator / associate / specialist tier", "priority": "🟢 soon", "category": "jobs", "done": false},
+    {"id": 16, "text": "Write personal HelioFlux vision statement in your own words (not pitch deck language)", "priority": "🟢 soon", "category": "helioflux", "done": false}
   ],
-  "kip": [
-    {
-      "id": 1,
-      "text": "Phase 1: Build automated follow-up tracker (upgrade email_sync.py)",
-      "priority": "high",
-      "category": "upgrade",
-      "done": false
-    },
-    {
-      "id": 2,
-      "text": "Post Napoleon Tweet #3 (queued in TWEET-QUEUE-FEB19.md)",
-      "priority": "high",
-      "category": "content",
-      "done": false
-    },
-    {
-      "id": 3,
-      "text": "Monitor for AIDB Clawrchitect reply (jobs@aidailybrief.ai)",
-      "priority": "high",
-      "category": "jobs",
-      "done": false
-    },
-    {
-      "id": 4,
-      "text": "Phase 2: Install Antfarm multi-agent pipelines",
-      "priority": "medium",
-      "category": "upgrade",
-      "done": false
-    },
-    {
-      "id": 5,
-      "text": "Phase 2: Build content repurposing pipeline (tweets → LinkedIn → newsletter)",
-      "priority": "medium",
-      "category": "upgrade",
-      "done": false
-    },
-    {
-      "id": 6,
-      "text": "Phase 2: Shared brain across Scout/Quill agents",
-      "priority": "medium",
-      "category": "upgrade",
-      "done": false
-    },
-    {
-      "id": 7,
-      "text": "Weekly memory synthesis (review daily files → update MEMORY.md)",
-      "priority": "medium",
-      "category": "maintenance",
-      "done": false
-    },
-    {
-      "id": 8,
-      "text": "Find Glenn's contact info (need to relay Conafay materials situation)",
-      "priority": "high",
-      "category": "comms",
-      "done": false
-    }
-  ],
-  "updated_at": "2026-02-19T15:07:00"
+  "updated_at": "2026-02-24T21:30:00"
 }

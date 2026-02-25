@@ -1,24 +1,35 @@
 {
   "kelly": {
     "big_3": [
-      {"text": "Arye Lipman meeting — TOMORROW Tue Feb 24 @ 2:30pm PST (Google Meet)", "done": false},
-      {"text": "Reply to Yaniv Sneor (MABA) — Day 6 no reply, risk losing him", "done": false},
-      {"text": "Reply to Rakesh Ramaswamy (Moffitt/CancerX) — schedule call this week", "done": false}
+      {"text": "Arye Lipman meeting — TODAY Tue Feb 24 @ 2:30pm PST", "done": false},
+      {"text": "Reply to Mike Schaldenbrand (patent attorney) — sign $2,500 retainer", "done": false},
+      {"text": "YC Application — GREEN LIGHT, apply ASAP with Nirosha", "done": false}
     ],
     "deadlines": [
       {"text": "Arye Lipman meeting", "date": "Tue Feb 24", "time": "2:30pm PST", "urgent": true},
-      {"text": "StartEngine/Doryn meeting", "date": "Tue Feb 25", "time": "12:00pm PST", "urgent": false},
+      {"text": "StartEngine/Doryn meeting", "date": "Wed Feb 25", "time": "12:00pm PST", "urgent": false},
       {"text": "BCIC Biomedical Pitch (Google Form — quick!)", "date": "Sat Feb 28", "urgent": false}
     ],
     "setup_needed": [
       "DataAnnotation biology assessment (Kelly doing on own device — no AI help)"
     ]
   },
+  "glenn": {
+    "action_items": [
+      {"text": "Reply to Mike Schaldenbrand (patent attorney) — sign $2,500 retainer", "urgent": true},
+      {"text": "Get Nirosha to reply to Tomohiro Yoshida (Hamamatsu OPM)", "urgent": true},
+      {"text": "Arye Lipman meeting prep — TODAY 2:30pm PST", "urgent": true},
+      {"text": "Submit MABA application with deck", "urgent": false}
+    ]
+  },
   "kip": {
     "active": [
       {"text": "Napoleon tweet queue crons through Feb 25", "status": "running"}
     ],
-    "completed_today": []
+    "completed_today": [
+      "Morning briefing sent to Glenn (audio + written)",
+      "Date/time check added to AGENTS.md and HEARTBEAT.md"
+    ]
   },
   "recently_done": [
     "Press assets added to Command Center (SciAm + Radiolab)",
@@ -27,5 +38,5 @@
     "Red Bull + AIDB job applications submitted",
     "Security overhauled (GO verstappen)"
   ],
-  "updated_at": "2026-02-23T23:00:00-08:00"
+  "updated_at": "2026-02-24T08:25:00-08:00"
 }
