@@ -9,23 +9,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0A2540;
-            --bg-secondary: #0D2E4D;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --accent-teal: #00B4D8;
+            --bg-primary: #080f1a;
+            --bg-secondary: #0c1825;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --accent-teal: #00d4ff;
             --accent-glow: #7DF9FF;
+            --accent-purple: #a78bfa;
+            --accent-pink: #f472b6;
+            --accent-orange: #fb923c;
+            --accent-green: #34d399;
             --text-primary: #F8F9FA;
-            --text-muted: #8B9CAD;
-            --border: rgba(255, 255, 255, 0.08);
-            --success: #28A745;
-            --warning: #FFC107;
-            --danger: #DC3545;
-            --purple: #9B59B6;
+            --text-secondary: #c8d8e8;
+            --text-muted: #6b8299;
+            --border: rgba(255, 255, 255, 0.07);
+            --border-bright: rgba(0, 212, 255, 0.2);
+            --success: #34d399;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --purple: #a78bfa;
+            --card-glow: 0 0 0 1px rgba(0,212,255,0.08), 0 4px 24px rgba(0,0,0,0.4);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg-primary);
+            background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,212,255,0.06) 0%, transparent 60%);
             color: var(--text-primary);
             min-height: 100vh;
         }
@@ -34,8 +42,8 @@
         /* Sidebar */
         .sidebar {
             width: 200px;
-            background: var(--bg-secondary);
-            border-right: 1px solid var(--border);
+            background: linear-gradient(180deg, #0c1825 0%, #080f1a 100%);
+            border-right: 1px solid rgba(0,212,255,0.1);
             padding: 1.5rem 0.75rem;
             position: fixed;
             height: 100vh;
@@ -52,13 +60,14 @@
             gap: 0.5rem;
         }
         .logo-icon {
-            width: 28px; height: 28px;
-            background: linear-gradient(135deg, var(--accent-teal), var(--accent-glow));
-            border-radius: 6px;
+            width: 30px; height: 30px;
+            background: linear-gradient(135deg, #00d4ff, #a78bfa);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 15px;
+            box-shadow: 0 0 12px rgba(0,212,255,0.35);
         }
         .nav { display: flex; flex-direction: column; gap: 0.2rem; }
         .nav-item {
@@ -76,8 +85,8 @@
             width: 100%;
             text-align: left;
         }
-        .nav-item:hover { background: var(--bg-card); color: var(--text-primary); }
-        .nav-item.active { background: rgba(0, 180, 216, 0.15); color: var(--accent-teal); }
+        .nav-item:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+        .nav-item.active { background: linear-gradient(90deg, rgba(0,212,255,0.15), rgba(0,212,255,0.05)); color: var(--accent-teal); border-left: 2px solid var(--accent-teal); }
         .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
         .nav-badge {
             margin-left: auto;
@@ -93,19 +102,19 @@
         main {
             flex: 1;
             margin-left: 200px;
-            padding: 1.5rem;
+            padding: 1.5rem 2rem 3rem;
             max-width: 1100px;
-            overflow-y: auto;
-            height: 100vh;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
         }
-        .header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; }
-        .header-date { color: var(--text-muted); font-size: 0.85rem; }
+        .header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; background: linear-gradient(90deg, #fff 60%, var(--accent-teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .header-date { color: var(--text-muted); font-size: 0.83rem; margin-top: 0.15rem; }
         .header-actions { display: flex; gap: 0.5rem; }
         .btn {
             padding: 0.5rem 1rem;
@@ -131,11 +140,17 @@
         
         /* Cards */
         .card {
-            background: var(--bg-card);
+            background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(0,212,255,0.02) 100%);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 1rem;
             margin-bottom: 1rem;
+            box-shadow: var(--card-glow);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            border-color: rgba(0,212,255,0.15);
+            box-shadow: 0 0 0 1px rgba(0,212,255,0.12), 0 6px 32px rgba(0,0,0,0.5);
         }
         .card-header {
             display: flex;
@@ -368,10 +383,12 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .sidebar { width: 60px; padding: 1rem 0.5rem; }
+            .sidebar { width: 56px; padding: 0.75rem 0.4rem; }
             .logo span, .nav-item span, .nav-badge { display: none; }
-            .nav-item { justify-content: center; padding: 0.6rem; }
-            main { margin-left: 60px; padding: 1rem; }
+            .logo-icon { width: 36px; height: 36px; font-size: 18px; }
+            .nav-item { justify-content: center; padding: 0.65rem; border-radius: 8px; }
+            main { margin-left: 56px; padding: 1rem 0.85rem 3rem; }
+            .header h1 { font-size: 1.25rem; }
         }
     </style>
 </head>
@@ -1581,8 +1598,7 @@
                     const page = btn.dataset.page;
                     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
                     document.getElementById(`page-${page}`).classList.add('active');
-                    window.scrollTo(0, 0);
-                    document.querySelector('main')?.scrollTo(0, 0);
+                    window.scrollTo({ top: 0, behavior: 'instant' });
                     
                     // Update title
                     const titles = {
