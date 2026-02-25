@@ -8,17 +8,27 @@
       "category": "ai-tech",
       "date": "2026-02-18",
       "summary": "Matt Wolfe covers the most impactful AI tools emerging in 2026, including agentic workflows, image generation advances, and productivity stacks.",
-      "tags": ["AI", "tools", "productivity", "agents"]
+      "tags": [
+        "AI",
+        "tools",
+        "productivity",
+        "agents"
+      ]
     },
     {
       "id": 2,
-      "title": "Matt Wolfe: The State of AI Agents — What's Actually Working",
+      "title": "Matt Wolfe: The State of AI Agents \u2014 What's Actually Working",
       "url": "",
       "type": "youtube",
       "category": "ai-tech",
       "date": "2026-02-18",
       "summary": "Deep dive into which AI agent frameworks and tools are production-ready vs overhyped. Covers OpenClaw, Claude Code, and autonomous workflows.",
-      "tags": ["AI", "agents", "automation", "OpenClaw"]
+      "tags": [
+        "AI",
+        "agents",
+        "automation",
+        "OpenClaw"
+      ]
     },
     {
       "id": 3,
@@ -28,17 +38,30 @@
       "category": "helioflux",
       "date": "2026-06-16",
       "summary": "Dr. Nirosha Murugan's biophoton research featured in Scientific American. External scientists call the work 'potentially groundbreaking.' Covers UPEs in brain tissue and implications for cancer detection.",
-      "tags": ["HelioFlux", "biophotons", "Nirosha", "press", "SciAm"]
+      "tags": [
+        "HelioFlux",
+        "biophotons",
+        "Nirosha",
+        "press",
+        "SciAm"
+      ]
     },
     {
       "id": 4,
-      "title": "Radiolab (NPR): The Spark of Life — Are We Glowing?",
+      "title": "Radiolab (NPR): The Spark of Life \u2014 Are We Glowing?",
       "url": "https://radiolab.org/podcast/the-spark-of-life",
       "type": "podcast",
       "category": "helioflux",
       "date": "2025-09-19",
       "summary": "Full Radiolab episode featuring Nirosha Murugan. Covers both brain biophoton research AND cancer diagnosis via UPEs. Excellent for investor credibility.",
-      "tags": ["HelioFlux", "biophotons", "Nirosha", "press", "Radiolab", "NPR"]
+      "tags": [
+        "HelioFlux",
+        "biophotons",
+        "Nirosha",
+        "press",
+        "Radiolab",
+        "NPR"
+      ]
     },
     {
       "id": 5,
@@ -48,7 +71,12 @@
       "category": "helioflux",
       "date": "2018-01-01",
       "summary": "First published validation: 92% accuracy, 100% cancer detection rate. UV/IR wavelength ratio method (420nm, 620nm, 950nm). Foundational HelioFlux science.",
-      "tags": ["HelioFlux", "research", "accuracy", "biophotons"]
+      "tags": [
+        "HelioFlux",
+        "research",
+        "accuracy",
+        "biophotons"
+      ]
     },
     {
       "id": 6,
@@ -58,7 +86,13 @@
       "category": "helioflux",
       "date": "2020-01-01",
       "summary": "90% accuracy across 13 cell lines. 24-hour detection in mouse models. Confirms platform technology potential beyond initial cell line study.",
-      "tags": ["HelioFlux", "research", "accuracy", "biophotons", "cancer"]
+      "tags": [
+        "HelioFlux",
+        "research",
+        "accuracy",
+        "biophotons",
+        "cancer"
+      ]
     },
     {
       "id": 7,
@@ -68,7 +102,13 @@
       "category": "helioflux",
       "date": "2025-03-01",
       "summary": "20 human subjects. Brain biophotons cross-validated with EEG. Most recent published research. Cell Press credibility. Directly supports human application of HelioFlux tech.",
-      "tags": ["HelioFlux", "research", "brain", "human", "iScience"]
+      "tags": [
+        "HelioFlux",
+        "research",
+        "brain",
+        "human",
+        "iScience"
+      ]
     },
     {
       "id": 8,
@@ -78,9 +118,15 @@
       "category": "ai-tech",
       "date": "2026-02-21",
       "summary": "YC partners (Garry Tan, Harj Taggar, Jared Friedman) discuss the agent economy. OpenClaw explicitly named. Key insight: 'Make something agents want' as new YC motto. Non-technical CEOs automating businesses with OpenClaw. Agents as economic actors. Relevant: Kelly is a live case study for this episode.",
-      "tags": ["YC", "agents", "OpenClaw", "economy", "AI", "Garry Tan"]
-    }
-  ,
+      "tags": [
+        "YC",
+        "agents",
+        "OpenClaw",
+        "economy",
+        "AI",
+        "Garry Tan"
+      ]
+    },
     {
       "id": 9,
       "title": "Anthropic Official: Claude Code in Action (free course)",
@@ -88,8 +134,13 @@
       "type": "course",
       "category": "ai-tech",
       "date": "2026-02-24",
-      "summary": "Anthropic's own training course. Covers Claude Code architecture, practical implementation, and advanced integrations. Free. This is the official source — start here for anything you're unsure about.",
-      "tags": ["Claude Code", "learning", "Anthropic", "course"]
+      "summary": "Anthropic's own training course. Covers Claude Code architecture, practical implementation, and advanced integrations. Free. This is the official source \u2014 start here for anything you're unsure about.",
+      "tags": [
+        "Claude Code",
+        "learning",
+        "Anthropic",
+        "course"
+      ]
     },
     {
       "id": 10,
@@ -98,8 +149,13 @@
       "type": "course",
       "category": "ai-tech",
       "date": "2026-02-24",
-      "summary": "Step-by-step guide built specifically for non-programmers. 'In one day, you'll give it real tasks and ship something live.' Exactly Kelly's situation — visual learner, already rebuilt a full app in her first 2-hr session (Feb 11). Great for leveling up intentionally.",
-      "tags": ["Claude Code", "learning", "beginner", "non-programmer"]
+      "summary": "Step-by-step guide built specifically for non-programmers. 'In one day, you'll give it real tasks and ship something live.' Exactly Kelly's situation \u2014 visual learner, already rebuilt a full app in her first 2-hr session (Feb 11). Great for leveling up intentionally.",
+      "tags": [
+        "Claude Code",
+        "learning",
+        "beginner",
+        "non-programmer"
+      ]
     },
     {
       "id": 11,
@@ -108,18 +164,30 @@
       "type": "article",
       "category": "ai-tech",
       "date": "2026-02-17",
-      "summary": "Full course on building an AI Marketing Officer with Claude Code. Covers skills, quality gate hooks, brand voice, subagents, and permissions. Extremely relevant to Kelly's use case — building systems with Kip. Published Feb 2026.",
-      "tags": ["Claude Code", "learning", "subagents", "marketing", "agents"]
+      "summary": "Full course on building an AI Marketing Officer with Claude Code. Covers skills, quality gate hooks, brand voice, subagents, and permissions. Extremely relevant to Kelly's use case \u2014 building systems with Kip. Published Feb 2026.",
+      "tags": [
+        "Claude Code",
+        "learning",
+        "subagents",
+        "marketing",
+        "agents"
+      ]
     },
     {
       "id": 12,
-      "title": "CodeWithMukesh: Claude Code for Beginners — Complete 2026 Guide",
+      "title": "CodeWithMukesh: Claude Code for Beginners \u2014 Complete 2026 Guide",
       "url": "https://codewithmukesh.com/blog/claude-code-for-beginners/",
       "type": "article",
       "category": "ai-tech",
       "date": "2026-01-20",
       "summary": "15-minute beginner guide. Covers installation, CLAUDE.md setup (like our AGENTS.md), Plan Mode mastery, and comparison with Copilot/Cursor. Good quick reference for specific questions.",
-      "tags": ["Claude Code", "learning", "CLAUDE.md", "Plan Mode", "beginner"]
+      "tags": [
+        "Claude Code",
+        "learning",
+        "CLAUDE.md",
+        "Plan Mode",
+        "beginner"
+      ]
     },
     {
       "id": 13,
@@ -129,7 +197,13 @@
       "category": "ai-tech",
       "date": "2026-02-01",
       "summary": "Structured video course on agentic coding workflows with Claude Code. Updated February 2026. Good for learning systematically rather than picking things up ad hoc.",
-      "tags": ["Claude Code", "learning", "course", "agentic", "video"]
+      "tags": [
+        "Claude Code",
+        "learning",
+        "course",
+        "agentic",
+        "video"
+      ]
     },
     {
       "id": 14,
@@ -141,9 +215,47 @@
       "category": "ai-tech",
       "date": "2026-02-22",
       "views": "428K (tweet)",
-      "source": "The Startup Ideas Podcast — Greg Isenberg (@gregisenberg) + Vin (@internetvin)",
-      "summary": "Vin demonstrates live how Claude Code reads an entire Obsidian vault of interlinked markdown files and surfaces patterns across years of personal notes — generating startup ideas, tracking how ideas evolved, and executing tasks from a single sentence. Greg's 10-rule framework: (1) write everything in markdown, (2) link notes to mirror how your brain thinks, (3) let Claude Code read the vault + relationships, (4) use reference files instead of re-explaining context, (5) build custom slash commands (/context, /trace, /connect, /ideas, /graduate), (6) human writes the vault — agents read + execute, (7) surface unconscious patterns, (8) delegate from inside notes, (9) treat writing as leverage, (10) markdown files are the oxygen of LLMs. Key insight: 'Once the vault exists, the agent stops being generic. It starts thinking in your voice.' HIGHLY relevant — Kelly already has this system with Kip + markdown workspace. Next step: explore Obsidian CLI integration and custom slash commands.",
-      "tags": ["Claude Code", "Obsidian", "personal-OS", "productivity", "markdown", "agents", "startup-ideas", "learning"]
+      "source": "The Startup Ideas Podcast \u2014 Greg Isenberg (@gregisenberg) + Vin (@internetvin)",
+      "summary": "Vin demonstrates live how Claude Code reads an entire Obsidian vault of interlinked markdown files and surfaces patterns across years of personal notes \u2014 generating startup ideas, tracking how ideas evolved, and executing tasks from a single sentence. Greg's 10-rule framework: (1) write everything in markdown, (2) link notes to mirror how your brain thinks, (3) let Claude Code read the vault + relationships, (4) use reference files instead of re-explaining context, (5) build custom slash commands (/context, /trace, /connect, /ideas, /graduate), (6) human writes the vault \u2014 agents read + execute, (7) surface unconscious patterns, (8) delegate from inside notes, (9) treat writing as leverage, (10) markdown files are the oxygen of LLMs. Key insight: 'Once the vault exists, the agent stops being generic. It starts thinking in your voice.' HIGHLY relevant \u2014 Kelly already has this system with Kip + markdown workspace. Next step: explore Obsidian CLI integration and custom slash commands.",
+      "tags": [
+        "Claude Code",
+        "Obsidian",
+        "personal-OS",
+        "productivity",
+        "markdown",
+        "agents",
+        "startup-ideas",
+        "learning"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "@BonaparteVC Growth Research \u2014 Algorithm, Compliance & 120+ Tweets",
+      "url": "",
+      "summary": "3 deep research reports on growing the Napoleon VC parody account. Key finds: replying to own replies = 75x multiplier, X Premium = 10x reach, no links in main posts (8x penalty), audience siphoning via VC thread replies. 120+ ready-to-post tweets. PCF compliance checklist. 90-day monetization roadmap targeting 5M impressions.",
+      "category": "napoleon",
+      "tags": [
+        "twitter",
+        "growth",
+        "parody",
+        "algorithm",
+        "napoleon"
+      ],
+      "added": "2026-02-24"
+    },
+    {
+      "id": 16,
+      "title": "HelioFlux Competitor Landscape \u2014 2025-2026 Update",
+      "url": "",
+      "summary": "New entrants: Michigan State Raman SERS (Dec 2025, needs nanoparticles \u2014 not truly non-invasive), Craif ($22M, urine miRNA, Japan), SpotitEarly (trained dogs + AI, Hackensack Meridian partnership), Surfix Diagnostics (photonic chip liquid biopsy, still blood-based). Key moat: HelioFlux is the ONLY approach that needs no sample, no prep, no nanoparticles. Photonics Online has a write-up on Nirosha's work already.",
+      "category": "helioflux",
+      "tags": [
+        "competitors",
+        "biophotonics",
+        "cancer-detection",
+        "research"
+      ],
+      "added": "2026-02-24"
     }
   ]
 }

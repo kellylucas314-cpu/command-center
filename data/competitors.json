@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Craif",
+    "description": "Urine-based miRNA test, 7 cancer types",
+    "raised": "$22M",
+    "status": "Revenue in Japan",
+    "threat": "medium",
+    "difference": "Requires urine sample. We need no sample at all.",
+    "updated": "Apr 2025"
+  },
+  {
+    "name": "Galleri (GRAIL)",
+    "description": "Multi-cancer liquid biopsy, blood-based",
+    "raised": "$1.9B+",
+    "status": "Commercial ($950/test)",
+    "threat": "medium",
+    "difference": "Needs 50-100M cells. Only 17% Stage I sensitivity. We detect at 5-10M cells.",
+    "updated": "2025"
+  },
+  {
+    "name": "Michigan State SERS",
+    "description": "Raman nanoparticle cancer detection",
+    "raised": "Academic",
+    "status": "Research phase",
+    "threat": "low",
+    "difference": "Requires nanoparticles applied to tissue. Not non-invasive.",
+    "updated": "Dec 2025"
+  },
+  {
+    "name": "SpotitEarly",
+    "description": "Trained dogs + AI cancer detection",
+    "raised": "Unknown",
+    "status": "Clinical partnership (Hackensack Meridian)",
+    "threat": "low",
+    "difference": "Not scalable. We're a device, not a dog.",
+    "updated": "Oct 2025"
+  },
+  {
+    "name": "DermaSensor",
+    "description": "Handheld skin lesion scanner, FDA cleared",
+    "raised": "$30M+",
+    "status": "FDA cleared, commercial",
+    "threat": "medium",
+    "difference": "Detects visible lesions only. We detect pre-lesion. Different stage entirely.",
+    "updated": "2024"
+  },
+  {
+    "name": "Surfix Diagnostics",
+    "description": "Photonic chip liquid biopsy",
+    "raised": "Seed",
+    "status": "Pre-clinical",
+    "threat": "low",
+    "difference": "Still blood-based. Photonics but requires sample.",
+    "updated": "2025"
+  }
+]

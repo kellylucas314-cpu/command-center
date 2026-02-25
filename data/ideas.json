@@ -2,7 +2,7 @@
   "seeds": [
     {
       "id": 1,
-      "emoji": "📬",
+      "emoji": "\ud83d\udcec",
       "title": "Newsletter digest / inbox declutter",
       "spark": "Auto-scan inbox daily, surface the 3 most important things, archive the rest. Less email anxiety.",
       "stage": "idea",
@@ -11,16 +11,16 @@
     },
     {
       "id": 2,
-      "emoji": "🎙️",
+      "emoji": "\ud83c\udf99\ufe0f",
       "title": "Meeting action item extraction",
-      "spark": "Connect Fathom or Otter transcript → Kip pulls action items → drops them in todos automatically. Zero manual capture.",
+      "spark": "Connect Fathom or Otter transcript \u2192 Kip pulls action items \u2192 drops them in todos automatically. Zero manual capture.",
       "stage": "idea",
       "added": "2026-02-18",
       "category": "productivity"
     },
     {
       "id": 3,
-      "emoji": "🔒",
+      "emoji": "\ud83d\udd12",
       "title": "Encrypted Google Drive backups",
       "spark": "Auto-backup workspace files to Drive nightly. Needs Google Drive API. Insurance against losing everything.",
       "stage": "idea",
@@ -29,7 +29,7 @@
     },
     {
       "id": 4,
-      "emoji": "🧭",
+      "emoji": "\ud83e\udded",
       "title": "Model routing logic",
       "spark": "Sonnet vs Opus auto-selector based on task complexity. Quick replies = Sonnet, deep research = Opus. Cut API costs by 60%.",
       "stage": "idea",
@@ -38,7 +38,7 @@
     },
     {
       "id": 5,
-      "emoji": "🐂",
+      "emoji": "\ud83d\udc02",
       "title": "Bull Stories social media growth",
       "spark": "Automated post scheduling for @BSBullStories2026. Track views, comments, engagement. Grow to 10K before approaching Yeti/Marriott.",
       "stage": "sprouting",
@@ -47,7 +47,7 @@
     },
     {
       "id": 6,
-      "emoji": "🖥️",
+      "emoji": "\ud83d\udda5\ufe0f",
       "title": "Mac mini for Kip 24/7",
       "spark": "Dedicated hardware = no WSL limits, no sleep, always-on. Can run more aggressive crons. Phase 2 after bridge round.",
       "stage": "idea",
@@ -56,7 +56,7 @@
     },
     {
       "id": 7,
-      "emoji": "📩",
+      "emoji": "\ud83d\udce9",
       "title": "Auto follow-up email sequences",
       "spark": "Day 3, Day 7, Day 14 investor follow-ups drafted and queued automatically when no reply detected. Never let a warm lead go cold by accident.",
       "stage": "seed",
@@ -65,7 +65,7 @@
     },
     {
       "id": 8,
-      "emoji": "💼",
+      "emoji": "\ud83d\udcbc",
       "title": "LinkedIn outreach automation",
       "spark": "Connect + personalized message to warm leads at scale. Needs Browser Relay to work. Would 10x outreach velocity.",
       "stage": "idea",
@@ -74,7 +74,7 @@
     },
     {
       "id": 9,
-      "emoji": "📊",
+      "emoji": "\ud83d\udcca",
       "title": "Investor match scoring AI",
       "spark": "Score every CRM contact by fit: cancer interest + check size + stage + geography. Surface top 3 to pursue each week automatically.",
       "stage": "seed",
@@ -83,16 +83,16 @@
     },
     {
       "id": 10,
-      "emoji": "🎙️",
+      "emoji": "\ud83c\udf99\ufe0f",
       "title": "Voice interface for Kip",
-      "spark": "Talk to Kip like a walkie-talkie while driving, walking, thinking out loud. Record → transcribe → act. ADHD-friendly capture mode.",
+      "spark": "Talk to Kip like a walkie-talkie while driving, walking, thinking out loud. Record \u2192 transcribe \u2192 act. ADHD-friendly capture mode.",
       "stage": "idea",
       "added": "2026-02-18",
       "category": "productivity"
     },
     {
       "id": 11,
-      "emoji": "🤖",
+      "emoji": "\ud83e\udd16",
       "title": "Agent-powered idea validator",
       "spark": "40 agents research your startup idea: search volume, YouTube comments, competition, execution plan, timing. Scores: Opportunity / Feasibility / Why Now. Build for HelioFlux investor research first.",
       "stage": "seed",
@@ -101,25 +101,25 @@
     },
     {
       "id": 12,
-      "emoji": "🧮",
+      "emoji": "\ud83e\uddee",
       "title": "The Clawculator",
-      "spark": "Answer 5 questions about your work → get personalized agent recs + hours saved estimate + monthly API cost. Lead magnet. Already pitched to AIDB as the Clawrchitect concept — they know this idea.",
+      "spark": "Answer 5 questions about your work \u2192 get personalized agent recs + hours saved estimate + monthly API cost. Lead magnet. Already pitched to AIDB as the Clawrchitect concept \u2014 they know this idea.",
       "stage": "sprouting",
       "added": "2026-02-19",
       "category": "product"
     },
     {
       "id": 13,
-      "emoji": "🔥",
+      "emoji": "\ud83d\udd25",
       "title": "Agent Roast",
-      "spark": "Submit your AGENTS.md → get a brutally honest AI review. What's missing, overcomplicated, brilliant. Viral shareability. Great Twitter campaign for Napoleon or Kelly's personal brand.",
+      "spark": "Submit your AGENTS.md \u2192 get a brutally honest AI review. What's missing, overcomplicated, brilliant. Viral shareability. Great Twitter campaign for Napoleon or Kelly's personal brand.",
       "stage": "seed",
       "added": "2026-02-19",
       "category": "product"
     },
     {
       "id": 14,
-      "emoji": "📋",
+      "emoji": "\ud83d\udccb",
       "title": "Agent Templates Gallery",
       "spark": "Downloadable AGENTS.md + SOUL.md starter kits: 'The Fundraiser,' 'The Content Machine,' 'The Job Hunter.' Drop into OpenClaw and go in 10 minutes. Huge demand from non-technical founders.",
       "stage": "seed",
@@ -128,7 +128,7 @@
     },
     {
       "id": 15,
-      "emoji": "🎛️",
+      "emoji": "\ud83c\udf9b\ufe0f",
       "title": "Agent Mission Control panel",
       "spark": "Shows each agent's up/down status, last run, cost, errors. Add Scout + Quill status to Command Center. Real ops visibility for the whole team.",
       "stage": "seed",
@@ -137,7 +137,7 @@
     },
     {
       "id": 16,
-      "emoji": "📡",
+      "emoji": "\ud83d\udce1",
       "title": "HelioFlux Reddit monitor",
       "spark": "Watch r/biotech, r/investing, r/cancer for biophotonics and early detection mentions. Daily Telegram briefing on what the internet is saying. Spot investor conversations in the wild.",
       "stage": "seed",
@@ -146,52 +146,52 @@
     },
     {
       "id": 17,
-      "emoji": "🧠",
+      "emoji": "\ud83e\udde0",
       "title": "Knowledge graph memory",
-      "spark": "TypeDB-style graph memory: Collections → Things → Artifacts → Fragments. Flat .md files can't do relational queries. Someday: 'who mentioned HelioFlux + is a VC + in LA' returns in one query.",
+      "spark": "TypeDB-style graph memory: Collections \u2192 Things \u2192 Artifacts \u2192 Fragments. Flat .md files can't do relational queries. Someday: 'who mentioned HelioFlux + is a VC + in LA' returns in one query.",
       "stage": "idea",
       "added": "2026-02-19",
       "category": "infrastructure"
     },
     {
       "id": 18,
-      "emoji": "🎵",
+      "emoji": "\ud83c\udfb5",
       "title": "Music as a scheduled recharge block",
-      "spark": "Kelly produces music and it prevents burnout — but it competes with work time. What if it was calendared, not optional? Protected creative time = more productive rest of week. Treat it like sleep.",
+      "spark": "Kelly produces music and it prevents burnout \u2014 but it competes with work time. What if it was calendared, not optional? Protected creative time = more productive rest of week. Treat it like sleep.",
       "stage": "seed",
       "added": "2026-02-20",
       "category": "personal"
     },
     {
       "id": 19,
-      "emoji": "🩺",
+      "emoji": "\ud83e\ude7a",
       "title": "HelioFlux consumer app",
-      "spark": "$99/year subscription for annual biophotonic cancer screening at a partner clinic. The AncestryDNA of cancer detection. Direct-to-consumer peace of mind. Phase 4 idea — not for now but worth planting.",
+      "spark": "$99/year subscription for annual biophotonic cancer screening at a partner clinic. The AncestryDNA of cancer detection. Direct-to-consumer peace of mind. Phase 4 idea \u2014 not for now but worth planting.",
       "stage": "idea",
       "added": "2026-02-20",
       "category": "helioflux"
     },
     {
       "id": 20,
-      "emoji": "🤝",
+      "emoji": "\ud83e\udd1d",
       "title": "Founder dating app",
-      "spark": "Co-founder matching done right — swipe on missions not job titles. Match on complementary skills + working styles + risk tolerance. One-week 'trial project' before committing. YC, EF, CoFoundersLab all feel like LinkedIn.",
+      "spark": "Co-founder matching done right \u2014 swipe on missions not job titles. Match on complementary skills + working styles + risk tolerance. One-week 'trial project' before committing. YC, EF, CoFoundersLab all feel like LinkedIn.",
       "stage": "idea",
       "added": "2026-02-21",
       "category": "product"
     },
     {
       "id": 21,
-      "emoji": "📰",
+      "emoji": "\ud83d\udcf0",
       "title": "HelioFlux supporter newsletter",
-      "spark": "Monthly update sent to everyone in CRM — investors, advisors, supporters, press. They feel in the journey. When you raise, they already know you. 480 contacts = 480 potential subscribers. Substack or Beehiiv.",
+      "spark": "Monthly update sent to everyone in CRM \u2014 investors, advisors, supporters, press. They feel in the journey. When you raise, they already know you. 480 contacts = 480 potential subscribers. Substack or Beehiiv.",
       "stage": "seed",
       "added": "2026-02-22",
       "category": "helioflux"
     },
     {
       "id": 22,
-      "emoji": "🏎️",
+      "emoji": "\ud83c\udfce\ufe0f",
       "title": "F1 x HelioFlux pitch angle",
       "spark": "F1 teams obsess over driver health data and peak performance monitoring. Biophotonic sensing for real-time athlete health. Red Bull Racing has a health science team. Niche but deeply memorable investor story.",
       "stage": "idea",
@@ -200,60 +200,198 @@
     },
     {
       "id": 23,
-      "emoji": "🔄",
+      "emoji": "\ud83d\udd04",
       "title": "Daily idea jog",
-      "spark": "Every afternoon at 2pm Kip sends a random past idea as a brain spark — 'hey remember this?' Prevents good ideas from dying in the inbox. Already live as a cron.",
+      "spark": "Every afternoon at 2pm Kip sends a random past idea as a brain spark \u2014 'hey remember this?' Prevents good ideas from dying in the inbox. Already live as a cron.",
       "stage": "growing",
       "added": "2026-02-24",
       "category": "productivity"
     },
     {
       "id": 24,
-      "emoji": "💬",
+      "emoji": "\ud83d\udcac",
       "title": "Respondent.io expert interviews",
-      "spark": "Your founder + bio + MBA profile = premium research participant bracket. $50-200 per 30-60 min call. Passive income — set it up once and studies find you.",
+      "spark": "Your founder + bio + MBA profile = premium research participant bracket. $50-200 per 30-60 min call. Passive income \u2014 set it up once and studies find you.",
       "stage": "seed",
       "added": "2026-02-24",
       "category": "income"
     },
     {
       "id": 25,
-      "emoji": "📝",
+      "emoji": "\ud83d\udcdd",
       "title": "Remotasks / DataAnnotation stack",
       "spark": "Two parallel AI training platforms for income. DataAnnotation assessment submitted. Remotasks = backup / stacker. Biology tasks $30-40/hr, science QA $50/hr.",
       "stage": "sprouting",
       "added": "2026-02-24",
       "category": "income"
+    },
+    {
+      "id": 26,
+      "emoji": "\ud83e\udde0",
+      "title": "TypeDB memory layer for CRM + research",
+      "spark": "Gully Burns setup \u2014 TypeDB as a semantic graph over our CRM contacts, research papers, and memory files. Would make everything actually queryable: 'who in our CRM has a connection to biophotonics AND cancer AND LA?' Right now we can't ask questions like that.",
+      "stage": "seed",
+      "added": "2026-02-24",
+      "category": "infrastructure"
+    },
+    {
+      "id": 27,
+      "emoji": "\ud83c\udf9b\ufe0f",
+      "title": "Agent Mission Control panel",
+      "spark": "Dashboard section showing all active agents (Kip, Scout, Quill), their cost per session, last run, current status, and what they're doing. Like a mini ops center for the AI team. Could show token spend over time too.",
+      "stage": "seed",
+      "added": "2026-02-24",
+      "category": "dashboard"
+    },
+    {
+      "id": 28,
+      "emoji": "\ud83e\ude9f",
+      "title": "NLW's Command Center \u2014 study his build",
+      "spark": "NLW (Nathaniel Whittemore) has a personal Command Center dashboard. DM him and ask about his prompt/build approach. He's in the OpenClaw community and seems collaborative. Could be a mutual share.",
+      "stage": "seed",
+      "added": "2026-02-24",
+      "category": "dashboard"
+    },
+    {
+      "id": 29,
+      "emoji": "\ud83e\uddee",
+      "title": "The Clawculator \u2014 target ClawCamp audience",
+      "spark": "ClawCamp community (AI Daily Brief OpenClaw learners) is exactly the audience for a 'what can I build with OpenClaw?' calculator/guide. They're all figuring out what to make. Clawculator = interactive tool that takes your goals + inputs and outputs a custom OpenClaw build plan.",
+      "stage": "seed",
+      "added": "2026-02-24",
+      "category": "product"
+    },
+    {
+      "id": 30,
+      "emoji": "\ud83d\udcf0",
+      "title": "HelioFlux Reddit/web intelligence digest",
+      "spark": "Jonathan's setup: Reddit AI news digest, 40 agents, 3x daily briefings, dedup + sentiment shift detection. Build a HelioFlux version: monitor r/biotech, r/cancer, r/investing for keywords (biophotonics, UPE, early cancer detection, liquid biopsy). Daily Telegram briefing \u2014 'here's what the internet is saying about your space today.'",
+      "stage": "seed",
+      "added": "2026-02-24",
+      "category": "intelligence"
     }
   ],
   "done": [
-    {"id": 100, "emoji": "🏠", "title": "Command Center (all tabs)", "completed": "2026-02-24"},
-    {"id": 101, "emoji": "📧", "title": "Email → CRM auto-sync", "completed": "2026-02-18"},
-    {"id": 102, "emoji": "📚", "title": "Knowledge Base with categories", "completed": "2026-02-24"},
-    {"id": 103, "emoji": "🔐", "title": "Security Council cron", "completed": "2026-02-18"},
-    {"id": 104, "emoji": "💡", "title": "Business Advisory Council", "completed": "2026-02-18"},
-    {"id": 105, "emoji": "🔍", "title": "Vector search for CRM", "completed": "2026-02-18"},
-    {"id": 106, "emoji": "🔗", "title": "Two-way Notion sync", "completed": "2026-02-18"},
-    {"id": 107, "emoji": "🦊", "title": "Multi-agent team (Scout + Quill)", "completed": "2026-02-11"},
-    {"id": 108, "emoji": "🎨", "title": "OpenAI image generation", "completed": "2026-02-20"},
-    {"id": 109, "emoji": "🏁", "title": "F1 Bingo multiplayer", "completed": "2026-02-22"},
-    {"id": 110, "emoji": "🎭", "title": "Napoleon @BonaparteVC Twitter", "completed": "2026-02-19"},
-    {"id": 111, "emoji": "📄", "title": "AIDB Clawrchitect application page", "completed": "2026-02-19"},
-    {"id": 112, "emoji": "🦉", "title": "kip-story website", "completed": "2026-02-20"},
-    {"id": 113, "emoji": "📋", "title": "Open Loops nag board", "completed": "2026-02-24"},
-    {"id": 114, "emoji": "🌱", "title": "Seed Garden ideas view", "completed": "2026-02-24"}
+    {
+      "id": 100,
+      "emoji": "\ud83c\udfe0",
+      "title": "Command Center (all tabs)",
+      "completed": "2026-02-24"
+    },
+    {
+      "id": 101,
+      "emoji": "\ud83d\udce7",
+      "title": "Email \u2192 CRM auto-sync",
+      "completed": "2026-02-18"
+    },
+    {
+      "id": 102,
+      "emoji": "\ud83d\udcda",
+      "title": "Knowledge Base with categories",
+      "completed": "2026-02-24"
+    },
+    {
+      "id": 103,
+      "emoji": "\ud83d\udd10",
+      "title": "Security Council cron",
+      "completed": "2026-02-18"
+    },
+    {
+      "id": 104,
+      "emoji": "\ud83d\udca1",
+      "title": "Business Advisory Council",
+      "completed": "2026-02-18"
+    },
+    {
+      "id": 105,
+      "emoji": "\ud83d\udd0d",
+      "title": "Vector search for CRM",
+      "completed": "2026-02-18"
+    },
+    {
+      "id": 106,
+      "emoji": "\ud83d\udd17",
+      "title": "Two-way Notion sync",
+      "completed": "2026-02-18"
+    },
+    {
+      "id": 107,
+      "emoji": "\ud83e\udd8a",
+      "title": "Multi-agent team (Scout + Quill)",
+      "completed": "2026-02-11"
+    },
+    {
+      "id": 108,
+      "emoji": "\ud83c\udfa8",
+      "title": "OpenAI image generation",
+      "completed": "2026-02-20"
+    },
+    {
+      "id": 109,
+      "emoji": "\ud83c\udfc1",
+      "title": "F1 Bingo multiplayer",
+      "completed": "2026-02-22"
+    },
+    {
+      "id": 110,
+      "emoji": "\ud83c\udfad",
+      "title": "Napoleon @BonaparteVC Twitter",
+      "completed": "2026-02-19"
+    },
+    {
+      "id": 111,
+      "emoji": "\ud83d\udcc4",
+      "title": "AIDB Clawrchitect application page",
+      "completed": "2026-02-19"
+    },
+    {
+      "id": 112,
+      "emoji": "\ud83e\udd89",
+      "title": "kip-story website",
+      "completed": "2026-02-20"
+    },
+    {
+      "id": 113,
+      "emoji": "\ud83d\udccb",
+      "title": "Open Loops nag board",
+      "completed": "2026-02-24"
+    },
+    {
+      "id": 114,
+      "emoji": "\ud83c\udf31",
+      "title": "Seed Garden ideas view",
+      "completed": "2026-02-24"
+    }
   ],
   "weekly_commits": {
-    "week": "Feb 24–28, 2026",
+    "week": "Feb 24\u201328, 2026",
     "big_3": [
-      {"text": "Apply to YC Spring 2026 (late window open NOW)", "done": false},
-      {"text": "Send Yaniv Sneor MABA application (Day 7 overdue)", "done": false},
-      {"text": "Nail Arye Lipman meeting (Feb 24 @ 2:30pm)", "done": false}
+      {
+        "text": "Apply to YC Spring 2026 (late window open NOW)",
+        "done": false
+      },
+      {
+        "text": "Send Yaniv Sneor MABA application (Day 7 overdue)",
+        "done": false
+      },
+      {
+        "text": "Nail Arye Lipman meeting (Feb 24 @ 2:30pm)",
+        "done": false
+      }
     ],
     "bonus": [
-      {"text": "BCIC application by Sat Feb 28 (20 min form)", "done": false},
-      {"text": "Sign up Respondent.io + Remotasks", "done": false},
-      {"text": "Send Rakesh Ramaswamy reply", "done": false}
+      {
+        "text": "BCIC application by Sat Feb 28 (20 min form)",
+        "done": false
+      },
+      {
+        "text": "Sign up Respondent.io + Remotasks",
+        "done": false
+      },
+      {
+        "text": "Send Rakesh Ramaswamy reply",
+        "done": false
+      }
     ]
   },
   "updated_at": "2026-02-24T10:00:00"

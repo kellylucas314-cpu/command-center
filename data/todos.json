@@ -1,21 +1,173 @@
 {
   "kelly": [
-    {"id": 1, "text": "Follow up Yaniv Sneor (MABA) — Day 6+, draft ready, hits awkward zone soon", "priority": "🔴 urgent", "category": "fundraising", "done": false},
-    {"id": 2, "text": "Send Conafay reply to Joshua — draft is ready, just needs GO", "priority": "🔴 urgent", "category": "fundraising", "done": false},
-    {"id": 3, "text": "Sign patent retainer — $2,500 to mike@strongforceip.com. Blocks everything.", "priority": "🔴 urgent", "category": "legal", "done": false},
-    {"id": 4, "text": "BCIC application — Sat Feb 28 deadline, 20 min Google Form (forms.gle/uZbefcLhdNXQC2Ek8)", "priority": "🔴 urgent", "category": "competitions", "done": false},
-    {"id": 5, "text": "Wed 10am — Arsalan Daudi (Eva Garland, non-dilutive grants)", "priority": "🟡 today", "category": "meetings", "done": false},
-    {"id": 6, "text": "Wed 12pm — StartEngine / Doryn (crowdfunding campaign, C-AR question)", "priority": "🟡 today", "category": "meetings", "done": false},
-    {"id": 7, "text": "Thu 7:30am PT — Rakesh Ramaswamy (Moffitt/CancerX) — Zoom 963 7944 9923", "priority": "🟡 today", "category": "meetings", "done": false},
-    {"id": 8, "text": "Send CEO dream profile + thank-you email to Arye (doc ready at helioflux/TEAM-STRUCTURE-CEO-SEARCH.md)", "priority": "🟠 this week", "category": "fundraising", "done": false},
-    {"id": 9, "text": "Send Hamamatsu tech questions to Nirosha — she needs to answer before we can reply to Alan Pham", "priority": "🟠 this week", "category": "helioflux", "done": false},
-    {"id": 10, "text": "YC Application — Nirosha needs to create YC account + join as co-founder. Late window closing any day.", "priority": "🟠 this week", "category": "fundraising", "done": false},
-    {"id": 11, "text": "Dave Asprey outreach — he met Nirosha in 2023, had a call transcript. Warm-ish.", "priority": "🟠 this week", "category": "fundraising", "done": false},
-    {"id": 12, "text": "Set up Obsidian pointing at ~/.openclaw/workspace", "priority": "🟢 soon", "category": "tools", "done": false},
-    {"id": 13, "text": "Remotasks signup — remotasks.com (same as DataAnnotation, no location restriction)", "priority": "🟢 soon", "category": "income", "done": false},
-    {"id": 14, "text": "Respondent.io signup — expert interviews, $50-200/session, 10 min to sign up", "priority": "🟢 soon", "category": "income", "done": false},
-    {"id": 15, "text": "Apply to more entry-level jobs — coordinator / associate / specialist tier", "priority": "🟢 soon", "category": "jobs", "done": false},
-    {"id": 16, "text": "Write personal HelioFlux vision statement in your own words (not pitch deck language)", "priority": "🟢 soon", "category": "helioflux", "done": false}
+    {
+      "id": 1,
+      "text": "Follow up Yaniv Sneor (MABA) \u2014 Day 6+, draft ready, hits awkward zone soon",
+      "priority": "\ud83d\udd34 urgent",
+      "category": "fundraising",
+      "done": false
+    },
+    {
+      "id": 2,
+      "text": "Send Conafay reply to Joshua \u2014 draft is ready, just needs GO",
+      "priority": "\ud83d\udd34 urgent",
+      "category": "fundraising",
+      "done": false
+    },
+    {
+      "id": 3,
+      "text": "Sign patent retainer \u2014 $2,500 to mike@strongforceip.com. Blocks everything.",
+      "priority": "\ud83d\udd34 urgent",
+      "category": "legal",
+      "done": false
+    },
+    {
+      "id": 4,
+      "text": "BCIC application \u2014 Sat Feb 28 deadline, 20 min Google Form (forms.gle/uZbefcLhdNXQC2Ek8)",
+      "priority": "\ud83d\udd34 urgent",
+      "category": "competitions",
+      "done": false
+    },
+    {
+      "id": 5,
+      "text": "Wed 10am \u2014 Arsalan Daudi (Eva Garland, non-dilutive grants)",
+      "priority": "\ud83d\udfe1 today",
+      "category": "meetings",
+      "done": false
+    },
+    {
+      "id": 6,
+      "text": "Wed 12pm \u2014 StartEngine / Doryn (crowdfunding campaign, C-AR question)",
+      "priority": "\ud83d\udfe1 today",
+      "category": "meetings",
+      "done": false
+    },
+    {
+      "id": 7,
+      "text": "Thu 7:30am PT \u2014 Rakesh Ramaswamy (Moffitt/CancerX) \u2014 Zoom 963 7944 9923",
+      "priority": "\ud83d\udfe1 today",
+      "category": "meetings",
+      "done": false
+    },
+    {
+      "id": 8,
+      "text": "Send CEO dream profile + thank-you email to Arye (doc ready at helioflux/TEAM-STRUCTURE-CEO-SEARCH.md)",
+      "priority": "\ud83d\udfe0 this week",
+      "category": "fundraising",
+      "done": false
+    },
+    {
+      "id": 9,
+      "text": "Send Hamamatsu tech questions to Nirosha \u2014 she needs to answer before we can reply to Alan Pham",
+      "priority": "\ud83d\udfe0 this week",
+      "category": "helioflux",
+      "done": false
+    },
+    {
+      "id": 10,
+      "text": "YC Application \u2014 Nirosha needs to create YC account + join as co-founder. Late window closing any day.",
+      "priority": "\ud83d\udfe0 this week",
+      "category": "fundraising",
+      "done": false
+    },
+    {
+      "id": 11,
+      "text": "Dave Asprey outreach \u2014 he met Nirosha in 2023, had a call transcript. Warm-ish.",
+      "priority": "\ud83d\udfe0 this week",
+      "category": "fundraising",
+      "done": false
+    },
+    {
+      "id": 12,
+      "text": "Set up Obsidian pointing at ~/.openclaw/workspace",
+      "priority": "\ud83d\udfe2 soon",
+      "category": "tools",
+      "done": false
+    },
+    {
+      "id": 13,
+      "text": "Remotasks signup \u2014 remotasks.com (same as DataAnnotation, no location restriction)",
+      "priority": "\ud83d\udfe2 soon",
+      "category": "income",
+      "done": false
+    },
+    {
+      "id": 14,
+      "text": "Respondent.io signup \u2014 expert interviews, $50-200/session, 10 min to sign up",
+      "priority": "\ud83d\udfe2 soon",
+      "category": "income",
+      "done": false
+    },
+    {
+      "id": 15,
+      "text": "Apply to more entry-level jobs \u2014 coordinator / associate / specialist tier",
+      "priority": "\ud83d\udfe2 soon",
+      "category": "jobs",
+      "done": false
+    },
+    {
+      "id": 16,
+      "text": "Write personal HelioFlux vision statement in your own words (not pitch deck language)",
+      "priority": "\ud83d\udfe2 soon",
+      "category": "helioflux",
+      "done": false
+    },
+    {
+      "id": 101,
+      "text": "Apply to Appen \u2014 appen.com/join (biology/science AI tasks)",
+      "priority": "\ud83d\udfe0 this week",
+      "category": "income",
+      "done": false
+    },
+    {
+      "id": 102,
+      "text": "Apply to Telus International \u2014 telusinternational.com/solutions/ai-data-solutions",
+      "priority": "\ud83d\udfe0 this week",
+      "category": "income",
+      "done": false
+    },
+    {
+      "id": 103,
+      "text": "Apply to Remotasks \u2014 remotasks.com (Scale AI, no location block)",
+      "priority": "\ud83d\udfe0 this week",
+      "category": "income",
+      "done": false
+    },
+    {
+      "id": 104,
+      "text": "Apply to Liquid Death \u2014 fun brand, LA-adjacent, marketing/content roles",
+      "priority": "\ud83d\udfe2 soon",
+      "category": "jobs",
+      "done": false
+    },
+    {
+      "id": 105,
+      "text": "Apply to YETI \u2014 marketing/brand roles, outdoor/sports overlap",
+      "priority": "\ud83d\udfe2 soon",
+      "category": "jobs",
+      "done": false
+    },
+    {
+      "id": 106,
+      "text": "Apply to Therabody \u2014 LA-based wellness tech, science meets consumer",
+      "priority": "\ud83d\udfe2 soon",
+      "category": "jobs",
+      "done": false
+    },
+    {
+      "id": 107,
+      "text": "Set job alert on fluidjobs.com \u2014 THE motorsports job board (junior content creator, F1 angle)",
+      "priority": "\ud83d\udfe2 soon",
+      "category": "jobs",
+      "done": false
+    },
+    {
+      "id": 108,
+      "text": "Check AIDB Clawrchitect reply \u2014 check SPAM too at jobs@aidailybrief.ai",
+      "priority": "\ud83d\udfe0 this week",
+      "category": "jobs",
+      "done": false
+    }
   ],
   "updated_at": "2026-02-24T21:30:00"
 }
